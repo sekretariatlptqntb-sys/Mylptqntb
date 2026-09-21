@@ -13,6 +13,11 @@
 <meta property="og:locale" content="id_ID">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0F3D2E">
+<script>
+/* Berjalan paling awal: penanda JS aktif + penangan gambar gagal (anti halaman kosong) */
+document.documentElement.classList.add('js');
+window.imgFail=function(el){if(!el)return;el.classList.add('dead');var ph=el.parentElement&&el.parentElement.querySelector('.ph');if(ph)ph.classList.add('show');};
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
@@ -46,6 +51,7 @@ ul{list-style:none}
 .skip{position:absolute;left:-9999px;top:0;background:var(--deep);color:#fff;padding:10px 16px;z-index:200;border-radius:0 0 8px 0}
 .skip:focus{left:0}
 ::selection{background:var(--soft);color:var(--deep)}
+noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;padding:10px;font-size:13px;font-weight:700}
 
 /* ---------- Slot gambar + fallback ---------- */
 .img-slot{position:relative;display:block;overflow:hidden}
@@ -262,7 +268,7 @@ ul{list-style:none}
 .ld-info h3{font-size:17.5px;font-weight:800;line-height:1.3}
 .ld-info .ld-sub{font-size:12.5px;color:var(--muted);margin-top:3px}
 .ld-info .ld-per{margin-top:6px;font-size:11px;font-weight:700;color:#8a6a30}
-.ld-info .btn{margin-top:auto;padding-top:9px;padding-bottom:9px;font-size:12.5px;align-self:flex-start;margin-top:12px}
+.ld-info .btn{margin-top:12px;padding-top:9px;padding-bottom:9px;font-size:12.5px;align-self:flex-start}
 .sk-strip{background:linear-gradient(135deg,#FDF9F0,#FBF4E4);border:1px solid #EADFC4;border-radius:14px;padding:18px 20px;font-size:12.5px;color:#6E5A2E;line-height:1.7;margin-top:16px}
 .sk-strip b{color:#4A3A15}
 .quote{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 28px}
@@ -370,7 +376,7 @@ ul{list-style:none}
 .s-nav span{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:8.5px;font-weight:700;color:#8CA094}
 .s-nav span.on{color:var(--lptq)}
 .s-nav svg{width:16px;height:16px}
-.s-cap{position:absolute;left:16px;right:16px;bottom:16px;z-index:3;background:rgba(15,61,46,.88);backdrop-filter:blur(4px);color:#fff;border-radius:12px;padding:10px 14px;font-size:10.5px;line-height:1.5;display:flex;gap:8px;align-items:center}
+.s-cap{position:absolute;left:16px;right:16px;bottom:16px;z-index:3;background:rgba(15,61,46,.88);color:#fff;border-radius:12px;padding:10px 14px;font-size:10.5px;line-height:1.5;display:flex;gap:8px;align-items:center}
 .s-cap svg{width:14px;height:14px;flex:none;color:var(--wgold)}
 .s-cap b{color:var(--wgold)}
 
@@ -558,10 +564,10 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
 .art-back{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--lptq);margin-bottom:20px}
 .art-back svg{width:15px;height:15px;transform:rotate(180deg)}
 
-/* ---------- Reveal / Toast ---------- */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
-.rv.on{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.ticker-track{animation:none}}
+/* ---------- Reveal (hanya bila JS aktif) ---------- */
+html.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+html.js .rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html.js .rv{opacity:1;transform:none;transition:none}.ticker-track{animation:none}}
 .toasts{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:130;display:flex;flex-direction:column;gap:10px;width:min(430px,92vw)}
 .toast{background:var(--deep);color:#fff;border-radius:13px;padding:14px 18px;font-size:13.5px;display:flex;gap:11px;align-items:flex-start;box-shadow:0 12px 30px rgba(10,25,19,.35);animation:tin .3s cubic-bezier(.2,.8,.3,1)}
 .toast svg{width:17px;height:17px;flex:none;margin-top:2px;color:var(--wgold)}
@@ -597,7 +603,6 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
 .ad-btn:hover{background:var(--primary)}
 .ad-btn svg{width:15px;height:15px}
 .ad-btn.gold{background:var(--gold);color:#3E2F0F}
-.ad-btn.red{background:var(--danger)}
 .ad-btn.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
 .ad-btn.ghost:hover{border-color:var(--lptq);color:var(--lptq)}
 .tbl{width:100%;border-collapse:collapse;font-size:13.5px}
@@ -700,6 +705,7 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
 </head>
 <body>
 <a class="skip" href="#main">Langsung ke konten utama</a>
+<noscript><span class="nsb">Untuk fitur lengkap (berita dinamis, pencarian, dasbor admin), aktifkan JavaScript pada peramban Anda.</span></noscript>
 
 <!-- ============ 01 UTILITY BAR (HEADER PEMERINTAH) ============ -->
 <div class="util">
@@ -730,11 +736,11 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
     <a class="brand" href="#" id="brandHome" aria-label="Beranda MY LPTQ NTB">
       <span class="logo-slot">
         <span class="lg lg-prov img-slot slot-contain">
-          <img id="imgLogoNtb" src="assets/img/logo-ntb.png" alt="Lambang resmi Pemerintah Provinsi Nusa Tenggara Barat">
+          <img id="imgLogoNtb" src="assets/img/logo-ntb.png" alt="Lambang resmi Pemerintah Provinsi Nusa Tenggara Barat" onerror="imgFail(this)">
           <span class="ph"><b>NTB</b>logo-ntb.png</span>
         </span>
         <span class="lg img-slot slot-contain">
-          <img id="imgLogoMy" src="assets/img/logo-mylptq.png" alt="Logo resmi MY LPTQ NTB">
+          <img id="imgLogoMy" src="assets/img/logo-mylptq.png" alt="Logo resmi MY LPTQ NTB" onerror="imgFail(this)">
           <span class="ph"><b>LPTQ</b>logo-mylptq.png</span>
         </span>
       </span>
@@ -878,8 +884,8 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
   <!-- 08 PROFIL SINGKAT -->
   <section class="sec" id="tentang">
     <div class="wrap">
-      <div class="about-grid">
-        <div class="about-txt rv">
+      <div class="about-grid rv">
+        <div class="about-txt">
           <span class="kicker">Profil Lembaga · Periode 2026–2031</span>
           <h2 class="sec-title">Tentang LPTQ NTB</h2>
           <p style="margin-top:14px">Lembaga Pengembangan Tilawatil Qur'an (LPTQ) Provinsi Nusa Tenggara Barat adalah lembaga di bawah Pemerintah Provinsi NTB yang membidangi pembinaan dan pengembangan cabang-cabang ilmu, seni, dan kebudayaan Al-Qur'an — mulai dari tilawah, tahfiz, tafsir, fahmil Qur'an, syarhil Qur'an, khatt (kaligrafi), hingga qiraat.</p>
@@ -897,7 +903,7 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
           </ul>
           <p style="margin-top:20px;font-size:12.5px;color:var(--muted)">Halaman profil lengkap (sejarah, visi–misi, dasar hukum, struktur organisasi) diaktifkan setelah dokumen resmi diverifikasi administrator — Tahap 2 pengembangan.</p>
         </div>
-        <aside class="serambi rv">
+        <aside class="serambi">
           <span class="kicker">Arah Strategis</span>
           <h3>NTB sebagai <em>Serambi Al-Qur'an</em></h3>
           <p class="sr-note">Tema komunikasi pembangunan Qur'ani — digunakan sejalan dengan narasi resmi LPTQ NTB.</p>
@@ -994,8 +1000,8 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
   <!-- 13 APLIKASI MY LPTQ -->
   <section class="sec" id="aplikasi" style="background:var(--soft)">
     <div class="wrap">
-      <div class="my-grid">
-        <div class="rv">
+      <div class="my-grid rv">
+        <div>
           <span class="kicker">Aplikasi Resmi · Sudah Tersedia</span>
           <h2 class="sec-title">Aplikasi MY LPTQ NTB</h2>
           <p class="sec-sub" style="font-size:15.5px;margin-top:12px">Transformasi digital untuk mendekatkan Al-Qur'an kepada masyarakat NTB. Website ini memperkenalkan dan menghubungkan Anda menuju aplikasi — pengalaman lengkap Al-Qur'an digital tersedia di dalam aplikasi.</p>
@@ -1014,11 +1020,11 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
           </div>
           <p class="app-note">Tautan unduhan resmi diatur melalui Dasbor Admin → Settings. Screenshot asli aplikasi ditempatkan pada <b>assets/img/app-screenshot.png</b>.</p>
         </div>
-        <div class="phone-zone rv">
+        <div class="phone-zone">
           <div class="phone" role="img" aria-label="Pratinjau aplikasi MY LPTQ NTB">
             <div class="screen">
               <img id="imgAppShot" src="assets/img/app-screenshot.png" alt="Tangkapan layar aplikasi MY LPTQ NTB">
-              <div class="s-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5M12 16v.3"/></svg><span>Slot screenshot asli — letakkan file di <b>assets/img/app-screenshot.png</b></span></div>
+              <div class="s-cap" id="appCap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5M12 16v.3"/></svg><span>Slot screenshot asli — letakkan file di <b>assets/img/app-screenshot.png</b></span></div>
               <div class="s-mock" id="sMock">
                 <div class="s-notch"><i></i></div>
                 <div class="s-head">
@@ -1171,8 +1177,8 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
   <div class="wrap ft-top">
     <div class="ft-brand">
       <div class="logo-slot">
-        <span class="lg lg-prov img-slot slot-contain"><img data-ftlogo-ntb src="assets/img/logo-ntb.png" alt=""><span class="ph"><b>NTB</b></span></span>
-        <span class="lg img-slot slot-contain"><img data-ftlogo-my src="assets/img/logo-mylptq.png" alt=""><span class="ph"><b>LPTQ</b></span></span>
+        <span class="lg lg-prov img-slot slot-contain"><img src="assets/img/logo-ntb.png" alt="Lambang Pemprov NTB" onerror="imgFail(this)"><span class="ph"><b>NTB</b></span></span>
+        <span class="lg img-slot slot-contain"><img src="assets/img/logo-mylptq.png" alt="Logo MY LPTQ NTB" onerror="imgFail(this)"><span class="ph"><b>LPTQ</b></span></span>
       </div>
       <h3>MY LPTQ NTB</h3>
       <p>Lembaga Pengembangan Tilawatil Qur'an<br>Provinsi Nusa Tenggara Barat</p>
@@ -1282,14 +1288,17 @@ footer{background:var(--deep);color:#B9D2C3;margin-top:70px}
 <div class="toasts" id="toasts" aria-live="polite"></div>
 
 <script>
-/* =========================================================
-   MY LPTQ NTB — portal resmi + CMS demo (localStorage)
-   Aset gambar: folder assets/img/ (lihat panduan nama file)
-   ========================================================= */
 (function(){
 "use strict";
+/* Seluruh aplikasi dibungkus pelindung: bila terjadi error di lingkungan apa pun,
+   konten tetap tampil (kelas 'js' dilepas → semua section terlihat). */
+try{
 
-/* ---------- Konfigurasi aset (satu titik kendali) ---------- */
+/* ---------- Penyimpanan aman (tahan sandbox yang memblokir localStorage) ---------- */
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const SS={get(k){try{return sessionStorage.getItem(k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}},del(k){try{sessionStorage.removeItem(k)}catch(e){}}};
+
+/* ---------- Konfigurasi aset ---------- */
 const ASSETS={
   masjid:"assets/img/masjid-ic-ntb.jpg",
   pengurus:"assets/img/pengurus-2026.jpg",
@@ -1297,7 +1306,6 @@ const ASSETS={
   ketuaHarian:"assets/img/ketua-harian.jpg",
   gubernur:"assets/img/gubernur.jpg"
 };
-window.imgFail=function(el){el.classList.add("dead");const ph=el.parentElement&&el.parentElement.querySelector(".ph");if(ph)ph.classList.add("show");};
 
 /* ---------- Ikon ---------- */
 const I={
@@ -1327,7 +1335,6 @@ const I={
   plus:'<path d="M12 5v14M5 12h14"/>',edit:'<path d="M4 20h4L20 8l-4-4L4 16v4z"/><path d="M13.5 6.5L17.5 10.5"/>',
   trash:'<path d="M4.5 6.5h15M9 6.5V4.5h6v2m-9.5 0l1 14h11l1-14M10 10.5v6m4-6v6"/>',
   check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',alert:'<path d="M12 3.5L22 20H2z"/><path d="M12 10v4.5M12 17.2v.3"/>',
-  set:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.5M12 18.7v2.5M2.8 12h2.5M18.7 12h2.5M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8"/>',
   back:'<path d="M5 12h14M11 6l-6 6 6 6"/>',
   ig:'<rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/>',
   fb:'<path d="M14 8h3V4.5h-3c-2.2 0-4 1.8-4 4V11H7v3.5h3V21h3.5v-6.5h3l.5-3.5h-3.5V8.8c0-.5.3-.8.5-.8z"/>',
@@ -1347,7 +1354,7 @@ const fmtShort=s=>{try{return new Date(s+'T00:00:00').toLocaleDateString('id-ID'
 const today=()=>new Date().toISOString().slice(0,10);
 function toast(msg,err){const t=document.createElement('div');t.className='toast'+(err?' err':'');t.innerHTML=`${ic(err?'alert':'check',17)}<span>${esc(msg)}</span>`;$('#toasts').appendChild(t);setTimeout(()=>{t.style.opacity='0';t.style.transition='.4s';setTimeout(()=>t.remove(),400)},3600);}
 function sanitizeHTML(html){const d=document.createElement('div');d.innerHTML=html;d.querySelectorAll('script,style,iframe,object,embed,link,meta').forEach(n=>n.remove());d.querySelectorAll('*').forEach(n=>{[...n.attributes].forEach(a=>{if(/^on/i.test(a.name)||(a.name==='href'&&/^javascript:/i.test(a.value)))n.removeAttribute(a.name)})});return d.innerHTML;}
-const slot=(src,alt,phTitle,phFile,cls="")=>`<span class="img-slot ${cls}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>${esc(phTitle)}</b>${esc(phFile)}</span></span>`;
+const slot=(src,alt,phTitle,phFile)=>`<span class="img-slot"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>${esc(phTitle)}</b>${esc(phFile)}</span></span>`;
 
 /* ---------- Data statis ---------- */
 const CATS=["LPTQ NTB","Musabaqah","MTQ","MTQH","Pembinaan","Tilawah","Tahfiz","Tafsir","Fahmil Qur'an","Syarhil Qur'an","Khattil Qur'an","Qiraat","Prestasi","Kegiatan","Pengumuman","MY LPTQ"];
@@ -1448,12 +1455,11 @@ function seedData(){
   };
 }
 const KEY="mylptq_data_v2";
-let DB;
-try{DB=JSON.parse(localStorage.getItem(KEY))}catch(e){DB=null}
-if(!DB||!DB.news||!DB.officials||!DB.events){DB=seedData();save();}
-function save(){localStorage.setItem(KEY,JSON.stringify(DB))}
-let visits=+(localStorage.getItem("mylptq_visits")||0)+1;
-localStorage.setItem("mylptq_visits",visits);
+let DB=null;
+try{DB=JSON.parse(LS.get(KEY))}catch(e){DB=null}
+if(!DB||!DB.news||!DB.officials||!DB.events){DB=seedData();LS.set(KEY,JSON.stringify(DB));}
+function save(){LS.set(KEY,JSON.stringify(DB))}
+let visits=+(LS.get("mylptq_visits")||0)+1;LS.set("mylptq_visits",visits);
 
 /* ---------- Render: publik ---------- */
 const visibleNews=()=>DB.news.filter(n=>n.status==='publish'&&n.date<=today()).sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)||(b.date>a.date?1:-1));
@@ -1479,7 +1485,7 @@ function renderHero(){
     </div>`;
   $('#heroSide').innerHTML=list.slice(1,5).map(n=>`
     <a class="hero-item" href="#/berita/${n.slug}">
-      <span class="hi-thumb img-slot">${`<img src="${esc(n.cover)}" alt="Thumbnail: ${esc(n.title)}" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>FOTO</b>menunggu</span>`}</span>
+      <span class="hi-thumb img-slot"><img src="${esc(n.cover)}" alt="Thumbnail: ${esc(n.title)}" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>FOTO</b>menunggu</span></span>
       <div><div class="hi-t">${esc(n.title)}</div><div class="hi-m"><b>${esc(n.cat)}</b><time datetime="${n.date}">${fmtDate(n.date)}</time></div></div>
     </a>`).join('');
 }
@@ -1557,10 +1563,7 @@ function renderMusabaqah(){
 }
 let msqLevel="Semua";
 function renderMsqNews(){
-  const y=$('#msqYear').value;
   let list=visibleNews().filter(n=>["Musabaqah","MTQ","MTQH"].includes(n.cat));
-  if(msqLevel!=="Semua")list=list.filter(n=>n.title.toLowerCase().includes(msqLevel.split('/')[0].toLowerCase())||true);
-  if(y!=="Semua")list=list.filter(n=>n.date.startsWith(y)||true);
   $('#msqNews').innerHTML=list.length?list.slice(0,4).map(n=>`
     <a class="msq-item" href="#/berita/${n.slug}">
       <span class="mth img-slot"><img src="${esc(n.cover)}" alt="" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>FOTO</b></span></span>
@@ -1638,20 +1641,14 @@ function renderInst(){
 }
 function renderSocial(){
   const s=DB.settings;
-  const cards=[
-    ["ig","Instagram","@lptqntb",s.ig],
-    ["fb","Facebook","LPTQ NTB",s.fb],
-    ["yt","YouTube","LPTQ NTB",s.yt],
-    ["tt","TikTok","@mylptq.ntb",s.tt]
-  ];
-  $('#socGrid').innerHTML=cards.map(([icn,nm,h, url])=>`
+  const cards=[["ig","Instagram","@lptqntb",s.ig],["fb","Facebook","LPTQ NTB",s.fb],["yt","YouTube","LPTQ NTB",s.yt],["tt","TikTok","@mylptq.ntb",s.tt]];
+  $('#socGrid').innerHTML=cards.map(([icn,nm,h,url])=>`
     <a class="soc-card" href="${esc(url||'#')}" target="_blank" rel="noopener noreferrer" aria-label="${esc(nm)} LPTQ NTB">
       <span class="sc-ic">${ic(icn,20,true)}</span><b>${esc(nm)}</b><span>${esc(h)}</span>
       <span class="sc-go">Kunjungi ${ic('arrow',13)}</span></a>`).join('');
-  /* Terapkan URL resmi ke semua ikon data-soc & email */
   $$('[data-soc]').forEach(el=>{const map={ig:s.ig,fb:s.fb,yt:s.yt,tt:s.tt};const u=map[el.dataset.soc];
     if(u){el.href=u;el.target="_blank";el.rel="noopener noreferrer"}else{el.removeAttribute('href')}});
-  $$('[data-mail]').forEach(el=>{el.href='mailto:'+s.email;if(el.classList.contains('k-btn')){el.classList.add('mail')}});
+  $$('[data-mail]').forEach(el=>{el.href='mailto:'+s.email});
   const addr=s.address||"[Alamat resmi sekretariat — menunggu verifikasi administrator]";
   $('#ftAddr').textContent=addr;$('#kAddr').textContent=s.mapsUrl?addr+" · Peta: "+s.mapsUrl:addr;
   $('#ftYear').textContent=s.year;
@@ -1711,38 +1708,40 @@ function closeDrawer(){$('#drawer').classList.remove('on');$('#drawerOv').classL
 
 /* ---------- Nav sticky & scrollspy ---------- */
 window.addEventListener('scroll',()=>{$('#mainNav').classList.toggle('scrolled',window.scrollY>10)},{passive:true});
-const spy=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){
-  const map={berita:'berita',tentang:'tentang',program:'program',musabaqah:'musabaqah',prestasi:'prestasi',agenda:'agenda',pengumuman:'pengumuman',galeri:'galeri',kabkota:'kabkota',aplikasi:'aplikasi',kontak:'kontak'};
-  const key=map[en.target.id];$$('.nav-list>li>a').forEach(a=>a.classList.remove('active'));
-  if(key)$$(`.nav-list>li>a[data-nav="${key}"]`).forEach(a=>a.classList.add('active'));
-}})},{rootMargin:'-25% 0px -65% 0px'});
-['berita','tentang','program','musabaqah','prestasi','agenda','pengumuman','galeri','kabkota','aplikasi','kontak'].forEach(id=>{const el=document.getElementById(id);if(el)spy.observe(el)});
-
-/* ---------- Reveal ---------- */
-const rev=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('on');rev.unobserve(en.target)}}),{threshold:.08});
- $$('.rv').forEach(el=>rev.observe(el));
+if('IntersectionObserver' in window){
+  const spy=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){
+    const map={berita:'berita',tentang:'tentang',program:'program',musabaqah:'musabaqah',prestasi:'prestasi',agenda:'agenda',pengumuman:'pengumuman',galeri:'galeri',kabkota:'kabkota',aplikasi:'aplikasi',kontak:'kontak'};
+    const key=map[en.target.id];$$('.nav-list>li>a').forEach(a=>a.classList.remove('active'));
+    if(key)$$(`.nav-list>li>a[data-nav="${key}"]`).forEach(a=>a.classList.add('active'));
+  }})},{rootMargin:'-25% 0px -65% 0px'});
+  ['berita','tentang','program','musabaqah','prestasi','agenda','pengumuman','galeri','kabkota','aplikasi','kontak'].forEach(id=>{const el=document.getElementById(id);if(el)spy.observe(el)});
+  const rev=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('on');rev.unobserve(en.target)}}),{threshold:.08});
+  $$('.rv').forEach(el=>rev.observe(el));
+}else{$$('.rv').forEach(el=>el.classList.add('on'));}
 
 /* ---------- Delegasi klik ---------- */
 document.addEventListener('click',e=>{
   const nf=e.target.closest('[data-nf]');if(nf){newsFilter=nf.dataset.nf;renderNewsFilters();renderNews();return;}
   const af=e.target.closest('[data-af]');if(af){achFilter=af.dataset.af;renderAchFilters();renderAch();return;}
-  const ml=e.target.closest('[data-ml]');if(ml){msqLevel=ml.dataset.ml;$$('#msqLevel .chip-f').forEach(b=>b.classList.toggle('on',b===ml));renderMsqNews();return;}
+  const ml=e.target.closest('[data-ml]');if(ml){msqLevel=ml.dataset.ml;$$('#msqLevel .chip-f').forEach(b=>b.classList.toggle('on',b===ml));return;}
   const gt=e.target.closest('[data-gtab]');if(gt){galTab=gt.dataset.gtab;$$('[data-gtab]').forEach(b=>b.classList.toggle('on',b===gt));renderGallery();return;}
   const lb=e.target.closest('[data-lb]');if(lb){openLB(+lb.dataset.lb);return;}
   const kk=e.target.closest('[data-kk]');if(kk){toast('Halaman profil LPTQ '+kk.dataset.kk+' diaktifkan pada tahap pengembangan halaman daerah.');return;}
   const tbd=e.target.closest('[data-tbd]');if(tbd){e.preventDefault();toast('Halaman "'+tbd.dataset.tbd+'" diaktifkan pada tahap pengembangan berikutnya.');return;}
-  const ap=e.target.closest('[data-applink]');if(ap){e.preventDefault();toast(DB.settings.appUrl?'Membuka tautan resmi MY LPTQ NTB…':'URL resmi aplikasi belum diatur. Isi melalui Dasbor Admin → Settings.');if(DB.settings.appUrl)window.open(DB.settings.appUrl,'_blank','noopener');return;}
+  const ap=e.target.closest('[data-applink]');if(ap){e.preventDefault();if(DB.settings.appUrl){window.open(DB.settings.appUrl,'_blank','noopener');}else{toast('URL resmi aplikasi belum diatur. Isi melalui Dasbor Admin → Settings.',true);}return;}
   const pdf=e.target.closest('[data-pdf]');if(pdf){e.preventDefault();window.open(pdf.dataset.pdf,'_blank','noopener');return;}
   const lg=e.target.closest('[data-legal]');if(lg){e.preventDefault();toast('Halaman '+lg.dataset.legal+' diisi tim administrator pada versi produksi.');return;}
   if(e.target.closest('#btnAllNews')){newsFilter="Semua";renderNewsFilters();renderNews();document.getElementById('beritaTerbaru').scrollIntoView({behavior:'smooth'});return;}
 });
-document.addEventListener('keydown',e=>{if(e.key==='Enter'){
-  if($('#lb').classList.contains('on')){if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft')openLB(lbIdx-1);if(e.key==='ArrowRight')openLB(lbIdx+1);}
+document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){$('#searchOv').classList.remove('on');closeDrawer();closeLB();}
-  const kk=e.target.closest?.('[data-kk]');if(kk)kk.click();
-  const gi=e.target.closest?.('[data-lb]');if(gi)openLB(+gi.dataset.lb);
-}});
- $('#msqYear').addEventListener('change',renderMsqNews);
+  if($('#lb').classList.contains('on')){if(e.key==='ArrowLeft')openLB(lbIdx-1);if(e.key==='ArrowRight')openLB(lbIdx+1);}
+  if(e.key==='Enter'){
+    const kk=e.target.closest?.('[data-kk]');if(kk)kk.click();
+    const gi=e.target.closest?.('[data-lb]');if(gi)openLB(+gi.dataset.lb);
+  }
+});
+ $('#msqYear').addEventListener('change',()=>{renderMsqNews();});
 
 /* ---------- Pencarian global ---------- */
 const searchOv=$('#searchOv'),searchIn=$('#searchInput');
@@ -1752,7 +1751,7 @@ function buildIndex(){
   DB.agenda.forEach(a=>ix.push({g:'Agenda',icn:'cal',t:a.title,s:`${fmtDate(a.date)} · ${a.place}`,go:()=>{closeSearch();document.getElementById('agenda').scrollIntoView({behavior:'smooth'})}}));
   DB.ann.forEach(a=>ix.push({g:'Pengumuman',icn:'file',t:a.title,s:`${a.no} · ${fmtDate(a.date)}`,go:()=>{closeSearch();document.getElementById('pengumuman').scrollIntoView({behavior:'smooth'})}}));
   DB.ach.forEach(a=>ix.push({g:'Prestasi',icn:'award',t:`${a.branch} — ${a.event}`,s:`${a.level} · ${a.year}`,go:()=>{closeSearch();document.getElementById('prestasi').scrollIntoView({behavior:'smooth'})}}));
-  DB.officials.forEach(o=>ix.push({g:'Pengurus',icn:'users',t:`${o.nama}`,s:`${o.role} · Periode 2026–2031`,go:()=>{closeSearch();document.getElementById('pimpinan').scrollIntoView({behavior:'smooth'})}}));
+  DB.officials.forEach(o=>ix.push({g:'Pengurus',icn:'users',t:o.nama,s:`${o.role} · Periode 2026–2031`,go:()=>{closeSearch();document.getElementById('pimpinan').scrollIntoView({behavior:'smooth'})}}));
   DB.events.forEach(ev=>ix.push({g:'Musabaqah',icn:'trophy',t:`${ev.jenis} ${ev.edisi||''} ${ev.tahun}`,s:`Tingkat: ${ev.tingkat}`,go:()=>{closeSearch();document.getElementById('musabaqah').scrollIntoView({behavior:'smooth'})}}));
   PROGRAMS.forEach(p=>ix.push({g:'Program',icn:'bookOpen',t:p[1],s:p[2],go:()=>{closeSearch();document.getElementById('program').scrollIntoView({behavior:'smooth'})}}));
   KABKOTA.forEach(k=>ix.push({g:'LPTQ Kab/Kota',icn:'pin',t:k,s:'Profil lembaga daerah',go:()=>{closeSearch();document.getElementById('kabkota').scrollIntoView({behavior:'smooth'})}}));
@@ -1779,27 +1778,26 @@ searchIn.addEventListener('input',()=>doSearch(searchIn.value));
    ADMIN / CMS
    ========================================================= */
 const adOv=$('#adminOv');
-async function sha256(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+async function sha256(t){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return'plain:'+t}}
 const hashKey="mylptq_admin_hash";
-(async function(){if(!localStorage.getItem(hashKey))localStorage.setItem(hashKey,await sha256("lptqntb2025"))})();
+(async function(){if(!LS.get(hashKey))LS.set(hashKey,await sha256("lptqntb2025"))})();
 function openAdmin(){adOv.classList.add('on');document.body.style.overflow='hidden';
-  if(sessionStorage.getItem('mylptq_admin')==='1')showPanel();else{$('#adLogin').style.display='flex';$('#adPanel').hidden=true;}}
+  if(SS.get('mylptq_admin')==='1')showPanel();else{$('#adLogin').style.display='flex';$('#adPanel').hidden=true;}}
 function closeAdmin(){adOv.classList.remove('on');document.body.style.overflow=''}
  $('#btnAdmin').onclick=openAdmin;$('#ftAdmin').onclick=openAdmin;
  $('#adViewSite').onclick=closeAdmin;
- $('#adLogout').onclick=()=>{sessionStorage.removeItem('mylptq_admin');adOv.classList.remove('on');document.body.style.overflow='';toast('Anda telah keluar dari dasbor.')};
+ $('#adLogout').onclick=()=>{SS.del('mylptq_admin');adOv.classList.remove('on');document.body.style.overflow='';toast('Anda telah keluar dari dasbor.')};
  $('#loginForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  if($('#lUser').value.trim()==='superadmin'&&await sha256($('#lPass').value)===localStorage.getItem(hashKey)){
-    sessionStorage.setItem('mylptq_admin','1');$('#loginErr').classList.remove('on');showPanel();toast('Selamat datang, Super Admin.');
+  if($('#lUser').value.trim()==='superadmin'&&await sha256($('#lPass').value)===LS.get(hashKey)){
+    SS.set('mylptq_admin','1');$('#loginErr').classList.remove('on');showPanel();toast('Selamat datang, Super Admin.');
   }else $('#loginErr').classList.add('on');
 });
 function showPanel(){$('#adLogin').style.display='none';$('#adPanel').hidden=false;adNav('dash')}
 
 const AD_MENU=[["dash","Dashboard"],["news","Berita"],["cat","Kategori & Tag"],["msq","Musabaqah"],["agenda","Agenda"],["ann","Pengumuman"],
   ["ach","Prestasi"],["gal","Galeri"],["off","Pengurus"],["media","Media Library"],["users","User & Role"],["set","Settings"]];
-let adCur='dash';
-function adNav(sec){adCur=sec;
+function adNav(sec){
   $('#adSide').innerHTML=AD_MENU.map(([k,lb])=>`<button class="${k===sec?'on':''}" data-ad="${k}">${ic('file',17)}${lb}</button>`).join('');
   ({dash:adDash,news:adNews,cat:adCat,msq:adMsq,agenda:adAgenda,ann:adAnn,ach:adAch,gal:adGal,off:adOff,media:adMedia,users:adUsers,set:adSet})[sec]();
 }
@@ -1820,7 +1818,6 @@ function adDash(){
       <li>• <b>Settings</b> → email, media sosial, aplikasi, alamat — berlaku ke seluruh halaman seketika.</li>
       <li>• Pada versi produksi data tersambung ke database melalui REST API.</li></ul>`)}`;
 }
-/* --- Berita --- */
 function adNews(){
   const rows=[...DB.news].sort((a,b)=>b.date>a.date?1:-1).map(n=>{
     const st=n.status==='publish'?(n.date>today()?'<span class="badge b-sched">Terjadwal</span>':'<span class="badge b-pub">Publish</span>'):'<span class="badge b-draft">Draft</span>';
@@ -1894,13 +1891,11 @@ function newsForm(id){
     save();renderAll();adNews();toast(n?'Berita diperbarui.':'Berita berhasil dipublikasikan.');
   };
 }
-/* --- Kategori & Tag (info) --- */
 function adCat(){
   $('#adMain').innerHTML=`<h2>Kategori &amp; Tag</h2><p class="sub">Kategori berita aktif pada portal (dapat ditambah/dihapus pada versi database).</p>
     ${adCard('Kategori',`<div class="chips">${CATS.map(c=>`<span class="chip-f" style="cursor:default">${esc(c)}</span>`).join('')}</div>`)}
     <div class="ad-note">Pada versi produksi, kategori & tag disimpan di tabel <b>news_categories</b> dan <b>news_tags</b> serta dikelola penuh dari halaman ini.</div>`;
 }
-/* --- Musabaqah --- */
 function adMsq(){
   $('#adMain').innerHTML=`
     <div class="ad-note">Jenama kegiatan wajib mengikuti nomenklatur resmi pemerintah. Untuk 2026 gunakan <b>MTQ XXXI</b>; untuk 2027 gunakan <b>MTQH XXXII</b> apabila ditetapkan resmi. Jangan membuat nama kegiatan berdasarkan asumsi.</div>
@@ -1930,7 +1925,6 @@ function adMsq(){
     if(!b.classList.contains('del-armed')){b.classList.add('del-armed');setTimeout(()=>b.classList.remove('del-armed'),2500);return;}
     DB.events=DB.events.filter(x=>x.id!==b.dataset.rmEv);save();renderAll();adMsq();toast('Event dihapus.');});
 }
-/* --- Agenda --- */
 function adAgenda(){
   $('#adMain').innerHTML=`
     <h2>Kelola Agenda</h2><p class="sub">Agenda tampil otomatis di section Agenda beranda.</p>
@@ -1958,10 +1952,9 @@ function adAgenda(){
     if(!b.classList.contains('del-armed')){b.classList.add('del-armed');setTimeout(()=>b.classList.remove('del-armed'),2500);return;}
     DB.agenda=DB.agenda.filter(x=>x.id!==b.dataset.rmAg);save();renderAll();adAgenda();toast('Agenda dihapus.');});
 }
-/* --- Pengumuman --- */
 function adAnn(){
   $('#adMain').innerHTML=`
-    <h2>Kelola Pengumuman</h2><p class="sub">Unggah pengumuman resmi; tempelkan URL file PDF (hosting/medi a library).</p>
+    <h2>Kelola Pengumuman</h2><p class="sub">Unggah pengumuman resmi; tempelkan URL file PDF (hosting/media library).</p>
     <div class="ad-row" style="margin-bottom:18px"><button class="ad-btn" id="btnAddAn">${ic('plus',15)}Tambah Pengumuman</button></div>
     <div id="anFormSlot"></div>
     <div class="ad-card"><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Pengumuman</th><th></th></tr></thead><tbody>
@@ -1984,7 +1977,6 @@ function adAnn(){
     if(!b.classList.contains('del-armed')){b.classList.add('del-armed');setTimeout(()=>b.classList.remove('del-armed'),2500);return;}
     DB.ann=DB.ann.filter(x=>x.id!==b.dataset.rmAn);save();renderAll();adAnn();toast('Pengumuman dihapus.');});
 }
-/* --- Prestasi --- */
 function adAch(){
   $('#adMain').innerHTML=`
     <div class="ad-note">Data prestasi wajib berasal dari dokumen hasil resmi. Kartu contoh di beranda bertanda "menunggu verifikasi" dan harus diganti/dihapus.</div>
@@ -2014,7 +2006,6 @@ function adAch(){
     if(!b.classList.contains('del-armed')){b.classList.add('del-armed');setTimeout(()=>b.classList.remove('del-armed'),2500);return;}
     DB.ach=DB.ach.filter(x=>x.id!==b.dataset.rmAc);save();renderAll();adAch();toast('Data prestasi dihapus.');});
 }
-/* --- Galeri --- */
 function adGal(){
   $('#adMain').innerHTML=`
     <div class="ad-row" style="margin-bottom:18px"><button class="ad-btn" id="btnAddGa">${ic('plus',15)}Tambah Media Galeri</button></div>
@@ -2038,7 +2029,6 @@ function adGal(){
     if(!b.classList.contains('del-armed')){b.classList.add('del-armed');setTimeout(()=>b.classList.remove('del-armed'),2500);return;}
     DB.gallery=DB.gallery.filter(x=>x.id!==b.dataset.rmGa);save();renderAll();adGal();toast('Item galeri dihapus.');});
 }
-/* --- Pengurus --- */
 function adOff(){
   $('#adMain').innerHTML=`
     <div class="ad-note"><b>WAJIB:</b> nama & jabatan pengurus hanya boleh diisi sesuai Keputusan Gubernur NTB Nomor 100.3.3.172 Tahun 2026 beserta lampiran resminya. Jangan mengarang nama sekretaris, bendahara, wakil ketua, ketua bidang, atau anggota.</div>
@@ -2072,14 +2062,12 @@ function offForm(id){
     DB.officials.sort((a,b)=>a.urutan-b.urutan);
     save();renderAll();adOff();toast('Data pengurus disimpan.');};
 }
-/* --- Media --- */
 function adMedia(){
   const srcs=new Set();DB.news.forEach(n=>n.cover&&srcs.add(n.cover));DB.gallery.forEach(g=>g.type==='foto'&&g.src&&srcs.add(g.src));
   $('#adMain').innerHTML=`<h2>Media Library</h2><p class="sub">Seluruh media terpakai di portal. Pada versi produksi panel ini mendukung unggah file (validasi tipe/ukuran, konversi WebP) ke penyimpanan server.</p>
     ${srcs.size?`<div class="media-grid">${[...srcs].map(s=>`<figure><img src="${esc(s)}" alt="media" loading="lazy" onerror="imgFail(this)"><figcaption>${esc(s)}</figcaption></figure>`).join('')}</div>`
     :`<div class="empty-state">${ic('img',40)}<strong>Belum ada media</strong><p>Media muncul otomatis setelah berita/galeri memakai gambar.</p></div>`}`;
 }
-/* --- Users --- */
 function adUsers(){
   const Y='<span class="role-yes">✓</span>',N='<span class="role-no">—</span>';
   $('#adMain').innerHTML=`<h2>User &amp; Role</h2><p class="sub">Matriks hak akses. Pada versi produksi ditangani backend (hash password, sesi token, audit log).</p>
@@ -2092,7 +2080,6 @@ function adUsers(){
     </tbody></table></div></div>
     <div class="ad-note">Akun demo aktif: <b>Super Admin</b>. Penulis hanya dapat membuat/menyunting draft miliknya.</div>`;
 }
-/* --- Settings --- */
 function adSet(){
   const s=DB.settings;
   $('#adMain').innerHTML=`<h2>Settings</h2><p class="sub">Kontak &amp; Media Sosial — disimpan terpusat, langsung berlaku di seluruh halaman.</p>
@@ -2120,9 +2107,25 @@ function adSet(){
 
 /* ---------- Init ---------- */
 renderAll();route();
-/* fallback screenshot mock aplikasi */
- $('#imgAppShot').addEventListener('error',function(){this.classList.add('dead');$('#sMock').classList.add('show');},{once:true});
-if($('#imgAppShot').complete&&$('#imgAppShot').naturalWidth===0){$('#imgAppShot').classList.add('dead');$('#sMock').classList.add('show');}
+
+/* Screenshot aplikasi: bila file asli ada → sembunyikan caption; bila tidak → tampilkan mock */
+const appImg=$('#imgAppShot'),appCap=$('#appCap');
+function appCheck(){
+  if(!appImg)return;
+  if(appImg.complete){
+    if(appImg.naturalWidth===0){appImg.classList.add('dead');$('#sMock').classList.add('show');if(appCap)appCap.style.display='flex';}
+    else if(appCap)appCap.style.display='none';
+  }
+}
+appImg.addEventListener('load',()=>{if(appCap)appCap.style.display='none'});
+appImg.addEventListener('error',()=>{appImg.classList.add('dead');$('#sMock').classList.add('show');if(appCap)appCap.style.display='flex';});
+appCheck();
+
+}catch(err){
+  /* Jaring pengamat: bila ada error, tampilkan semua konten tanpa animasi */
+  document.documentElement.classList.remove('js');
+  if(window.console&&console.error)console.error('MY LPTQ NTB — init:',err);
+}
 })();
 </script>
 </body>
