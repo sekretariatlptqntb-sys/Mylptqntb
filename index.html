@@ -14,9 +14,18 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0F3D2E">
 <script>
-/* Berjalan paling awal: penanda JS aktif + penangan gambar gagal (anti halaman kosong) */
+/* Berjalan paling awal: penanda JS aktif + penangan gambar gagal.
+   Bila gambar tidak ditemukan di path utama, otomatis dicoba path cadangan
+   (data-fallback) sebelum menampilkan placeholder. */
 document.documentElement.classList.add('js');
-window.imgFail=function(el){if(!el)return;el.classList.add('dead');var ph=el.parentElement&&el.parentElement.querySelector('.ph');if(ph)ph.classList.add('show');};
+window.imgFail=function(el){
+  if(!el)return;
+  var fb=el.getAttribute('data-fallback');
+  if(fb&&!el.dataset.tried){el.dataset.tried='1';el.src=fb;return;}
+  el.classList.add('dead');
+  var ph=el.parentElement&&el.parentElement.querySelector('.ph');
+  if(ph)ph.classList.add('show');
+};
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,7 +88,7 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .hdr .wrap{display:flex;align-items:center;gap:16px;padding-top:14px;padding-bottom:14px}
 .brand{display:flex;align-items:center;gap:14px;min-width:0}
 .logo-slot{flex:none;display:flex;gap:10px}
-.lg{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden;border:2px solid var(--line);background:#fff}
+.lg{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden;border:2px solid var(--line);background:#fff}
 .lg-prov{border-color:var(--gold)}
 .lg img{width:86%;height:86%;object-fit:contain}
 .brand-txt h1{font-size:21px;font-weight:800;letter-spacing:-.01em;line-height:1.15}
@@ -94,6 +103,7 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .btn-gold:hover{background:#FBF5E9;border-color:var(--wgold)}
 .btn-ghost{border-color:var(--line);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--lptq);color:var(--lptq)}
+@media (max-width:480px){.lg{width:42px;height:42px}.brand-txt h1{font-size:17px}.brand-txt p{font-size:10.5px}.logo-slot{gap:6px}}
 
 /* ---------- Nav + dropdown ---------- */
 .nav{background:var(--card);border-top:2px solid var(--gold);position:sticky;top:0;z-index:50;transition:box-shadow .2s}
@@ -734,14 +744,18 @@ html.js .rv.on{opacity:1;transform:none}
 <header class="hdr">
   <div class="wrap">
     <a class="brand" href="#" id="brandHome" aria-label="Beranda MY LPTQ NTB">
-      <span class="logo-slot">
+      <span class="logo-slot" aria-label="Lambang Pemprov NTB, Logo resmi LPTQ, dan Logo MY LPTQ NTB">
         <span class="lg lg-prov img-slot slot-contain">
-          <img id="imgLogoNtb" src="assets/img/logo-ntb.png" alt="Lambang resmi Pemerintah Provinsi Nusa Tenggara Barat" onerror="imgFail(this)">
+          <img src="logo-ntb.png" data-fallback="assets/img/logo-ntb.png" alt="Lambang resmi Pemerintah Provinsi Nusa Tenggara Barat" onerror="imgFail(this)">
           <span class="ph"><b>NTB</b>logo-ntb.png</span>
         </span>
         <span class="lg img-slot slot-contain">
-          <img id="imgLogoMy" src="assets/img/logo-mylptq.png" alt="Logo resmi MY LPTQ NTB" onerror="imgFail(this)">
-          <span class="ph"><b>LPTQ</b>logo-mylptq.png</span>
+          <img src="lptqlogo.png" data-fallback="assets/img/lptqlogo.png" alt="Logo resmi Lembaga Pengembangan Tilawatil Qur'an" onerror="imgFail(this)">
+          <span class="ph"><b>LPTQ</b>lptqlogo.png</span>
+        </span>
+        <span class="lg img-slot slot-contain">
+          <img src="logo-mylptq.png" data-fallback="assets/img/logo-mylptq.png" alt="Logo MY LPTQ NTB" onerror="imgFail(this)">
+          <span class="ph"><b>my</b>logo-mylptq.png</span>
         </span>
       </span>
       <span class="brand-txt">
@@ -1018,13 +1032,13 @@ html.js .rv.on{opacity:1;transform:none}
             <button class="btn btn-deep" data-applink><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4.5 19.5h15"/></svg>Download MY LPTQ NTB</button>
             <button class="btn btn-gold" data-applink>Lihat Aplikasi</button>
           </div>
-          <p class="app-note">Tautan unduhan resmi diatur melalui Dasbor Admin → Settings. Screenshot asli aplikasi ditempatkan pada <b>assets/img/app-screenshot.png</b>.</p>
+          <p class="app-note">Tautan unduhan resmi diatur melalui Dasbor Admin → Settings. Screenshot asli aplikasi: unggah sebagai <b>app-screenshot.png</b> di root repo atau folder assets/img/.</p>
         </div>
         <div class="phone-zone">
           <div class="phone" role="img" aria-label="Pratinjau aplikasi MY LPTQ NTB">
             <div class="screen">
-              <img id="imgAppShot" src="assets/img/app-screenshot.png" alt="Tangkapan layar aplikasi MY LPTQ NTB">
-              <div class="s-cap" id="appCap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5M12 16v.3"/></svg><span>Slot screenshot asli — letakkan file di <b>assets/img/app-screenshot.png</b></span></div>
+              <img id="imgAppShot" src="app-screenshot.png" data-fallback="assets/img/app-screenshot.png" alt="Tangkapan layar aplikasi MY LPTQ NTB">
+              <div class="s-cap" id="appCap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5M12 16v.3"/></svg><span>Slot screenshot asli — unggah <b>app-screenshot.png</b> (root atau assets/img/)</span></div>
               <div class="s-mock" id="sMock">
                 <div class="s-notch"><i></i></div>
                 <div class="s-head">
@@ -1177,8 +1191,9 @@ html.js .rv.on{opacity:1;transform:none}
   <div class="wrap ft-top">
     <div class="ft-brand">
       <div class="logo-slot">
-        <span class="lg lg-prov img-slot slot-contain"><img src="assets/img/logo-ntb.png" alt="Lambang Pemprov NTB" onerror="imgFail(this)"><span class="ph"><b>NTB</b></span></span>
-        <span class="lg img-slot slot-contain"><img src="assets/img/logo-mylptq.png" alt="Logo MY LPTQ NTB" onerror="imgFail(this)"><span class="ph"><b>LPTQ</b></span></span>
+        <span class="lg lg-prov img-slot slot-contain"><img src="logo-ntb.png" data-fallback="assets/img/logo-ntb.png" alt="Lambang Pemprov NTB" onerror="imgFail(this)"><span class="ph"><b>NTB</b></span></span>
+        <span class="lg img-slot slot-contain"><img src="lptqlogo.png" data-fallback="assets/img/lptqlogo.png" alt="Logo resmi LPTQ" onerror="imgFail(this)"><span class="ph"><b>LPTQ</b></span></span>
+        <span class="lg img-slot slot-contain"><img src="logo-mylptq.png" data-fallback="assets/img/logo-mylptq.png" alt="Logo MY LPTQ NTB" onerror="imgFail(this)"><span class="ph"><b>my</b></span></span>
       </div>
       <h3>MY LPTQ NTB</h3>
       <p>Lembaga Pengembangan Tilawatil Qur'an<br>Provinsi Nusa Tenggara Barat</p>
@@ -1259,7 +1274,7 @@ html.js .rv.on{opacity:1;transform:none}
 <div class="admin-ov" id="adminOv" role="dialog" aria-modal="true" aria-label="Dashboard Admin MY LPTQ NTB">
   <div class="ad-login" id="adLogin">
     <div class="login-card">
-      <span class="lg img-slot slot-contain" style="width:60px;height:60px;margin:0 auto 18px"><img src="assets/img/logo-mylptq.png" alt="Logo MY LPTQ NTB" onerror="imgFail(this)"><span class="ph"><b>LPTQ</b></span></span>
+      <span class="lg img-slot slot-contain" style="width:60px;height:60px;margin:0 auto 18px"><img src="logo-mylptq.png" data-fallback="assets/img/logo-mylptq.png" alt="Logo MY LPTQ NTB" onerror="imgFail(this)"><span class="ph"><b>LPTQ</b></span></span>
       <h2>Dasbor Admin MY LPTQ NTB</h2>
       <p>Autentikasi diperlukan untuk mengelola konten portal.</p>
       <div class="login-err" id="loginErr">Nama pengguna atau kata sandi salah.</div>
@@ -1290,21 +1305,21 @@ html.js .rv.on{opacity:1;transform:none}
 <script>
 (function(){
 "use strict";
-/* Seluruh aplikasi dibungkus pelindung: bila terjadi error di lingkungan apa pun,
-   konten tetap tampil (kelas 'js' dilepas → semua section terlihat). */
 try{
 
 /* ---------- Penyimpanan aman (tahan sandbox yang memblokir localStorage) ---------- */
 const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 const SS={get(k){try{return sessionStorage.getItem(k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}},del(k){try{sessionStorage.removeItem(k)}catch(e){}}};
 
-/* ---------- Konfigurasi aset ---------- */
+/* ---------- Konfigurasi aset: nama file di ROOT repo.
+   Bila file dipindah ke assets/img/, sistem otomatis mencarinya di sana (fallback). ---------- */
 const ASSETS={
-  masjid:"assets/img/masjid-ic-ntb.jpg",
-  pengurus:"assets/img/pengurus-2026.jpg",
-  ketuaUmum:"assets/img/ketua-umum.jpg",
-  ketuaHarian:"assets/img/ketua-harian.jpg",
-  gubernur:"assets/img/gubernur.jpg"
+  masjid:"masjid-ic-ntb.jpg",
+  pengurus:"pengurus-2026.jpg",
+  ketuaUmum:"ketua-umum.jpg",
+  ketuaHarian:"ketua-harian.jpg",
+  gubernur:"gubernur.jpg",
+  lptqLogo:"lptqlogo.png"
 };
 
 /* ---------- Ikon ---------- */
@@ -1354,7 +1369,10 @@ const fmtShort=s=>{try{return new Date(s+'T00:00:00').toLocaleDateString('id-ID'
 const today=()=>new Date().toISOString().slice(0,10);
 function toast(msg,err){const t=document.createElement('div');t.className='toast'+(err?' err':'');t.innerHTML=`${ic(err?'alert':'check',17)}<span>${esc(msg)}</span>`;$('#toasts').appendChild(t);setTimeout(()=>{t.style.opacity='0';t.style.transition='.4s';setTimeout(()=>t.remove(),400)},3600);}
 function sanitizeHTML(html){const d=document.createElement('div');d.innerHTML=html;d.querySelectorAll('script,style,iframe,object,embed,link,meta').forEach(n=>n.remove());d.querySelectorAll('*').forEach(n=>{[...n.attributes].forEach(a=>{if(/^on/i.test(a.name)||(a.name==='href'&&/^javascript:/i.test(a.value)))n.removeAttribute(a.name)})});return d.innerHTML;}
-const slot=(src,alt,phTitle,phFile)=>`<span class="img-slot"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>${esc(phTitle)}</b>${esc(phFile)}</span></span>`;
+/* Atribut fallback otomatis untuk path lokal (bukan URL eksternal) */
+const fbOf=p=>(p&&!/^(https?:|data:|mailto:)/i.test(p))?'assets/img/'+String(p).split('/').pop():'';
+const fbAttr=p=>{const f=fbOf(p);return f?` data-fallback="${esc(f)}"`:''};
+const slot=(src,alt,phTitle,phFile)=>`<span class="img-slot"><img src="${esc(src)}"${fbAttr(src)} alt="${esc(alt)}" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>${esc(phTitle)}</b>${esc(phFile)}</span></span>`;
 
 /* ---------- Data statis ---------- */
 const CATS=["LPTQ NTB","Musabaqah","MTQ","MTQH","Pembinaan","Tilawah","Tahfiz","Tafsir","Fahmil Qur'an","Syarhil Qur'an","Khattil Qur'an","Qiraat","Prestasi","Kegiatan","Pengumuman","MY LPTQ"];
@@ -1385,7 +1403,7 @@ function defaultContent(title){
   <p>Seluruh peserta mengikuti materi pembinaan yang disusun tim pembina LPTQ NTB, mencakup penguatan tajwid, makharijul huruf, waktu-waktu bacaan, hingga pendalaman adab tilawah. Kegiatan juga menjadi sarana silaturahmi antarpembina dan antardaerah.</p>
   <blockquote>"Pembinaan yang berkesinambungan adalah kunci tumbuhnya generasi Qur'ani di Bumi Serambi Al-Qur'an."</blockquote>
   <p>Informasi jadwal dan detail kegiatan selanjutnya diumumkan melalui kanal resmi MY LPTQ NTB — pantau halaman Agenda dan Pengumuman Resmi pada portal ini.</p>
-  <div class="admin-note"><b>Catatan Administrator:</b> Ini adalah berita contoh bawaan. Silakan sunting atau ganti melalui Dasbor Admin → Berita. Foto dokumentasi resmi diunggah ke assets/img/.</div>`;
+  <div class="admin-note"><b>Catatan Administrator:</b> Ini adalah berita contoh bawaan. Silakan sunting atau ganti melalui Dasbor Admin → Berita. Foto dokumentasi resmi diunggah ke root repo atau assets/img/.</div>`;
 }
 function seedData(){
   const R=[ASSETS.masjid,ASSETS.pengurus,ASSETS.ketuaUmum,ASSETS.ketuaHarian];
@@ -1474,7 +1492,7 @@ function renderHero(){
   const list=visibleNews(),main=list[0],hm=$('#heroMain');
   if(!main){hm.innerHTML='';$('#heroSide').innerHTML='<div class="empty-state" style="border:none">Belum ada berita.</div>';return;}
   hm.innerHTML=`
-    ${slot(main.cover,"Foto utama: "+main.title,"FOTO RESMI","masjid-ic-ntb.jpg")}
+    ${slot(main.cover,"Foto utama: "+main.title,"FOTO RESMI","dokumentasi")}
     <div class="grad" aria-hidden="true"></div>
     <span class="badge-main">${ic('star',13)}BERITA UTAMA</span>
     <div class="hero-body">
@@ -1485,7 +1503,7 @@ function renderHero(){
     </div>`;
   $('#heroSide').innerHTML=list.slice(1,5).map(n=>`
     <a class="hero-item" href="#/berita/${n.slug}">
-      <span class="hi-thumb img-slot"><img src="${esc(n.cover)}" alt="Thumbnail: ${esc(n.title)}" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>FOTO</b>menunggu</span></span>
+      <span class="hi-thumb img-slot"><img src="${esc(n.cover)}"${fbAttr(n.cover)} alt="Thumbnail: ${esc(n.title)}" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>FOTO</b></span></span>
       <div><div class="hi-t">${esc(n.title)}</div><div class="hi-m"><b>${esc(n.cat)}</b><time datetime="${n.date}">${fmtDate(n.date)}</time></div></div>
     </a>`).join('');
 }
@@ -1528,7 +1546,7 @@ function renderLeaders(){
   const ku=DB.officials.find(o=>o.role==="Ketua Umum"),kh=DB.officials.find(o=>o.role==="Ketua Harian");
   const card=o=>!o?'':`
     <div class="leader">
-      <span class="ld-photo img-slot"><img src="${esc(o.foto)}" alt="Foto resmi ${esc(o.nama)}" onerror="imgFail(this)"><span class="ph"><b>FOTO RESMI</b>pengurus</span></span>
+      <span class="ld-photo img-slot"><img src="${esc(o.foto)}"${fbAttr(o.foto)} alt="Foto resmi ${esc(o.nama)}" onerror="imgFail(this)"><span class="ph"><b>FOTO RESMI</b>unggah foto ${esc(o.role)}</span></span>
       <div class="ld-info">
         <span class="ld-role">${esc(o.role)}</span>
         <h3>${esc(o.nama)}</h3>
@@ -1566,7 +1584,7 @@ function renderMsqNews(){
   let list=visibleNews().filter(n=>["Musabaqah","MTQ","MTQH"].includes(n.cat));
   $('#msqNews').innerHTML=list.length?list.slice(0,4).map(n=>`
     <a class="msq-item" href="#/berita/${n.slug}">
-      <span class="mth img-slot"><img src="${esc(n.cover)}" alt="" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>FOTO</b></span></span>
+      <span class="mth img-slot"><img src="${esc(n.cover)}"${fbAttr(n.cover)} alt="" loading="lazy" onerror="imgFail(this)"><span class="ph"><b>FOTO</b></span></span>
       <div><strong>${esc(n.title)}</strong><small>${esc(n.cat)} · ${fmtDate(n.date)}</small></div>
     </a>`).join('')
     :`<div class="empty-state">${ic('trophy',40)}<strong>Belum ada informasi musabaqah</strong><p>Berita bertajuk Musabaqah/MTQ/MTQH akan tampil di sini. Admin menambahkannya melalui Dasbor → Berita (pilih kategori).</p></div>`;
@@ -1671,7 +1689,7 @@ function showArticle(slug){
       <nav class="crumbs" aria-label="Breadcrumb"><a href="#">Beranda</a>${ic('chev',12)}<a href="#beritaTerbaru">Berita</a>${ic('chev',12)}<b>${esc(n.cat)}</b></nav>
       <h1 class="art-title">${esc(n.title)}</h1>
       <div class="art-meta"><em class="cat">${esc(n.cat)}</em><em>${ic('cal',14)}${fmtDate(n.date)}</em><em>${ic('edit',14)}${esc(n.author)}</em></div>
-      <div class="art-cover"><img src="${esc(n.cover)}" alt="Foto utama berita: ${esc(n.title)}"></div>
+      <div class="art-cover"><img src="${esc(n.cover)}"${fbAttr(n.cover)} alt="Foto utama berita: ${esc(n.title)}"></div>
     </div></div>
     <div class="art-body"><div class="wrap"><article class="art-prose">${sanitizeHTML(n.content)}</article></div></div>`;
   document.title=(n.seoTitle||n.title)+" | MY LPTQ NTB";
@@ -1816,6 +1834,7 @@ function adDash(){
       <li>• <b>Musabaqah</b> → kelola event (jenis MTQ/MTQH/Lainnya, edisi, tingkat, lokasi).</li>
       <li>• <b>Pengurus</b> → hanya masukkan nama sesuai SK Gubernur No. 100.3.3.172/2026.</li>
       <li>• <b>Settings</b> → email, media sosial, aplikasi, alamat — berlaku ke seluruh halaman seketika.</li>
+      <li>• Gambar dapat diunggah ke root repo <i>atau</i> folder assets/img/ — keduanya otomatis terbaca.</li>
       <li>• Pada versi produksi data tersambung ke database melalui REST API.</li></ul>`)}`;
 }
 function adNews(){
@@ -1861,7 +1880,7 @@ function newsForm(id){
           </div>
           <div class="ed-area" id="fBody" contenteditable="true">${n?sanitizeHTML(n.content):''}</div>
         </div></div>
-      <div class="fld full"><label>URL Cover <small>(foto dokumentasi resmi; unggah ke assets/img/ atau hosting media)</small></label><input id="fCover" value="${esc(n?.cover||'')}" placeholder="assets/img/nama-foto.jpg atau https://…"></div>
+      <div class="fld full"><label>URL Cover <small>(nama file gambar di repo, cth: masjid-ic-ntb.jpg, atau URL https://…)</small></label><input id="fCover" value="${esc(n?.cover||'')}" placeholder="masjid-ic-ntb.jpg atau https://…"></div>
       <div class="fld"><label>Status</label><select id="fStatus"><option value="publish" ${n?.status==='publish'?'selected':''}>Publish</option><option value="draft" ${n?.status==='draft'?'selected':''}>Draft</option></select></div>
       <div class="fld"><label>SEO Title <small>(kosongkan = judul)</small></label><input id="fSeo" value="${esc(n?.seoTitle||'')}"></div>
       <div class="fld full"><label>Meta Description (SEO)</label><input id="fMeta" value="${esc(n?.metaDesc||'')}"></div>
@@ -2011,14 +2030,14 @@ function adGal(){
     <div class="ad-row" style="margin-bottom:18px"><button class="ad-btn" id="btnAddGa">${ic('plus',15)}Tambah Media Galeri</button></div>
     <div id="gaFormSlot"></div>
     <div class="ad-card"><h3>Foto &amp; Video Galeri</h3><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Item</th><th>Tipe</th><th></th></tr></thead><tbody>
-      ${DB.gallery.map(g=>`<tr><td>${g.type==='foto'?`<img src="${esc(g.src)}" alt="" style="width:74px;height:50px;object-fit:cover;border-radius:8px" onerror="this.style.display='none'"> `:''}<span class="t-title" style="font-size:13px">${esc(g.title)}</span></td><td><span class="badge ${g.type==='foto'?'b-pub':'b-sched'}">${g.type}</span></td>
+      ${DB.gallery.map(g=>`<tr><td>${g.type==='foto'?`<img src="${esc(g.src)}"${fbAttr(g.src)} alt="" style="width:74px;height:50px;object-fit:cover;border-radius:8px" onerror="imgFail(this)"> `:''}<span class="t-title" style="font-size:13px">${esc(g.title)}</span></td><td><span class="badge ${g.type==='foto'?'b-pub':'b-sched'}">${g.type}</span></td>
       <td style="text-align:right"><button class="ic-btn" data-rm-ga="${g.id}">${ic('trash',15)}</button></td></tr>`).join('')}
     </tbody></table></div></div>`;
   $('#btnAddGa').onclick=()=>{
     $('#gaFormSlot').innerHTML=`<div class="ad-card" style="border-color:var(--gold)"><h3>Media Galeri Baru</h3><form id="frmGa"><div class="frm">
       <div class="fld"><label>Tipe</label><select id="gaT"><option value="foto">Foto</option><option value="video">Video (YouTube resmi)</option></select></div>
       <div class="fld"><label>Judul *</label><input id="gaJ" required></div>
-      <div class="fld full"><label>URL Media *</label><input id="gaU" placeholder="assets/img/nama-foto.jpg atau tautan YouTube"></div>
+      <div class="fld full"><label>URL Media *</label><input id="gaU" placeholder="nama-foto.jpg atau tautan YouTube"></div>
     </div><div class="ad-row" style="margin-top:16px"><button class="ad-btn gold" type="submit">Simpan</button><button class="ad-btn ghost" type="button" id="gaCancel">Batal</button></div></form></div>`;
     $('#gaCancel').onclick=()=>$('#gaFormSlot').innerHTML='';
     $('#frmGa').onsubmit=e=>{e.preventDefault();
@@ -2035,7 +2054,7 @@ function adOff(){
     <div class="ad-row" style="margin-bottom:18px"><button class="ad-btn" id="btnAddOff">${ic('plus',15)}Tambah Pengurus</button></div>
     <div id="offFormSlot"></div>
     <div class="ad-card"><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Pengurus</th><th>Urutan</th><th></th></tr></thead><tbody>
-      ${DB.officials.map(o=>`<tr><td>${o.foto?`<img src="${esc(o.foto)}" alt="" style="width:44px;height:44px;object-fit:cover;border-radius:8px;vertical-align:middle;margin-right:10px" onerror="this.style.display='none'">`:''}<span class="t-title">${esc(o.nama)}</span><div class="t-sub">${esc(o.role)} · ${esc(o.gelarJabatan)}${o.verified?' · <span class="badge b-pub">Terverifikasi</span>':''}</div></td>
+      ${DB.officials.map(o=>`<tr><td>${o.foto?`<img src="${esc(o.foto)}"${fbAttr(o.foto)} alt="" style="width:44px;height:44px;object-fit:cover;border-radius:8px;vertical-align:middle;margin-right:10px" onerror="imgFail(this)">`:''}<span class="t-title">${esc(o.nama)}</span><div class="t-sub">${esc(o.role)} · ${esc(o.gelarJabatan)}${o.verified?' · <span class="badge b-pub">Terverifikasi</span>':''}</div></td>
       <td>${esc(o.urutan)}</td><td style="text-align:right"><button class="ic-btn" data-ed-off="${o.id}">${ic('edit',15)}</button><button class="ic-btn" data-rm-off="${o.id}">${ic('trash',15)}</button></td></tr>`).join('')}
     </tbody></table></div></div>`;
   $('#btnAddOff').onclick=()=>offForm(null);
@@ -2052,7 +2071,7 @@ function offForm(id){
     <div class="fld"><label>Jabatan Resmi Lain / Instansi</label><input id="ofJ" value="${esc(o?.gelarJabatan||'')}" placeholder="cth: Sekretaris Daerah Provinsi NTB"></div>
     <div class="fld"><label>Bidang</label><input id="ofB" value="${esc(o?.bidang||'Unsur Pimpinan')}"></div>
     <div class="fld"><label>Urutan Tampil</label><input id="ofU" type="number" value="${o?.urutan||99}"></div>
-    <div class="fld full"><label>URL Foto <small>(dokumentasi resmi, assets/img/)</small></label><input id="ofF" value="${esc(o?.foto||'')}"></div>
+    <div class="fld full"><label>Nama File Foto <small>(dokumentasi resmi di repo, cth: ketua-umum.jpg)</small></label><input id="ofF" value="${esc(o?.foto||'')}"></div>
     <div class="fld full"><label>Biografi Singkat</label><textarea id="ofBio">${esc(o?.bio||'')}</textarea></div>
   </div><div class="ad-row" style="margin-top:16px"><button class="ad-btn gold" type="submit">Simpan</button><button class="ad-btn ghost" type="button" id="ofCancel">Batal</button></div></form></div>`;
   $('#ofCancel').onclick=()=>$('#offFormSlot').innerHTML='';
@@ -2065,7 +2084,7 @@ function offForm(id){
 function adMedia(){
   const srcs=new Set();DB.news.forEach(n=>n.cover&&srcs.add(n.cover));DB.gallery.forEach(g=>g.type==='foto'&&g.src&&srcs.add(g.src));
   $('#adMain').innerHTML=`<h2>Media Library</h2><p class="sub">Seluruh media terpakai di portal. Pada versi produksi panel ini mendukung unggah file (validasi tipe/ukuran, konversi WebP) ke penyimpanan server.</p>
-    ${srcs.size?`<div class="media-grid">${[...srcs].map(s=>`<figure><img src="${esc(s)}" alt="media" loading="lazy" onerror="imgFail(this)"><figcaption>${esc(s)}</figcaption></figure>`).join('')}</div>`
+    ${srcs.size?`<div class="media-grid">${[...srcs].map(s=>`<figure><img src="${esc(s)}"${fbAttr(s)} alt="media" loading="lazy" onerror="imgFail(this)"><figcaption>${esc(s)}</figcaption></figure>`).join('')}</div>`
     :`<div class="empty-state">${ic('img',40)}<strong>Belum ada media</strong><p>Media muncul otomatis setelah berita/galeri memakai gambar.</p></div>`}`;
 }
 function adUsers(){
@@ -2096,7 +2115,7 @@ function adSet(){
       <div class="fld"><label>URL Aplikasi MY LPTQ <small>(Play Store / web resmi)</small></label><input id="stApp" value="${esc(s.appUrl)}" placeholder="https://play.google.com/…"></div>
       <div class="fld"><label>Tahun Copyright</label><input id="stYr" type="number" value="${s.year}"></div>
     </div><div class="ad-row" style="margin-top:16px"><button class="ad-btn gold" type="submit">${ic('check',15)}Simpan Pengaturan</button></div></form></div>
-    <div class="ad-note">Aset wajib dari sumber resmi: logo Pemprov NTB, logo LPTQ/MY LPTQ, foto Gubernur Dr. H. Lalu Muhamad Iqbal, Ketua Umum Abul Chair, dan Ketua Harian TGH. Dr. H. Sabarudin, M.Pd. — unggah ke <b>assets/img/</b> dengan nama file sesuai panduan.</div>`;
+    <div class="ad-note">Aset wajib dari sumber resmi: logo Pemprov NTB, logo LPTQ, logo MY LPTQ, foto Gubernur Dr. H. Lalu Muhamad Iqbal, Ketua Umum Abul Chair, dan Ketua Harian TGH. Dr. H. Sabarudin, M.Pd. — unggah ke root repo <i>atau</i> folder <b>assets/img/</b> (keduanya otomatis terbaca).</div>`;
   $('#frmSet').onsubmit=e=>{e.preventDefault();
     Object.assign(DB.settings,{email:$('#stE').value.trim(),ig:$('#stI').value.trim(),fb:$('#stF').value.trim(),
       yt:$('#stY').value.trim(),tt:$('#stT').value.trim(),address:$('#stA').value.trim(),phone:$('#stP').value.trim(),
@@ -2108,18 +2127,16 @@ function adSet(){
 /* ---------- Init ---------- */
 renderAll();route();
 
-/* Screenshot aplikasi: bila file asli ada → sembunyikan caption; bila tidak → tampilkan mock */
+/* Screenshot aplikasi: file asli ada → sembunyikan caption; tidak ada → tampilkan mock */
 const appImg=$('#imgAppShot'),appCap=$('#appCap');
-function appCheck(){
-  if(!appImg)return;
-  if(appImg.complete){
-    if(appImg.naturalWidth===0){appImg.classList.add('dead');$('#sMock').classList.add('show');if(appCap)appCap.style.display='flex';}
-    else if(appCap)appCap.style.display='none';
-  }
+function appErr(){
+  const fb=appImg.getAttribute('data-fallback');
+  if(fb&&!appImg.dataset.tried){appImg.dataset.tried='1';appImg.src=fb;return;}
+  appImg.classList.add('dead');$('#sMock').classList.add('show');if(appCap)appCap.style.display='flex';
 }
 appImg.addEventListener('load',()=>{if(appCap)appCap.style.display='none'});
-appImg.addEventListener('error',()=>{appImg.classList.add('dead');$('#sMock').classList.add('show');if(appCap)appCap.style.display='flex';});
-appCheck();
+appImg.addEventListener('error',appErr);
+if(appImg.complete&&appImg.naturalWidth===0)appErr();
 
 }catch(err){
   /* Jaring pengamat: bila ada error, tampilkan semua konten tanpa animasi */
