@@ -46,7 +46,7 @@ window.imgFail=function(el){
   --ggrad:linear-gradient(135deg,#A9833F,#E2C489 45%,#C6A15B);
   --danger:#B3402F;
   --fs-body:clamp(15px,0.45vw + 14px,17px);
-  --fs-h2:clamp(24px,2.6vw,34px);
+  --fs-h2:clamp(26px,3vw,38px);
   --fs-h3:clamp(19px,1.9vw,26px);
   --fs-small:clamp(12.5px,0.3vw + 11.5px,14px);
 }
@@ -65,9 +65,8 @@ ul{list-style:none}
 .skip:focus{left:0}
 ::selection{background:var(--soft);color:var(--deep)}
 noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;padding:10px;font-size:13px;font-weight:700}
-/* Kompensasi sticky bar saat lompat anchor */
 #beranda,#berita,#beritaTerbaru,#tentang,#pimpinan,#program,#musabaqah,#agenda,
-#aplikasi,#prestasi,#pengumuman,#galeri,#kabkota,#instansi,#kontak{scroll-margin-top:104px}
+#aplikasi,#prestasi,#pengumuman,#galeri,#kabkota,#instansi,#kontak{scroll-margin-top:24px}
 
 /* ---------- Slot gambar ---------- */
 .img-slot{position:relative;display:block;overflow:hidden}
@@ -77,6 +76,10 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .img-slot img.dead{opacity:0}
 .img-slot .ph.show{opacity:1}
 .slot-contain img{object-fit:contain;background:#fff}
+.lg{width:clamp(44px,4vw,56px);height:clamp(44px,4vw,56px);border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden;border:2px solid var(--line);background:#fff;box-shadow:0 4px 12px rgba(15,61,46,.10)}
+.lg-prov{border-color:var(--gold)}
+.lg img{width:86%;height:86%;object-fit:contain}
+.logo-slot{flex:none;display:flex;gap:clamp(6px,.8vw,10px)}
 
 /* ---------- Utility bar ---------- */
 .util{color:#C9DCD1;font-size:clamp(11.5px,.25vw + 11px,13px);position:relative;
@@ -92,19 +95,7 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .util-right .u-link{width:auto;padding:0 10px;font-size:12px;font-weight:700}
 .util-right .u-link:hover{color:var(--wgold)}
 
-/* ---------- Header ---------- */
-.hdr{background:#fff;border-bottom:1px solid var(--line);position:relative;z-index:60}
-.hdr::after{content:"";display:block;height:3px;background:var(--ggrad);opacity:.85}
-.hdr .wrap{display:flex;align-items:center;gap:16px;padding-block:clamp(10px,1.2vw,16px)}
-.brand{display:flex;align-items:center;gap:clamp(10px,1.2vw,15px);min-width:0}
-.logo-slot{flex:none;display:flex;gap:clamp(6px,.8vw,10px)}
-.lg{width:clamp(44px,4vw,56px);height:clamp(44px,4vw,56px);border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden;border:2px solid var(--line);background:#fff;box-shadow:0 4px 12px rgba(15,61,46,.10)}
-.lg-prov{border-color:var(--gold)}
-.lg img{width:86%;height:86%;object-fit:contain}
-.brand-txt h1{font-size:clamp(18px,1.6vw,23px);font-weight:800;letter-spacing:-.01em;line-height:1.15}
-.brand-txt h1 em{font-style:normal;background:linear-gradient(120deg,#16794B,#0F3D2E);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.brand-txt p{font-size:clamp(10.5px,.4vw + 9px,12.5px);color:var(--muted);line-height:1.4;margin-top:2px}
-.hdr-cta{margin-left:auto;flex:none;display:flex;gap:10px}
+/* ---------- Tombol ---------- */
 .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:clamp(13px,.35vw + 12px,14.5px);padding:clamp(9px,.9vw,13px) clamp(16px,1.6vw,22px);border-radius:12px;transition:.18s;border:1.5px solid transparent}
 .btn svg{width:17px;height:17px}
 .btn-deep{background:linear-gradient(135deg,#0F3D2E,#186048);color:#fff;box-shadow:0 8px 20px rgba(15,61,46,.22)}
@@ -113,12 +104,9 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .btn-gold:hover{background:#FBF5E9;border-color:var(--gold-d)}
 .btn-ghost{border-color:var(--line);color:var(--ink)}
 .btn-ghost:hover{border-color:var(--gold);color:#8a6a30;background:#FBF7EE}
-@media (max-width:480px){.lg{width:40px;height:40px}.logo-slot{gap:5px}}
 
-/* ---------- Nav + sticky bar ---------- */
-.stickbar{position:sticky;top:0;z-index:50}
-.nav{background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border-top:1px solid var(--line);transition:box-shadow .2s}
-.stickbar.scrolled .nav{box-shadow:0 8px 26px rgba(15,61,46,.13)}
+/* ---------- Nav (non-sticky) ---------- */
+.nav{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center}
 .nav-list{display:flex;flex:1;overflow-x:auto;scrollbar-width:none}
 .nav-list::-webkit-scrollbar{display:none}
@@ -157,7 +145,7 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .d-sub a{padding:9px 20px;font-size:13.5px!important}
 .drawer-foot{margin-top:auto;padding:16px 20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
 
-/* ---------- Ticker ---------- */
+/* ---------- Ticker (non-sticky) ---------- */
 .ticker{background:var(--primary);color:#fff;overflow:hidden;display:flex;align-items:stretch;border-bottom:1px solid rgba(198,161,91,.4)}
 .ticker-label{flex:none;display:flex;align-items:center;gap:8px;background:var(--ggrad);color:#3E2F0F;font-size:11.5px;font-weight:800;letter-spacing:.1em;padding:9px 16px}
 .ticker-label .dot{width:7px;height:7px;border-radius:50%;background:#3E2F0F;animation:blink 1.4s infinite}
@@ -175,40 +163,37 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .sec-alt{background:rgba(255,255,255,.75)}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:clamp(24px,3vw,36px);flex-wrap:wrap}
 .sec-head>div:first-child{position:relative;padding-bottom:16px}
-.sec-head>div:first-child::after{content:"";position:absolute;left:0;bottom:0;width:78px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--gold),transparent)}
-.kicker{display:inline-flex;align-items:center;gap:9px;font-size:clamp(11px,.25vw + 10.5px,12.5px);font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--lptq)}
-.kicker::before{content:"";width:26px;height:2px;background:var(--gold)}
-.kicker::after{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
-.sec-title{font-size:var(--fs-h2);font-weight:800;letter-spacing:-.02em;line-height:1.2;margin-top:8px}
-.sec-sub{color:var(--muted);font-size:var(--fs-small);margin-top:8px;max-width:640px}
+.sec-head>div:first-child::after{content:"";position:absolute;left:0;bottom:0;width:92px;height:3px;border-radius:3px;background:var(--ggrad)}
+.sec-title{font-size:var(--fs-h2);font-weight:800;letter-spacing:-.025em;line-height:1.15;color:var(--deep)}
+.sec-sub{color:var(--muted);font-size:var(--fs-small);margin-top:10px;max-width:640px}
 .link-more{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:var(--lptq);padding:9px 16px;border:1.5px solid var(--line);border-radius:11px;transition:.18s;flex:none;background:#fff}
 .link-more:hover{border-color:var(--gold);background:#FBF7EE;color:#8a6a30}
 .link-more svg{width:15px;height:15px}
 
 /* ---------- Grand Hero ---------- */
-.ghero{position:relative;min-height:clamp(480px,68vh,680px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--deep2)}
+.ghero{position:relative;min-height:clamp(520px,72vh,720px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--deep2)}
 .ghero .gh-img{position:absolute;inset:0;background-image:url("masjid-ic-ntb.jpg");background-size:cover;background-position:center;opacity:.9}
 .ghero .gh-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,26,19,.78) 0%,rgba(8,26,19,.55) 40%,rgba(8,26,19,.88) 100%)}
 .ghero .gh-pat{position:absolute;inset:0;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3C/g%3E%3C/svg%3E");background-size:72px 72px}
 .ghero .gh-in{position:relative;z-index:2;padding:clamp(56px,8vw,96px) 0 clamp(48px,6vw,80px);width:100%}
-.ghero .basm{display:inline-block;margin-bottom:clamp(18px,2.4vw,30px);padding:8px 22px;border-block:1px solid rgba(198,161,91,.5)}
+.ghero .basm{display:inline-block;margin-bottom:clamp(20px,2.6vw,32px);padding:8px 22px;border-block:1px solid rgba(198,161,91,.5)}
 .ghero .basm .ar{color:var(--wgold);font-size:clamp(16px,1.8vw,22px)}
 .ghero .logos{display:flex;justify-content:center;gap:clamp(10px,1.4vw,18px);margin-bottom:clamp(18px,2.4vw,28px)}
-.ghero .logos .lg{width:clamp(56px,5.6vw,78px);height:clamp(56px,5.6vw,78px)}
-.ghero .gh-eyebrow{font-size:clamp(11px,.5vw + 9px,13.5px);font-weight:800;letter-spacing:.34em;text-transform:uppercase;color:var(--wgold);margin-bottom:clamp(10px,1.2vw,16px)}
-.ghero h2{color:#fff;font-size:clamp(34px,5.6vw,68px);font-weight:800;letter-spacing:-.02em;line-height:1.08;text-shadow:0 4px 30px rgba(0,0,0,.45)}
+.ghero .logos .lg{width:clamp(60px,6vw,84px);height:clamp(60px,6vw,84px)}
+.ghero h2{color:#fff;font-size:clamp(38px,6.2vw,76px);font-weight:800;letter-spacing:-.02em;line-height:1.05;text-shadow:0 6px 40px rgba(0,0,0,.5)}
 .ghero h2 em{font-style:normal;background:var(--ggrad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.ghero .gh-full{color:#E6F1E9;font-size:clamp(13px,.9vw + 10px,17px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-top:clamp(12px,1.4vw,18px)}
-.ghero .gh-slogan{color:#CFE4D6;font-size:clamp(14.5px,.8vw + 11px,18px);max-width:720px;margin:clamp(14px,1.8vw,22px) auto 0;line-height:1.7}
+.ghero .gh-full{color:#E6F1E9;font-size:clamp(13px,.9vw + 10px,17px);font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-top:clamp(14px,1.6vw,20px)}
+.ghero .gh-slogan{color:#CFE4D6;font-size:clamp(14.5px,.8vw + 11px,18px);max-width:720px;margin:clamp(16px,2vw,24px) auto 0;line-height:1.75}
 .ghero .gh-en{color:#9FBFAA;font-size:clamp(11.5px,.4vw + 10px,13.5px);font-style:italic;margin-top:10px;letter-spacing:.04em}
-.ghero .gh-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:clamp(22px,3vw,34px)}
+.ghero .gh-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:clamp(24px,3.2vw,36px)}
 .ghero .gh-cta .btn{padding-inline:clamp(20px,2.2vw,30px)}
 .ghero .gh-cta .btn-l{background:var(--ggrad);color:#3E2F0F;box-shadow:0 10px 26px rgba(0,0,0,.35)}
 .ghero .gh-cta .btn-l:hover{transform:translateY(-2px)}
 .ghero .gh-cta .btn-o{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4);color:#fff}
 .ghero .gh-cta .btn-o:hover{background:rgba(255,255,255,.18)}
-.ghero .gh-loc{margin-top:clamp(20px,2.6vw,30px);display:inline-flex;align-items:center;gap:8px;color:#A9C7B4;font-size:clamp(11.5px,.4vw + 10px,13px);font-weight:600;letter-spacing:.06em}
+.ghero .gh-loc{margin-top:clamp(22px,2.8vw,32px);display:inline-flex;align-items:center;gap:8px;color:#A9C7B4;font-size:clamp(11.5px,.4vw + 10px,13px);font-weight:600;letter-spacing:.06em}
 .ghero .gh-loc svg{width:14px;height:14px;color:var(--wgold)}
+.ghero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--ggrad);z-index:3}
 
 /* ---------- Berita ---------- */
 .hero{padding:clamp(26px,3vw,40px) 0 8px}
@@ -303,8 +288,7 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .serambi{background:var(--deep);border-radius:22px;padding:clamp(26px,3vw,38px);color:#fff;position:relative;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh-lg);border-top:3px solid var(--gold)}
 .serambi::before{content:"";position:absolute;inset:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.4'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3Ccircle cx='36' cy='36' r='4'/%3E%3C/g%3E%3C/svg%3E");background-size:72px 72px}
 .serambi>*{position:relative}
-.serambi .kicker{color:var(--wgold)}
-.serambi h3{font-size:var(--fs-h2);font-weight:800;line-height:1.25;margin:10px 0 6px;letter-spacing:-.01em}
+.serambi h3{font-size:var(--fs-h2);font-weight:800;line-height:1.25;margin:0 0 6px;letter-spacing:-.015em}
 .serambi h3 em{font-style:normal;color:var(--wgold)}
 .serambi .sr-note{font-size:11.5px;color:#8FB39E;margin-bottom:20px}
 .pillars{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;margin-top:auto}
@@ -503,8 +487,7 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .social-band{background:var(--deep);border-radius:22px;padding:clamp(30px,4vw,48px);color:#fff;position:relative;overflow:hidden;box-shadow:var(--sh-lg);border-top:3px solid var(--gold)}
 .social-band::before{content:"";position:absolute;inset:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.4'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3C/g%3E%3C/svg%3E");background-size:72px 72px}
 .social-band>*{position:relative}
-.social-band .kicker{color:var(--wgold)}
-.social-band h3{font-size:var(--fs-h2);font-weight:800;margin-top:8px}
+.social-band h3{font-size:var(--fs-h2);font-weight:800;margin-top:0}
 .social-band>p{color:#B9D2C3;font-size:var(--fs-small);margin-top:8px;max-width:640px}
 .soc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
 .soc-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:20px 18px;display:flex;flex-direction:column;gap:10px;transition:.2s;color:#fff}
@@ -567,7 +550,7 @@ footer{color:#B9D2C3;margin-top:70px;border-top:4px solid var(--gold);position:r
 .ft-bottom nav a,.ft-bottom nav button{font-size:12.5px;color:#B9D2C3;font-weight:600}
 .ft-bottom nav a:hover,.ft-bottom nav button:hover{color:var(--wgold)}
 
-/* ---------- Search / Lightbox ---------- */
+/* ---------- Search / Lightbox / Totop ---------- */
 .search-ov{position:fixed;inset:0;background:rgba(15,61,46,.55);z-index:100;opacity:0;pointer-events:none;transition:.2s;padding:9vh 20px 20px;overflow:auto}
 .search-ov.on{opacity:1;pointer-events:auto}
 .search-box{max-width:680px;margin:0 auto;background:#fff;border-radius:18px;overflow:hidden;transform:translateY(-12px);transition:.25s;box-shadow:var(--sh-lg)}
@@ -595,6 +578,10 @@ footer{color:#B9D2C3;margin-top:70px;border-top:4px solid var(--gold);position:r
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center}
 .lb-nav:hover{background:var(--ggrad);color:#3E2F0F}
 .lb-prev{left:18px}.lb-next{right:18px}
+.totop{position:fixed;right:22px;bottom:22px;z-index:80;width:46px;height:46px;border-radius:50%;background:var(--deep);color:var(--wgold);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(15,61,46,.35);opacity:0;pointer-events:none;transform:translateY(10px);transition:.25s;border:1.5px solid rgba(198,161,91,.5)}
+.totop.on{opacity:1;pointer-events:auto;transform:none}
+.totop:hover{background:var(--ggrad);color:#3E2F0F}
+.totop svg{width:18px;height:18px}
 
 /* ---------- Artikel ---------- */
 .art-hero{background:#fff;border-bottom:1px solid var(--line);padding:30px 0 36px;position:relative}
@@ -723,7 +710,6 @@ html.js .rv.on{opacity:1;transform:none}
   .ad-shell{flex-direction:column}
 }
 @media (max-width:760px){
-  .hdr-cta{display:none}
   .nav-burger{display:flex}
   .nav-list{display:none}
   .util-left span:last-child{display:none}
@@ -768,37 +754,7 @@ html.js .rv.on{opacity:1;transform:none}
   </div>
 </div>
 
-<!-- 02 MAIN HEADER -->
-<header class="hdr">
-  <div class="wrap">
-    <a class="brand" href="#" id="brandHome" aria-label="Beranda MY LPTQ NTB">
-      <span class="logo-slot" aria-label="Lambang Pemprov NTB, Logo resmi LPTQ, dan Logo MY LPTQ NTB">
-        <span class="lg lg-prov img-slot slot-contain">
-          <img src="logo-ntb.png" data-fallback="assets/img/logo-ntb.png" alt="Lambang resmi Pemerintah Provinsi Nusa Tenggara Barat" onerror="imgFail(this)">
-          <span class="ph"><b>NTB</b>logo-ntb.png</span>
-        </span>
-        <span class="lg img-slot slot-contain">
-          <img src="lptqlogo.png" data-fallback="assets/img/lptqlogo.png" alt="Logo resmi Lembaga Pengembangan Tilawatil Qur'an" onerror="imgFail(this)">
-          <span class="ph"><b>LPTQ</b>lptqlogo.png</span>
-        </span>
-        <span class="lg img-slot slot-contain">
-          <img src="logo-mylptq.png" data-fallback="assets/img/logo-mylptq.png" alt="Logo MY LPTQ NTB" onerror="imgFail(this)">
-          <span class="ph"><b>my</b>logo-mylptq.png</span>
-        </span>
-      </span>
-      <span class="brand-txt">
-        <h1>MY <em>LPTQ</em> NTB</h1>
-        <p>Lembaga Pengembangan Tilawatil Qur'an<br>Provinsi Nusa Tenggara Barat</p>
-      </span>
-    </a>
-    <div class="hdr-cta">
-      <a class="btn btn-gold" href="#aplikasi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Aplikasi</a>
-      <a class="btn btn-deep" href="#berita">Berita Terkini<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    </div>
-  </div>
-</header>
-
-<!-- 03 NAVIGASI BERIKON -->
+<!-- 02 NAVIGASI BERIKON (non-sticky) -->
 <nav class="nav" id="mainNav" aria-label="Navigasi utama">
   <div class="wrap">
     <ul class="nav-list" id="navList">
@@ -844,12 +800,10 @@ html.js .rv.on{opacity:1;transform:none}
   </div>
 </nav>
 
-<!-- 03b STICKY BAR: menu + ticker tetap terlihat saat scroll -->
-<div class="stickbar" id="stickbar" style="background:#fff">
-  <div class="ticker" aria-label="Informasi terkini berjalan">
-    <div class="ticker-label"><span class="dot"></span>INFORMASI TERKINI</div>
-    <div class="ticker-view"><div class="ticker-track" id="tickerTrack"></div></div>
-  </div>
+<!-- 03 TICKER (non-sticky) -->
+<div class="ticker" aria-label="Informasi terkini berjalan">
+  <div class="ticker-label"><span class="dot"></span>INFORMASI TERKINI</div>
+  <div class="ticker-view"><div class="ticker-track" id="tickerTrack"></div></div>
 </div>
 
 <!-- Drawer mobile -->
@@ -900,7 +854,6 @@ html.js .rv.on{opacity:1;transform:none}
         <span class="lg img-slot slot-contain"><img src="lptqlogo.png" data-fallback="assets/img/lptqlogo.png" alt="" onerror="imgFail(this)"><span class="ph"><b>LPTQ</b></span></span>
         <span class="lg img-slot slot-contain"><img src="logo-mylptq.png" data-fallback="assets/img/logo-mylptq.png" alt="" onerror="imgFail(this)"><span class="ph"><b>my</b></span></span>
       </div>
-      <p class="gh-eyebrow">Portal Resmi Lembaga Pengembangan Tilawatil Qur'an</p>
       <h2>MY <em>LPTQ</em> NTB</h2>
       <p class="gh-full">Lembaga Pengembangan Tilawatil Qur'an · Provinsi Nusa Tenggara Barat</p>
       <p class="gh-slogan">Pusat informasi pembinaan Al-Qur'an, musabaqah, dan prestasi generasi Qur'ani — membangun NTB sebagai <b style="color:var(--wgold)">Serambi Al-Qur'an</b>.</p>
@@ -932,7 +885,6 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head rv">
         <div>
-          <span class="kicker">Portal Informasi Resmi</span>
           <h2 class="sec-title">Berita Terbaru</h2>
           <p class="sec-sub">Kabar resmi kegiatan, pembinaan, dan musabaqah dari Sekretariat LPTQ Provinsi NTB — diperbarui setiap hari.</p>
         </div>
@@ -948,9 +900,8 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="about-grid rv">
         <div class="about-txt">
-          <span class="kicker">Profil Lembaga · Periode 2026–2031</span>
           <h2 class="sec-title">Tentang LPTQ NTB</h2>
-          <p style="margin-top:14px">Lembaga Pengembangan Tilawatil Qur'an (LPTQ) Provinsi Nusa Tenggara Barat adalah lembaga di bawah Pemerintah Provinsi NTB yang membidangi pembinaan dan pengembangan cabang-cabang ilmu, seni, dan kebudayaan Al-Qur'an — mulai dari tilawah, tahfiz, tafsir, fahmil Qur'an, syarhil Qur'an, khatt (kaligrafi), hingga qiraat.</p>
+          <p style="margin-top:16px">Lembaga Pengembangan Tilawatil Qur'an (LPTQ) Provinsi Nusa Tenggara Barat adalah lembaga di bawah Pemerintah Provinsi NTB yang membidangi pembinaan dan pengembangan cabang-cabang ilmu, seni, dan kebudayaan Al-Qur'an — mulai dari tilawah, tahfiz, tafsir, fahmil Qur'an, syarhil Qur'an, khatt (kaligrafi), hingga qiraat.</p>
           <p>Kepengurusan periode 2026–2031 ditetapkan berdasarkan Keputusan Gubernur Nusa Tenggara Barat dan dilantik pada 14 Februari 2026, dengan koordinasi teknis melalui Biro Kesejahteraan Rakyat Sekretariat Daerah Provinsi NTB.</p>
           <div class="inst-strip">
             <div class="inst-cell"><small>Pemerintah Provinsi NTB</small><b>Dr. H. Lalu Muhamad Iqbal</b><span>Gubernur Nusa Tenggara Barat</span></div>
@@ -963,10 +914,8 @@ html.js .rv.on{opacity:1;transform:none}
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Mendorong digitalisasi kegiatan Al-Qur'an melalui aplikasi MY LPTQ NTB</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Mengoordinasi LPTQ Kabupaten/Kota di 10 daerah se-NTB</li>
           </ul>
-          <p style="margin-top:20px;font-size:12.5px;color:var(--muted)">Halaman profil lengkap (sejarah, visi–misi, dasar hukum, struktur organisasi) diaktifkan setelah dokumen resmi diverifikasi administrator — Tahap 2 pengembangan.</p>
         </div>
         <aside class="serambi">
-          <span class="kicker">Arah Strategis</span>
           <h3>NTB sebagai <em>Serambi Al-Qur'an</em></h3>
           <p class="sr-note">Tema komunikasi pembangunan Qur'ani — digunakan sejalan dengan narasi resmi LPTQ NTB.</p>
           <ul class="pillars">
@@ -987,8 +936,8 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head rv">
         <div>
-          <span class="kicker">Periode 2026–2031</span>
           <h2 class="sec-title">Pimpinan LPTQ Provinsi NTB</h2>
+          <p class="sec-sub">Periode 2026–2031</p>
         </div>
         <button class="link-more" data-tbd="Halaman Pengurus LPTQ NTB 2026–2031">Struktur Pengurus Lengkap<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
@@ -1012,9 +961,8 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head rv">
         <div>
-          <span class="kicker">Bidang Pembinaan</span>
           <h2 class="sec-title">Program Utama</h2>
-          <p class="sec-sub">Cabang pembinaan Al-Qur'an — daftar dapat disesuaikan administrator melalui CMS.</p>
+          <p class="sec-sub">Bidang pembinaan Al-Qur'an — daftar dapat disesuaikan administrator melalui CMS.</p>
         </div>
       </div>
       <div class="prog-grid rv" id="progGrid"></div>
@@ -1026,7 +974,6 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head rv">
         <div>
-          <span class="kicker">Pusat Informasi Musabaqah</span>
           <h2 class="sec-title">Musabaqah</h2>
           <p class="sec-sub">Informasi event, jadwal, kafilah, cabang lomba, dan hasil musabaqah — jenama kegiatan mengikuti nomenklatur resmi pemerintah (MTQ / MTQH).</p>
         </div>
@@ -1050,7 +997,6 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head rv">
         <div>
-          <span class="kicker">Kalender Kegiatan</span>
           <h2 class="sec-title">Agenda LPTQ</h2>
           <p class="sec-sub">Jadwal pembinaan, munaqosyah, rapat koordinasi, dan kegiatan resmi Sekretariat LPTQ Provinsi NTB.</p>
         </div>
@@ -1064,7 +1010,6 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="my-grid rv">
         <div>
-          <span class="kicker">Aplikasi Resmi · Sudah Tersedia</span>
           <h2 class="sec-title">Aplikasi MY LPTQ NTB</h2>
           <p class="sec-sub" style="font-size:15.5px;margin-top:12px">Transformasi digital untuk mendekatkan Al-Qur'an kepada masyarakat NTB. Website ini memperkenalkan dan menghubungkan Anda menuju aplikasi — pengalaman lengkap Al-Qur'an digital tersedia di dalam aplikasi.</p>
           <ul class="feat-list">
@@ -1126,7 +1071,6 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head rv">
         <div>
-          <span class="kicker">Kafilah Nusa Tenggara Barat</span>
           <h2 class="sec-title">Prestasi Kafilah NTB</h2>
           <p class="sec-sub">Rekam jejak peraih prestasi cabang Al-Qur'an dari NTB — tingkat provinsi, nasional, dan internasional.</p>
         </div>
@@ -1141,7 +1085,6 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head rv">
         <div>
-          <span class="kicker">Dokumen Resmi</span>
           <h2 class="sec-title">Pengumuman Resmi</h2>
           <p class="sec-sub">Surat edaran, hasil seleksi, pedoman, dan dokumen resmi lainnya yang diterbitkan Sekretariat LPTQ NTB.</p>
         </div>
@@ -1155,8 +1098,8 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head rv">
         <div>
-          <span class="kicker">Dokumentasi Kegiatan</span>
           <h2 class="sec-title">Galeri</h2>
+          <p class="sec-sub">Dokumentasi resmi kegiatan LPTQ Provinsi NTB.</p>
         </div>
         <div class="chips" role="group" aria-label="Jenis galeri">
           <button class="chip-f on" data-gtab="foto">Foto</button>
@@ -1172,7 +1115,6 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="wrap">
       <div class="sec-head rv">
         <div>
-          <span class="kicker">Jaringan Daerah</span>
           <h2 class="sec-title">LPTQ Kabupaten/Kota se-NTB</h2>
           <p class="sec-sub">Sepuluh lembaga daerah di bawah koordinasi LPTQ Provinsi NTB. Setiap daerah akan memiliki halaman profil sendiri.</p>
         </div>
@@ -1184,10 +1126,12 @@ html.js .rv.on{opacity:1;transform:none}
   <!-- INSTANSI -->
   <section class="sec sec-alt" id="instansi">
     <div class="wrap">
-      <div class="sec-head rv"><div>
-        <span class="kicker">Kemitraan Kelembagaan</span>
-        <h2 class="sec-title">Instansi Terkait</h2>
-      </div></div>
+      <div class="sec-head rv">
+        <div>
+          <h2 class="sec-title">Instansi Terkait</h2>
+          <p class="sec-sub">Kemitraan kelembagaan LPTQ Provinsi NTB.</p>
+        </div>
+      </div>
       <div class="inst-grid rv" id="instGrid"></div>
     </div>
   </section>
@@ -1196,7 +1140,6 @@ html.js .rv.on{opacity:1;transform:none}
   <section class="sec" id="kontak">
     <div class="wrap">
       <div class="social-band rv">
-        <span class="kicker">Kanal Resmi</span>
         <h3>Ikuti LPTQ NTB</h3>
         <p>Ikuti informasi, kegiatan, pembinaan, dan perkembangan LPTQ Provinsi Nusa Tenggara Barat melalui kanal resmi kami.</p>
         <div class="soc-grid" id="socGrid"></div>
@@ -1316,6 +1259,9 @@ html.js .rv.on{opacity:1;transform:none}
   <button class="lb-nav lb-next" id="lbNext" aria-label="Foto berikutnya"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
   <p class="lb-cap" id="lbCap"></p>
 </div>
+
+<!-- Tombol kembali ke atas -->
+<button class="totop" id="btnTop" aria-label="Kembali ke atas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <!-- Admin -->
 <div class="admin-ov" id="adminOv" role="dialog" aria-modal="true" aria-label="Dashboard Admin MY LPTQ NTB">
@@ -1710,7 +1656,10 @@ function closeDrawer(){$('#drawer').classList.remove('on');$('#drawerOv').classL
  $('#btnBurger').onclick=openDrawer;$('#btnDrawerClose').onclick=closeDrawer;$('#drawerOv').onclick=closeDrawer;
  $('#drawerNav').addEventListener('click',e=>{if(e.target.closest('a'))closeDrawer()});
  $$('.d-toggle').forEach(b=>b.onclick=()=>{b.classList.toggle('open');document.getElementById(b.dataset.dsub).classList.toggle('open')});
-window.addEventListener('scroll',()=>{$('#stickbar').classList.toggle('scrolled',window.scrollY>10)},{passive:true});
+/* Tombol kembali ke atas (pengganti sticky nav) */
+const btnTop=$('#btnTop');
+window.addEventListener('scroll',()=>{btnTop.classList.toggle('on',window.scrollY>420)},{passive:true});
+btnTop.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
 if('IntersectionObserver' in window){
  const spy=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){
   const map={berita:'berita',tentang:'tentang',program:'program',musabaqah:'musabaqah',prestasi:'prestasi',agenda:'agenda',pengumuman:'pengumuman',galeri:'galeri',kabkota:'kabkota',aplikasi:'aplikasi',kontak:'kontak'};
