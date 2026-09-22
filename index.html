@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MY LPTQ NTB — Lembaga Pengembangan Tilawatil Qur'an Provinsi Nusa Tenggara Barat</title>
 <meta name="description" content="Portal resmi LPTQ Provinsi Nusa Tenggara Barat: berita, musabaqah (MTQ/MTQH), pembinaan Al-Qur'an, prestasi kafilah, galeri, dan pengumuman resmi. The official portal for Qur'anic development in West Nusa Tenggara, Indonesia.">
-<link rel="canonical" href="https://sekretariatlptqntb-sys.github.io/Mylptqntb/">
+<link rel="canonical" href="https://mylptqntb.vercel.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MY LPTQ NTB">
 <meta property="og:title" content="MY LPTQ NTB — Portal Resmi LPTQ Provinsi Nusa Tenggara Barat">
@@ -31,7 +31,7 @@ window.imgFail=function(el){
 {"@context":"https://schema.org","@type":"GovernmentOrganization",
 "name":"Lembaga Pengembangan Tilawatil Qur'an Provinsi Nusa Tenggara Barat",
 "alternateName":"MY LPTQ NTB",
-"url":"https://sekretariatlptqntb-sys.github.io/Mylptqntb/",
+"url":"https://mylptqntb.vercel.app/",
 "email":"sekretariat.lptqntb@gmail.com",
 "areaServed":"Nusa Tenggara Barat",
 "parentOrganization":{"@type":"GovernmentOrganization","name":"Pemerintah Provinsi Nusa Tenggara Barat"},
@@ -45,7 +45,6 @@ window.imgFail=function(el){
   --sh-lg:0 24px 60px rgba(15,61,46,.16);
   --ggrad:linear-gradient(135deg,#A9833F,#E2C489 45%,#C6A15B);
   --danger:#B3402F;
-  /* Tipografi fluid otomatis */
   --fs-body:clamp(15px,0.45vw + 14px,17px);
   --fs-h2:clamp(24px,2.6vw,34px);
   --fs-h3:clamp(19px,1.9vw,26px);
@@ -60,13 +59,15 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 ul{list-style:none}
 .ar{font-family:'Noto Naskh Arabic',serif}
-/* Kontainer fluid: memenuhi layar dengan margin proporsional */
 .wrap{width:min(1440px,100% - clamp(28px,4vw,64px));margin-inline:auto}
 :focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
 .skip{position:absolute;left:-9999px;top:0;background:var(--deep);color:#fff;padding:10px 16px;z-index:200;border-radius:0 0 8px 0}
 .skip:focus{left:0}
 ::selection{background:var(--soft);color:var(--deep)}
 noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;padding:10px;font-size:13px;font-weight:700}
+/* Kompensasi sticky bar saat lompat anchor */
+#beranda,#berita,#beritaTerbaru,#tentang,#pimpinan,#program,#musabaqah,#agenda,
+#aplikasi,#prestasi,#pengumuman,#galeri,#kabkota,#instansi,#kontak{scroll-margin-top:104px}
 
 /* ---------- Slot gambar ---------- */
 .img-slot{position:relative;display:block;overflow:hidden}
@@ -114,40 +115,17 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .btn-ghost:hover{border-color:var(--gold);color:#8a6a30;background:#FBF7EE}
 @media (max-width:480px){.lg{width:40px;height:40px}.logo-slot{gap:5px}}
 
-/* ========== GRAND HERO (identitas lembaga) ========== */
-.ghero{position:relative;min-height:clamp(480px,68vh,680px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;
-  background:var(--deep2);}
-.ghero .gh-img{position:absolute;inset:0;background-image:url("masjid-ic-ntb.jpg");background-size:cover;background-position:center;opacity:.9}
-.ghero .gh-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,26,19,.78) 0%,rgba(8,26,19,.55) 40%,rgba(8,26,19,.88) 100%)}
-.ghero .gh-pat{position:absolute;inset:0;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3C/g%3E%3C/svg%3E");background-size:72px 72px}
-.ghero .gh-in{position:relative;z-index:2;padding:clamp(56px,8vw,96px) 0 clamp(48px,6vw,80px);width:100%}
-.ghero .basm{display:inline-block;margin-bottom:clamp(18px,2.4vw,30px);padding:8px 22px;border-block:1px solid rgba(198,161,91,.5)}
-.ghero .basm .ar{color:var(--wgold);font-size:clamp(16px,1.8vw,22px)}
-.ghero .logos{display:flex;justify-content:center;gap:clamp(10px,1.4vw,18px);margin-bottom:clamp(18px,2.4vw,28px)}
-.ghero .logos .lg{width:clamp(56px,5.6vw,78px);height:clamp(56px,5.6vw,78px)}
-.ghero .gh-eyebrow{font-size:clamp(11px,.5vw + 9px,13.5px);font-weight:800;letter-spacing:.34em;text-transform:uppercase;color:var(--wgold);margin-bottom:clamp(10px,1.2vw,16px)}
-.ghero h2{color:#fff;font-size:clamp(34px,5.6vw,68px);font-weight:800;letter-spacing:-.02em;line-height:1.08;text-shadow:0 4px 30px rgba(0,0,0,.45)}
-.ghero h2 em{font-style:normal;background:var(--ggrad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.ghero .gh-full{color:#E6F1E9;font-size:clamp(13px,.9vw + 10px,17px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-top:clamp(12px,1.4vw,18px)}
-.ghero .gh-slogan{color:#CFE4D6;font-size:clamp(14.5px,.8vw + 11px,18px);max-width:720px;margin:clamp(14px,1.8vw,22px) auto 0;line-height:1.7}
-.ghero .gh-en{color:#9FBFAA;font-size:clamp(11.5px,.4vw + 10px,13.5px);font-style:italic;margin-top:10px;letter-spacing:.04em}
-.ghero .gh-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:clamp(22px,3vw,34px)}
-.ghero .gh-cta .btn{padding-inline:clamp(20px,2.2vw,30px)}
-.ghero .gh-cta .btn-l{background:var(--ggrad);color:#3E2F0F;box-shadow:0 10px 26px rgba(0,0,0,.35)}
-.ghero .gh-cta .btn-l:hover{transform:translateY(-2px)}
-.ghero .gh-cta .btn-o{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4);color:#fff}
-.ghero .gh-cta .btn-o:hover{background:rgba(255,255,255,.18)}
-.ghero .gh-loc{margin-top:clamp(20px,2.6vw,30px);display:inline-flex;align-items:center;gap:8px;color:#A9C7B4;font-size:clamp(11.5px,.4vw + 10px,13px);font-weight:600;letter-spacing:.06em}
-.ghero .gh-loc svg{width:14px;height:14px;color:var(--wgold)}
-
-/* ---------- Nav ---------- */
-.nav{background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-top:1px solid var(--line);position:sticky;top:0;z-index:50;transition:box-shadow .2s}
-.nav.scrolled{box-shadow:0 8px 26px rgba(15,61,46,.13)}
+/* ---------- Nav + sticky bar ---------- */
+.stickbar{position:sticky;top:0;z-index:50}
+.nav{background:rgba(255,255,255,.97);backdrop-filter:blur(6px);border-top:1px solid var(--line);transition:box-shadow .2s}
+.stickbar.scrolled .nav{box-shadow:0 8px 26px rgba(15,61,46,.13)}
 .nav .wrap{display:flex;align-items:center}
 .nav-list{display:flex;flex:1;overflow-x:auto;scrollbar-width:none}
 .nav-list::-webkit-scrollbar{display:none}
 .nav-list>li{position:relative;flex:none}
-.nav-list>li>a{display:flex;align-items:center;gap:5px;padding:13px clamp(8px,.8vw,12px);font-size:clamp(12px,.25vw + 11.5px,13.5px);font-weight:700;letter-spacing:.03em;color:#41544A;white-space:nowrap;border-bottom:2.5px solid transparent;transition:.15s}
+.nav-list>li>a{display:flex;align-items:center;gap:6px;padding:13px clamp(8px,.8vw,12px);font-size:clamp(12px,.25vw + 11.5px,13.5px);font-weight:700;letter-spacing:.03em;color:#41544A;white-space:nowrap;border-bottom:2.5px solid transparent;transition:.15s}
+.nav-list .nic{flex:none;opacity:.72;transition:.15s}
+.nav-list>li>a:hover .nic,.nav-list>li>a.active .nic{opacity:1}
 .nav-list>li>a .car{width:11px;height:11px;opacity:.55;transition:transform .18s}
 .nav-list>li>a:hover{color:var(--deep)}
 .nav-list>li>a.active{color:var(--lptq);border-bottom-color:var(--gold)}
@@ -170,7 +148,8 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .drawer-head button:hover{background:var(--soft)}
 .drawer nav{padding:8px 0;overflow:auto}
 .drawer nav a,.d-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;padding:13px 22px;font-size:14.5px;font-weight:600;color:#33453B;border-left:3px solid transparent;text-align:left}
-.drawer nav a:hover{background:var(--soft);border-left-color:var(--gold);color:var(--deep)}
+.drawer nav a:hover,.d-toggle:hover{background:var(--soft);border-left-color:var(--gold);color:var(--deep)}
+.drawer .nic{opacity:.7;flex:none}
 .d-toggle .car{width:13px;height:13px;transition:transform .2s}
 .d-toggle.open .car{transform:rotate(180deg)}
 .d-sub{display:none;padding:2px 0 6px 22px;background:#FBFDFC}
@@ -206,6 +185,31 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .link-more:hover{border-color:var(--gold);background:#FBF7EE;color:#8a6a30}
 .link-more svg{width:15px;height:15px}
 
+/* ---------- Grand Hero ---------- */
+.ghero{position:relative;min-height:clamp(480px,68vh,680px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--deep2)}
+.ghero .gh-img{position:absolute;inset:0;background-image:url("masjid-ic-ntb.jpg");background-size:cover;background-position:center;opacity:.9}
+.ghero .gh-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,26,19,.78) 0%,rgba(8,26,19,.55) 40%,rgba(8,26,19,.88) 100%)}
+.ghero .gh-pat{position:absolute;inset:0;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3C/g%3E%3C/svg%3E");background-size:72px 72px}
+.ghero .gh-in{position:relative;z-index:2;padding:clamp(56px,8vw,96px) 0 clamp(48px,6vw,80px);width:100%}
+.ghero .basm{display:inline-block;margin-bottom:clamp(18px,2.4vw,30px);padding:8px 22px;border-block:1px solid rgba(198,161,91,.5)}
+.ghero .basm .ar{color:var(--wgold);font-size:clamp(16px,1.8vw,22px)}
+.ghero .logos{display:flex;justify-content:center;gap:clamp(10px,1.4vw,18px);margin-bottom:clamp(18px,2.4vw,28px)}
+.ghero .logos .lg{width:clamp(56px,5.6vw,78px);height:clamp(56px,5.6vw,78px)}
+.ghero .gh-eyebrow{font-size:clamp(11px,.5vw + 9px,13.5px);font-weight:800;letter-spacing:.34em;text-transform:uppercase;color:var(--wgold);margin-bottom:clamp(10px,1.2vw,16px)}
+.ghero h2{color:#fff;font-size:clamp(34px,5.6vw,68px);font-weight:800;letter-spacing:-.02em;line-height:1.08;text-shadow:0 4px 30px rgba(0,0,0,.45)}
+.ghero h2 em{font-style:normal;background:var(--ggrad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ghero .gh-full{color:#E6F1E9;font-size:clamp(13px,.9vw + 10px,17px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-top:clamp(12px,1.4vw,18px)}
+.ghero .gh-slogan{color:#CFE4D6;font-size:clamp(14.5px,.8vw + 11px,18px);max-width:720px;margin:clamp(14px,1.8vw,22px) auto 0;line-height:1.7}
+.ghero .gh-en{color:#9FBFAA;font-size:clamp(11.5px,.4vw + 10px,13.5px);font-style:italic;margin-top:10px;letter-spacing:.04em}
+.ghero .gh-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:clamp(22px,3vw,34px)}
+.ghero .gh-cta .btn{padding-inline:clamp(20px,2.2vw,30px)}
+.ghero .gh-cta .btn-l{background:var(--ggrad);color:#3E2F0F;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+.ghero .gh-cta .btn-l:hover{transform:translateY(-2px)}
+.ghero .gh-cta .btn-o{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.4);color:#fff}
+.ghero .gh-cta .btn-o:hover{background:rgba(255,255,255,.18)}
+.ghero .gh-loc{margin-top:clamp(20px,2.6vw,30px);display:inline-flex;align-items:center;gap:8px;color:#A9C7B4;font-size:clamp(11.5px,.4vw + 10px,13px);font-weight:600;letter-spacing:.06em}
+.ghero .gh-loc svg{width:14px;height:14px;color:var(--wgold)}
+
 /* ---------- Berita ---------- */
 .hero{padding:clamp(26px,3vw,40px) 0 8px}
 .hero-grid{display:grid;grid-template-columns:1.62fr 1fr;gap:22px}
@@ -227,6 +231,7 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .hero-body .chip{background:rgba(255,255,255,.16);border:1px solid rgba(198,161,91,.55);padding:4px 12px;border-radius:99px;font-weight:700;letter-spacing:.04em;color:var(--wgold)}
 .hero-body .meta time{color:#C8DCCE}
 .hero-body h3{color:#fff;font-size:clamp(20px,2.4vw,29px);font-weight:800;line-height:1.28;letter-spacing:-.015em;max-width:680px}
+.hero-body h3 a:hover{color:var(--wgold)}
 .hero-body p{color:#D5E6DA;font-size:var(--fs-small);margin-top:10px;max-width:640px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .hero-body .btn{margin-top:18px;background:#fff;color:var(--deep)}
 .hero-body .btn:hover{background:var(--wgold)}
@@ -242,18 +247,11 @@ noscript .nsb{display:block;background:#FBF3E2;color:#8A6A30;text-align:center;p
 .hi-m{font-size:11.5px;color:var(--muted);margin-top:5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .hi-m b{color:var(--lptq);font-weight:700}
 
-/* ---------- Quick access ---------- */
-.quick{padding:clamp(24px,3vw,36px) 0 10px}
-.quick-panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px;display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));box-shadow:var(--sh)}
-.qa{display:flex;flex-direction:column;align-items:center;gap:9px;padding:14px 6px;border-radius:12px;text-align:center;transition:.18s}
-.qa:hover{background:var(--soft)}
-.qa .qa-ic{width:46px;height:46px;border-radius:13px;background:var(--soft);color:var(--deep);display:flex;align-items:center;justify-content:center;transition:.18s}
-.qa:hover .qa-ic{background:var(--ggrad);color:#3E2F0F;transform:translateY(-2px);box-shadow:0 8px 18px rgba(198,161,91,.35)}
-.qa .qa-ic svg{width:21px;height:21px}
-.qa span{font-size:11.5px;font-weight:600;color:#33453B;line-height:1.3}
-
 /* ---------- Chips ---------- */
 .chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips.nowrap{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.chips.nowrap::-webkit-scrollbar{display:none}
+.chips.nowrap .chip-f{flex:none}
 .chip-f{font-size:12.5px;font-weight:700;padding:8px 15px;border-radius:99px;border:1.5px solid var(--line);color:#41544A;transition:.15s;background:#fff}
 .chip-f:hover{border-color:var(--gold);color:#8a6a30}
 .chip-f.on{background:var(--deep);border-color:var(--deep);color:#fff;box-shadow:0 6px 14px rgba(15,61,46,.25)}
@@ -800,13 +798,13 @@ html.js .rv.on{opacity:1;transform:none}
   </div>
 </header>
 
-<!-- 03 NAVIGASI -->
+<!-- 03 NAVIGASI BERIKON -->
 <nav class="nav" id="mainNav" aria-label="Navigasi utama">
   <div class="wrap">
     <ul class="nav-list" id="navList">
-      <li><a href="#" data-nav="beranda" class="active">Beranda</a></li>
-      <li><a href="#berita" data-nav="berita">Berita</a></li>
-      <li class="has-sub"><a href="#tentang" data-nav="tentang">Profil<svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <li><a href="#" data-nav="beranda" class="active"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v9a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 014 20z"/></svg>Beranda</a></li>
+      <li><a href="#berita" data-nav="berita"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h8L19 8.5V20a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 015 20V5a1.5 1.5 0 011-1.5z"/><path d="M13.5 3.5v5h5M9 12.5h6M9 16h6"/></svg>Berita</a></li>
+      <li class="has-sub"><a href="#tentang" data-nav="tentang"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5M12 16v.3"/></svg>Profil<svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
         <ul class="sub">
           <li><a href="#tentang">Tentang LPTQ</a></li>
           <li><a href="#" data-tbd="Sejarah LPTQ NTB">Sejarah</a></li>
@@ -817,35 +815,42 @@ html.js .rv.on{opacity:1;transform:none}
           <li><a href="#pimpinan">Pengurus 2026–2031</a></li>
         </ul>
       </li>
-      <li class="has-sub"><a href="#program" data-nav="program">Program<svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <li class="has-sub"><a href="#program" data-nav="program"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8.4 4.5 6 4.5H3v13h3.5c2.2 0 4.2.5 5.5 2 1.3-1.5 3.3-2 5.5-2H21v-13h-3c-2.4 0-4.5.5-6 2zm0 0v13"/></svg>Program<svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
         <ul class="sub">
           <li><a href="#program">Pembinaan</a></li>
-          <li><a href="#" data-tbd="Pendidikan Al-Qur'an">Pendidikan Al-Qur'an</a></li>
           <li><a href="#aplikasi">Digitalisasi</a></li>
+          <li><a href="#" data-tbd="Pendidikan Al-Qur'an">Pendidikan Al-Qur'an</a></li>
           <li><a href="#" data-tbd="Program Kerja">Program Kerja</a></li>
         </ul>
       </li>
-      <li class="has-sub"><a href="#musabaqah" data-nav="musabaqah">Musabaqah<svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+      <li class="has-sub"><a href="#musabaqah" data-nav="musabaqah"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 01-8 0zM8 5.5H5a3 3 0 003 4.5m8-4.5h3a3 3 0 01-3 4.5M12 13v3.5m-3.5 4h7m-5.5 0l.6-4h3.8l.6 4"/></svg>Musabaqah<svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
         <ul class="sub">
           <li><a href="#musabaqah">Informasi Terbaru</a></li>
           <li><a href="#" data-tbd="Jadwal Musabaqah">Jadwal</a></li>
           <li><a href="#" data-tbd="Kafilah NTB">Kafilah NTB</a></li>
           <li><a href="#musabaqah">Cabang Lomba</a></li>
           <li><a href="#" data-tbd="Hasil Musabaqah">Hasil</a></li>
-          <li><a href="#galeri">Dokumentasi</a></li>
         </ul>
       </li>
-      <li><a href="#prestasi" data-nav="prestasi">Prestasi</a></li>
-      <li><a href="#agenda" data-nav="agenda">Agenda</a></li>
-      <li><a href="#pengumuman" data-nav="pengumuman">Pengumuman</a></li>
-      <li><a href="#galeri" data-nav="galeri">Galeri</a></li>
-      <li><a href="#kabkota" data-nav="kabkota">LPTQ Kab/Kota</a></li>
-      <li><a href="#aplikasi" data-nav="aplikasi">Aplikasi MY LPTQ</a></li>
-      <li><a href="#kontak" data-nav="kontak">Kontak</a></li>
+      <li><a href="#prestasi" data-nav="prestasi"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M8.8 13.2L7 21l5-2.6L17 21l-1.8-7.8"/></svg>Prestasi</a></li>
+      <li><a href="#agenda" data-nav="agenda"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Agenda</a></li>
+      <li><a href="#pengumuman" data-nav="pengumuman"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5v3a1.5 1.5 0 001.5 1.5h2l8 4.5v-15l-8 4.5H5a1.5 1.5 0 00-1.5 1.5zM18 9.5a3.5 3.5 0 010 5"/></svg>Pengumuman</a></li>
+      <li><a href="#galeri" data-nav="galeri"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="M4.5 17.5l4.5-4 3.5 3 3-2.5 4 3.5"/></svg>Galeri</a></li>
+      <li><a href="#kabkota" data-nav="kabkota"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>LPTQ Kab/Kota</a></li>
+      <li><a href="#aplikasi" data-nav="aplikasi"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Aplikasi</a></li>
+      <li><a href="#kontak" data-nav="kontak"><svg class="nic" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>Kontak</a></li>
     </ul>
     <button class="nav-burger" id="btnBurger" aria-label="Buka menu navigasi" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
 </nav>
+
+<!-- 03b STICKY BAR: menu + ticker tetap terlihat saat scroll -->
+<div class="stickbar" id="stickbar" style="background:#fff">
+  <div class="ticker" aria-label="Informasi terkini berjalan">
+    <div class="ticker-label"><span class="dot"></span>INFORMASI TERKINI</div>
+    <div class="ticker-view"><div class="ticker-track" id="tickerTrack"></div></div>
+  </div>
+</div>
 
 <!-- Drawer mobile -->
 <div class="drawer-ov" id="drawerOv"></div>
@@ -857,17 +862,17 @@ html.js .rv.on{opacity:1;transform:none}
   <nav id="drawerNav">
     <a href="#">Beranda</a>
     <a href="#berita">Berita</a>
-    <button class="d-toggle" data-dsub="dProfil">Profil<svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="d-toggle" data-dsub="dProfil"><span style="display:inline-flex;align-items:center;gap:10px"><svg class="nic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5M12 16v.3"/></svg>Profil</span><svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
     <div class="d-sub" id="dProfil">
       <a href="#tentang">Tentang LPTQ</a><a href="#" data-tbd="Sejarah LPTQ NTB">Sejarah</a><a href="#" data-tbd="Visi &amp; Misi">Visi &amp; Misi</a><a href="#" data-tbd="Tugas &amp; Fungsi">Tugas &amp; Fungsi</a><a href="#" data-tbd="Dasar Hukum">Dasar Hukum</a><a href="#" data-tbd="Struktur Organisasi">Struktur Organisasi</a><a href="#pimpinan">Pengurus 2026–2031</a>
     </div>
-    <button class="d-toggle" data-dsub="dProg">Program<svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="d-toggle" data-dsub="dProg"><span style="display:inline-flex;align-items:center;gap:10px"><svg class="nic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8.4 4.5 6 4.5H3v13h3.5c2.2 0 4.2.5 5.5 2 1.3-1.5 3.3-2 5.5-2H21v-13h-3c-2.4 0-4.5.5-6 2zm0 0v13"/></svg>Program</span><svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
     <div class="d-sub" id="dProg">
-      <a href="#program">Pembinaan</a><a href="#" data-tbd="Pendidikan Al-Qur'an">Pendidikan Al-Qur'an</a><a href="#aplikasi">Digitalisasi</a><a href="#" data-tbd="Program Kerja">Program Kerja</a>
+      <a href="#program">Pembinaan</a><a href="#aplikasi">Digitalisasi</a><a href="#" data-tbd="Pendidikan Al-Qur'an">Pendidikan Al-Qur'an</a><a href="#" data-tbd="Program Kerja">Program Kerja</a>
     </div>
-    <button class="d-toggle" data-dsub="dMsq">Musabaqah<svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button class="d-toggle" data-dsub="dMsq"><span style="display:inline-flex;align-items:center;gap:10px"><svg class="nic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 01-8 0zM8 5.5H5a3 3 0 003 4.5m8-4.5h3a3 3 0 01-3 4.5M12 13v3.5m-3.5 4h7m-5.5 0l.6-4h3.8l.6 4"/></svg>Musabaqah</span><svg class="car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
     <div class="d-sub" id="dMsq">
-      <a href="#musabaqah">Informasi Terbaru</a><a href="#" data-tbd="Jadwal Musabaqah">Jadwal</a><a href="#" data-tbd="Kafilah NTB">Kafilah NTB</a><a href="#musabaqah">Cabang Lomba</a><a href="#" data-tbd="Hasil Musabaqah">Hasil</a><a href="#galeri">Dokumentasi</a>
+      <a href="#musabaqah">Informasi Terbaru</a><a href="#" data-tbd="Jadwal Musabaqah">Jadwal</a><a href="#" data-tbd="Kafilah NTB">Kafilah NTB</a><a href="#musabaqah">Cabang Lomba</a><a href="#" data-tbd="Hasil Musabaqah">Hasil</a>
     </div>
     <a href="#prestasi">Prestasi</a>
     <a href="#agenda">Agenda</a>
@@ -883,7 +888,7 @@ html.js .rv.on{opacity:1;transform:none}
 <main id="main">
 <div id="viewHome">
 
-  <!-- ★ GRAND HERO: identitas lembaga di atas Masjid Islamic Center NTB -->
+  <!-- ★ GRAND HERO -->
   <section class="ghero" id="beranda" aria-label="Identitas resmi MY LPTQ NTB">
     <div class="gh-img" role="img" aria-label="Masjid Islamic Center Nusa Tenggara Barat"></div>
     <div class="gh-tint" aria-hidden="true"></div>
@@ -909,13 +914,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 04 TICKER -->
-  <div class="ticker" aria-label="Informasi terkini berjalan">
-    <div class="ticker-label"><span class="dot"></span>INFORMASI TERKINI</div>
-    <div class="ticker-view"><div class="ticker-track" id="tickerTrack"></div></div>
-  </div>
-
-  <!-- 05 HERO BERITA -->
+  <!-- HERO BERITA -->
   <section class="hero" id="berita">
     <div class="wrap">
       <div class="hero-grid rv">
@@ -928,7 +927,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 06 BERITA TERBARU -->
+  <!-- BERITA TERBARU -->
   <section class="sec" id="beritaTerbaru" style="padding-top:44px">
     <div class="wrap">
       <div class="sec-head rv">
@@ -939,19 +938,12 @@ html.js .rv.on{opacity:1;transform:none}
         </div>
         <button class="link-more" id="btnAllNews">Lihat Semua Berita<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
-      <div class="chips rv" id="newsFilters" style="margin-bottom:24px" role="group" aria-label="Filter kategori berita"></div>
+      <div class="chips rv nowrap" id="newsFilters" style="margin-bottom:24px" role="group" aria-label="Filter kategori berita"></div>
       <div id="newsArea" class="rv"></div>
     </div>
   </section>
 
-  <!-- 07 QUICK ACCESS -->
-  <section class="quick">
-    <div class="wrap rv">
-      <div class="quick-panel" id="quickPanel"></div>
-    </div>
-  </section>
-
-  <!-- 08 PROFIL SINGKAT -->
+  <!-- PROFIL SINGKAT -->
   <section class="sec" id="tentang">
     <div class="wrap">
       <div class="about-grid rv">
@@ -990,7 +982,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 09 PIMPINAN -->
+  <!-- PIMPINAN -->
   <section class="sec sec-alt" id="pimpinan">
     <div class="wrap">
       <div class="sec-head rv">
@@ -1015,7 +1007,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 10 PROGRAM -->
+  <!-- PROGRAM -->
   <section class="sec" id="program">
     <div class="wrap">
       <div class="sec-head rv">
@@ -1029,7 +1021,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 11 MUSABAQAH -->
+  <!-- MUSABAQAH -->
   <section class="sec sec-alt" id="musabaqah">
     <div class="wrap">
       <div class="sec-head rv">
@@ -1045,7 +1037,7 @@ html.js .rv.on{opacity:1;transform:none}
           <div class="cabang-chips" id="cabangChips"></div>
           <div class="msq-filter">
             <select id="msqYear" aria-label="Filter tahun"><option value="Semua">Semua Tahun</option></select>
-            <div class="chips" id="msqLevel" role="group" aria-label="Filter tingkat"></div>
+            <div class="chips nowrap" id="msqLevel" role="group" aria-label="Filter tingkat"></div>
           </div>
           <div class="msq-news" id="msqNews"></div>
         </div>
@@ -1053,7 +1045,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 12 AGENDA -->
+  <!-- AGENDA -->
   <section class="sec" id="agenda">
     <div class="wrap">
       <div class="sec-head rv">
@@ -1067,7 +1059,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 13 APLIKASI -->
+  <!-- APLIKASI -->
   <section class="sec" id="aplikasi" style="background:var(--soft)">
     <div class="wrap">
       <div class="my-grid rv">
@@ -1129,7 +1121,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 14 PRESTASI -->
+  <!-- PRESTASI -->
   <section class="sec sec-alt" id="prestasi">
     <div class="wrap">
       <div class="sec-head rv">
@@ -1139,12 +1131,12 @@ html.js .rv.on{opacity:1;transform:none}
           <p class="sec-sub">Rekam jejak peraih prestasi cabang Al-Qur'an dari NTB — tingkat provinsi, nasional, dan internasional.</p>
         </div>
       </div>
-      <div class="chips rv" id="achFilters" style="margin-bottom:24px" role="group" aria-label="Filter prestasi"></div>
+      <div class="chips rv nowrap" id="achFilters" style="margin-bottom:24px" role="group" aria-label="Filter prestasi"></div>
       <div id="achArea" class="rv"></div>
     </div>
   </section>
 
-  <!-- 15 PENGUMUMAN -->
+  <!-- PENGUMUMAN -->
   <section class="sec" id="pengumuman">
     <div class="wrap">
       <div class="sec-head rv">
@@ -1158,7 +1150,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 16 GALERI -->
+  <!-- GALERI -->
   <section class="sec sec-alt" id="galeri">
     <div class="wrap">
       <div class="sec-head rv">
@@ -1175,7 +1167,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 17 LPTQ KAB/KOTA -->
+  <!-- LPTQ KAB/KOTA -->
   <section class="sec" id="kabkota">
     <div class="wrap">
       <div class="sec-head rv">
@@ -1189,7 +1181,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- 18 INSTANSI -->
+  <!-- INSTANSI -->
   <section class="sec sec-alt" id="instansi">
     <div class="wrap">
       <div class="sec-head rv"><div>
@@ -1200,7 +1192,7 @@ html.js .rv.on{opacity:1;transform:none}
     </div>
   </section>
 
-  <!-- IKUTI LPTQ NTB + KONTAK -->
+  <!-- IKUTI + KONTAK -->
   <section class="sec" id="kontak">
     <div class="wrap">
       <div class="social-band rv">
@@ -1304,7 +1296,7 @@ html.js .rv.on{opacity:1;transform:none}
   </div>
 </footer>
 
-<!-- Search / Lightbox / Admin -->
+<!-- Search -->
 <div class="search-ov" id="searchOv" role="dialog" aria-modal="true" aria-label="Pencarian global">
   <div class="search-box">
     <div class="search-in">
@@ -1315,6 +1307,8 @@ html.js .rv.on{opacity:1;transform:none}
     <div class="search-res" id="searchRes"><div class="sr-empty">Ketik kata kunci untuk mencari di seluruh portal MY LPTQ NTB.</div></div>
   </div>
 </div>
+
+<!-- Lightbox -->
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Pratinjau foto galeri">
   <button class="lb-x" id="lbClose" aria-label="Tutup"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <button class="lb-nav lb-prev" id="lbPrev" aria-label="Foto sebelumnya"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -1322,6 +1316,8 @@ html.js .rv.on{opacity:1;transform:none}
   <button class="lb-nav lb-next" id="lbNext" aria-label="Foto berikutnya"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
   <p class="lb-cap" id="lbCap"></p>
 </div>
+
+<!-- Admin -->
 <div class="admin-ov" id="adminOv" role="dialog" aria-modal="true" aria-label="Dashboard Admin MY LPTQ NTB">
   <div class="ad-login" id="adLogin">
     <div class="login-card">
@@ -1516,10 +1512,6 @@ function renderHero(){
    <div><div class="hi-t">${esc(n.title)}</div><div class="hi-m"><b>${esc(n.cat)}</b><time datetime="${n.date}">${fmtDate(n.date)}</time></div></div>
   </a>`).join('');
 }
-function renderQuick(){
- const QA=[["file","Berita","#beritaTerbaru"],["trophy","Musabaqah","#musabaqah"],["cal","Agenda","#agenda"],["mega","Pengumuman","#pengumuman"],["award","Prestasi","#prestasi"],["users","Program","#program"],["img","Galeri","#galeri"],["users","Pengurus","#pimpinan"],["pin","LPTQ Kab/Kota","#kabkota"],["sp","MY LPTQ App","#aplikasi"]];
- $('#quickPanel').innerHTML=QA.map(([i,l,h])=>`<a class="qa" href="${h}"><span class="qa-ic">${ic(i)}</span><span>${l}</span></a>`).join('');
-}
 let newsFilter="Semua";
 function renderNewsFilters(){$('#newsFilters').innerHTML=["Semua",...CATS].map(c=>`<button class="chip-f${c===newsFilter?' on':''}" data-nf="${esc(c)}">${esc(c)}</button>`).join('');}
 function renderNews(){
@@ -1673,7 +1665,7 @@ function renderSocial(){
  $('#ftAddr').textContent=addr;$('#kAddr').textContent=s.mapsUrl?addr+" · Peta: "+s.mapsUrl:addr;
  $('#ftYear').textContent=s.year;
 }
-function renderAll(){renderTicker();renderHero();renderQuick();renderNewsFilters();renderNews();renderLeaders();renderMusabaqah();renderAgenda();renderAnn();renderAchFilters();renderAch();renderGallery();renderKK();renderInst();renderSocial();}
+function renderAll(){renderTicker();renderHero();renderNewsFilters();renderNews();renderLeaders();renderMusabaqah();renderAgenda();renderAnn();renderAchFilters();renderAch();renderGallery();renderKK();renderInst();renderSocial();}
  $('#progGrid').innerHTML=PROGRAMS.map(([i,n,d],x)=>`
  <div class="prog"><span class="no">${String(x+1).padStart(2,'0')}</span>
   <span class="p-ic">${ic(i)}</span><div><strong>${n}</strong><span>${d}</span></div></div>`).join('');
@@ -1718,7 +1710,7 @@ function closeDrawer(){$('#drawer').classList.remove('on');$('#drawerOv').classL
  $('#btnBurger').onclick=openDrawer;$('#btnDrawerClose').onclick=closeDrawer;$('#drawerOv').onclick=closeDrawer;
  $('#drawerNav').addEventListener('click',e=>{if(e.target.closest('a'))closeDrawer()});
  $$('.d-toggle').forEach(b=>b.onclick=()=>{b.classList.toggle('open');document.getElementById(b.dataset.dsub).classList.toggle('open')});
-window.addEventListener('scroll',()=>{$('#mainNav').classList.toggle('scrolled',window.scrollY>10)},{passive:true});
+window.addEventListener('scroll',()=>{$('#stickbar').classList.toggle('scrolled',window.scrollY>10)},{passive:true});
 if('IntersectionObserver' in window){
  const spy=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){
   const map={berita:'berita',tentang:'tentang',program:'program',musabaqah:'musabaqah',prestasi:'prestasi',agenda:'agenda',pengumuman:'pengumuman',galeri:'galeri',kabkota:'kabkota',aplikasi:'aplikasi',kontak:'kontak'};
