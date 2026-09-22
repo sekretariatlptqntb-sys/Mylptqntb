@@ -14,9 +14,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* ================================================================
-   MY LPTQ NTB — palet resmi + model tata letak Ziee Media
-   ================================================================ */
 :root{
   --bg:#F7F9F8; --ink:#101913; --mut:#5C6B62;
   --acc:#16794B; --acc-d:#0F5C38; --acc-t:rgba(22,121,75,.10);
@@ -37,7 +34,8 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--fb);
   font-size:var(--fs-body);line-height:1.65;-webkit-font-smoothing:antialiased;
-  overflow-x:hidden;padding-top:calc(var(--head-h) + var(--mq-h))}
+  overflow-x:hidden;padding-top:calc(var(--head-h) + var(--mq-h));
+  transition:background .3s,color .3s}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none;overflow-wrap:break-word}
 button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
@@ -58,7 +56,25 @@ section{padding-block:clamp(52px,6.5vw,88px);scroll-margin-top:calc(var(--head-h
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--gold);z-index:400}
 
-/* ---- logo (SATU logo) ---- */
+/* ============ MODE MALAM ============ */
+html[data-theme="dark"]{
+  --bg:#0C1611; --ink:#E6F0E9; --mut:#9CB3A5;
+  --card:#12211A; --line:rgba(255,255,255,.10);
+}
+html[data-theme="dark"] .about2 .txt p{color:#C7D6CC}
+html[data-theme="dark"] .nrd-body .nrd-prose{color:#C7D6CC}
+html[data-theme="dark"] .nrd-box{background:var(--card)}
+html[data-theme="dark"] .nav{background:rgba(12,22,17,.9)}
+html[data-theme="dark"] .gov{background:#081209}
+html[data-theme="dark"] .svc,html[data-theme="dark"] .bmini,
+html[data-theme="dark"] .mini,html[data-theme="dark"] .achmini,
+html[data-theme="dark"] .nitem,html[data-theme="dark"] .app,
+html[data-theme="dark"] .app-feats li,html[data-theme="dark"] .kk-chip,
+html[data-theme="dark"] .cabang-chips span{background:var(--card);border-color:var(--line)}
+html[data-theme="dark"] .marquee{background:#0B2E23}
+html[data-theme="dark"] .sec-alt{background:rgba(18,33,26,.6)}
+
+/* ============ LOGO (SATU) ============ */
 .logo{display:inline-flex;align-items:center;gap:10px}
 .logo .lg{width:38px;height:38px;border-radius:50%;overflow:hidden;
   border:1.5px solid var(--line);background:#fff;display:grid;place-items:center;flex:none;
@@ -70,13 +86,13 @@ section{padding-block:clamp(52px,6.5vw,88px);scroll-margin-top:calc(var(--head-h
 .logo .word small{display:block;font-family:var(--fb);font-weight:600;font-size:8.5px;
   letter-spacing:.1em;color:var(--mut);text-transform:uppercase;margin-top:3px}
 
-/* ---- imgbox: gambar atau placeholder emas ---- */
+/* ============ IMGBOX ============ */
 .imgbox{position:relative;overflow:hidden;background:linear-gradient(135deg,#123C2F,#0B2E23)}
 .imgbox .ph-ic{position:absolute;inset:0;display:grid;place-items:center;color:rgba(198,161,91,.35)}
 .imgbox .ph-ic svg{width:30%;height:auto}
 .imgbox img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
 
-/* ---- header stack ---- */
+/* ============ HEADER STACK ============ */
 .top{position:fixed;top:0;left:0;right:0;z-index:100}
 .gov{height:var(--gov-h);background:#0B2E23;color:rgba(255,255,255,.72);font-size:11px;
   display:flex;align-items:center;border-bottom:1px solid rgba(198,161,91,.25)}
@@ -85,12 +101,13 @@ section{padding-block:clamp(52px,6.5vw,88px);scroll-margin-top:calc(var(--head-h
 .gov-l i{width:1px;height:11px;background:rgba(255,255,255,.22);flex:none}
 .gov-l span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .gov-r{display:flex;align-items:center;gap:1px;flex:none}
-.gov-r a{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;color:rgba(255,255,255,.72);transition:.18s}
-.gov-r a:hover{background:rgba(255,255,255,.12);color:#fff}
+.gov-r a,.gov-r button{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;
+  color:rgba(255,255,255,.72);transition:.18s;border:0;background:none;cursor:pointer}
+.gov-r a:hover,.gov-r button:hover{background:rgba(255,255,255,.12);color:#fff}
 .gov-r .ic{width:12px;height:12px}
 .nav{height:var(--head-h);background:rgba(247,249,248,.88);
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);position:relative;transition:box-shadow .3s}
+  border-bottom:1px solid var(--line);position:relative;transition:box-shadow .3s,background .3s}
 .nav.scrolled{box-shadow:0 8px 24px rgba(16,25,19,.07)}
 .nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:14px}
 .nav-links{display:flex;gap:clamp(12px,1.9vw,22px)}
@@ -120,6 +137,7 @@ section{padding-block:clamp(52px,6.5vw,88px);scroll-margin-top:calc(var(--head-h
 .btn .ic{width:16px;height:16px}
 .marquee{height:var(--mq-h);background:#14532D;color:#fff;overflow:hidden;
   display:flex;align-items:center;user-select:none;border-top:1px solid rgba(198,161,91,.4)}
+html[data-theme="dark"] .marquee{background:#0B2E23}
 .mq-track{display:flex;width:max-content;animation:mq 42s linear infinite}
 .marquee:hover .mq-track{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(-50%)}}
@@ -128,7 +146,7 @@ section{padding-block:clamp(52px,6.5vw,88px);scroll-margin-top:calc(var(--head-h
   letter-spacing:.24em;text-transform:uppercase;padding-inline:22px;opacity:.75}
 .mq-g i{width:5px;height:5px;background:var(--gold);flex:none;transform:rotate(45deg)}
 
-/* ---- hero ---- */
+/* ============ HERO ============ */
 .hero{position:relative;display:flex;align-items:center;color:#fff;overflow:hidden;
   min-height:min(800px,max(580px,calc(100svh - var(--head-h) - var(--mq-h) - var(--gov-h))));
   background:linear-gradient(135deg,#14532D,#0B2E23)}
@@ -140,6 +158,26 @@ section{padding-block:clamp(52px,6.5vw,88px);scroll-margin-top:calc(var(--head-h
     rgba(11,46,35,.46) 68%,rgba(11,46,35,.26) 100%),
   linear-gradient(0deg,rgba(11,46,35,.9) 0%,transparent 46%)}
 .hero .wrap{position:relative;z-index:2;width:100%;padding-block:clamp(48px,7vw,80px)}
+@media(min-width:1280px){.hero .wrap{max-width:1420px}}
+
+/* identitas hero: logo kiri — pusat + nama — logo kanan */
+.hident{display:flex;align-items:center;justify-content:center;
+  gap:clamp(16px,3vw,34px);margin-bottom:clamp(20px,2.6vw,30px)}
+.hident .hlogo{width:clamp(52px,5vw,68px);height:clamp(52px,5vw,68px);border-radius:50%;
+  overflow:hidden;border:2px solid rgba(255,255,255,.35);background:#fff;
+  display:grid;place-items:center;flex:none;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.hident .hlogo img{width:82%;height:82%;object-fit:contain;position:relative;z-index:1}
+.hident .hmid{display:flex;align-items:center;gap:12px}
+.hident .hlogo.mid{width:clamp(58px,5.6vw,76px);height:clamp(58px,5.6vw,76px);border-color:var(--gold)}
+.hident .hname{font-family:var(--fd);font-weight:800;font-size:clamp(19px,2.2vw,26px);
+  color:#fff;letter-spacing:.02em;line-height:1;text-shadow:0 3px 18px rgba(0,0,0,.4);white-space:nowrap}
+.hident .hname i{font-style:normal;color:var(--gold)}
+@media(max-width:640px){
+  .hident{gap:12px}
+  .hident .hlogo{width:44px;height:44px}
+  .hident .hlogo.mid{width:50px;height:50px}
+  .hident .hname{font-size:15px}
+}
 .eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--fm);
   font-weight:500;font-size:clamp(10px,.95vw,11.5px);letter-spacing:.24em;text-transform:uppercase;
   color:rgba(255,255,255,.72);margin-bottom:20px}
@@ -150,7 +188,6 @@ h1 em{font-style:normal;color:var(--gold)}
 .hero-sub{margin-top:18px;font-size:clamp(14.5px,1.6vw,17.5px);
   color:rgba(255,255,255,.78);max-width:56ch}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-@media(min-width:1280px){.hero .wrap{max-width:1420px}}
 
 /* strip berita hero */
 .vstrip{margin-top:clamp(26px,3.4vw,42px);padding-top:20px;
@@ -380,8 +417,8 @@ h1 em{font-style:normal;color:var(--gold)}
 .app-feats .ic{color:var(--acc);width:15px;height:15px;flex:none}
 
 /* kontak */
-#kontak{padding-bottom:clamp(28px,4vw,48px)}
-.cta{background:var(--dark);color:#fff;border-radius:clamp(20px,3vw,28px);
+#kontak{padding-bottom:0}
+.cta{background:var(--dark);color:#fff;border-radius:clamp(20px,3vw,28px) clamp(20px,3vw,28px) 0 0;
   padding:clamp(28px,4.5vw,52px) clamp(20px,4.5vw,56px);position:relative;overflow:hidden}
 .cta::before{content:"";position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3C/g%3E%3C/svg%3E");background-size:72px 72px}
 .cta-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;
@@ -409,33 +446,73 @@ h1 em{font-style:normal;color:var(--gold)}
 .soc-mini b{font-family:var(--fm);font-size:10px;font-weight:500;letter-spacing:.1em;
   text-transform:uppercase;color:rgba(255,255,255,.5);margin-left:auto}
 
-/* footer */
-footer{background:var(--dark);color:rgba(255,255,255,.55);font-size:13.5px;
-  border-top:1px solid var(--line-d)}
-.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:clamp(26px,4vw,56px);
-  padding-block:clamp(34px,4.5vw,52px) 32px}
-.f-brand .logo .word{color:#fff}
-.f-brand .logo .word i{color:var(--gold)}
-.f-brand p{margin-top:14px;max-width:36ch;line-height:1.7;font-size:12.5px}
-.f-brand .ar{color:var(--gold);font-size:16px;margin-top:12px;display:block;line-height:1.9}
-.f-status{display:inline-flex;align-items:center;gap:9px;margin-top:18px;
-  font-family:var(--fm);font-size:10px;font-weight:500;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(255,255,255,.6);
-  border:1px solid var(--line-d);border-radius:999px;padding:8px 14px}
-.f-status i{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:blink 1.6s infinite}
-@keyframes blink{50%{opacity:.3}}
-.f-h{font-family:var(--fm);font-size:10.5px;font-weight:500;letter-spacing:.22em;
-  text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px}
-.f-col a{display:block;padding:5px 0;color:rgba(255,255,255,.65);transition:color .2s;font-size:13px}
-.f-col a:hover{color:#fff}
-.f-contact li{display:flex;gap:11px;font-size:12.5px;margin-bottom:11px;align-items:flex-start;line-height:1.6}
-.f-contact .ic{width:15px;height:15px;color:var(--gold);flex:none;margin-top:2px}
-.f-bottom{border-top:1px solid var(--line-d);padding-block:18px 26px;display:flex;
-  justify-content:space-between;gap:12px;flex-wrap:wrap;
-  font-family:var(--fm);font-size:10.5px;letter-spacing:.06em;color:rgba(255,255,255,.4)}
-.f-bottom nav{display:flex;gap:18px;flex-wrap:wrap}
-.f-bottom a,.f-bottom button{color:rgba(255,255,255,.55);font:inherit;transition:color .2s}
-.f-bottom a:hover,.f-bottom button:hover{color:var(--gold)}
+/* ============ END BAR (pengganti footer) ============ */
+.endbar{background:var(--dark);color:rgba(255,255,255,.55);font-family:var(--fm);
+  font-size:10.5px;letter-spacing:.06em}
+.endbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding-block:16px;align-items:center}
+.endbar button{color:rgba(255,255,255,.7);font:inherit;cursor:pointer;border:0;
+  background:none;border-bottom:1px solid rgba(255,255,255,.3);padding:0 0 2px}
+.endbar button:hover{color:var(--gold)}
+
+/* ============ PANEL PENGATURAN ============ */
+#setOv{position:fixed;inset:0;z-index:450;display:none;
+  background:rgba(7,17,11,.6);backdrop-filter:blur(4px)}
+#setOv.open{display:block}
+#setPanel{position:absolute;top:0;right:0;bottom:0;width:min(360px,90vw);
+  background:var(--card);color:var(--ink);overflow:auto;
+  box-shadow:-24px 0 60px rgba(0,0,0,.35);animation:slideIn .3s var(--ease)}
+@keyframes slideIn{from{transform:translateX(30px);opacity:0}}
+.sp-head{background:var(--dark);color:#fff;padding:18px 22px;display:flex;
+  justify-content:space-between;align-items:center}
+.sp-head b{font-family:var(--fd);font-size:15px}
+.sp-body{padding:20px 22px}
+.sp-sec{padding:16px 0;border-top:1px solid var(--line)}
+.sp-sec:first-child{border-top:0;padding-top:0}
+.sp-sec h4{font-family:var(--fm);font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--acc);margin-bottom:12px}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  font-weight:700;font-size:13.5px}
+.sw{width:46px;height:26px;border-radius:99px;background:var(--line);position:relative;
+  cursor:pointer;transition:.2s;flex:none;border:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;
+  border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sw.on{background:var(--acc)}
+.sw.on::after{left:23px}
+.langbtns{display:flex;gap:8px}
+.langbtns button{flex:1;padding:10px;border:1.5px solid var(--line);border-radius:11px;
+  font-weight:700;font-size:13px;color:var(--mut);background:transparent;cursor:pointer;transition:.15s}
+.langbtns button.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+.sp-txt{font-size:12.5px;color:var(--mut);line-height:1.7}
+.sp-links a{display:flex;justify-content:space-between;align-items:center;padding:10px 0;
+  font-size:13.5px;font-weight:600;color:var(--ink);border-bottom:1px dashed var(--line)}
+.sp-links a:last-child{border-bottom:0}
+.sp-links .ic{width:13px;height:13px;color:var(--acc)}
+
+/* ============ PEMBACA ARTIKEL ============ */
+#nrd{position:fixed;inset:0;z-index:600;display:none;align-items:flex-start;
+  justify-content:center;padding:5vh 16px;background:rgba(7,17,11,.75);
+  backdrop-filter:blur(6px);overflow:auto}
+#nrd.open{display:flex}
+.nrd-box{background:#fff;border-radius:20px;max-width:760px;width:100%;overflow:hidden;
+  box-shadow:0 40px 90px rgba(0,0,0,.5);margin-bottom:5vh}
+.nrd-head{background:linear-gradient(135deg,#14532D,#0B2E23);color:#fff;padding:26px 28px;position:relative}
+.nrd-close{position:absolute;top:18px;right:18px;cursor:pointer;width:36px;height:36px;
+  border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;
+  color:#fff;border:0;font-size:15px}
+.nrd-close:hover{background:var(--gold);color:#2E240E}
+.nrd-head h2{font-family:var(--fd);font-size:clamp(19px,2.4vw,26px);font-weight:700;line-height:1.35;margin:14px 0 6px}
+.nrd-head .nrd-meta{font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.6)}
+.nrd-body{padding:28px 30px;max-height:60vh;overflow:auto}
+.nrd-body img{width:100%;border-radius:14px;margin-bottom:20px}
+.nrd-body .nrd-prose{font-size:15.5px;line-height:1.9;color:#22302C}
+.nrd-body .nrd-prose p{margin-bottom:16px}
+.nrd-src{margin-top:20px;font-family:var(--fm);font-size:10px;letter-spacing:.1em;
+  color:#8A6A30;text-transform:uppercase}
+html[data-theme="dark"] .nrd-box{background:var(--card)}
+html[data-theme="dark"] .nrd-body .nrd-prose{color:#C7D6CC}
+
 .topfab{position:fixed;right:clamp(14px,2.5vw,24px);bottom:clamp(14px,2.5vw,24px);z-index:90;
   width:54px;height:54px;border-radius:50%;background:var(--acc);color:#fff;
   display:grid;place-items:center;box-shadow:0 12px 28px rgba(22,121,75,.42);
@@ -448,24 +525,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.55);font-size:13.5px;
 [data-io].in{opacity:1;transform:none}
 html:not(.js) [data-io]{opacity:1;transform:none}
 html:not(.js) .topfab{display:none}
-
-/* pembaca artikel (modal) */
-#nrd{position:fixed;inset:0;z-index:600;display:none;align-items:flex-start;justify-content:center;
-  padding:5vh 16px;background:rgba(7,17,11,.75);backdrop-filter:blur(6px);overflow:auto}
-#nrd.open{display:flex}
-.nrd-box{background:#fff;border-radius:20px;max-width:760px;width:100%;overflow:hidden;
-  box-shadow:0 40px 90px rgba(0,0,0,.5);margin-bottom:5vh}
-.nrd-head{background:linear-gradient(135deg,#14532D,#0B2E23);color:#fff;padding:26px 28px;position:relative}
-.nrd-close{position:absolute;top:18px;right:18px;cursor:pointer;width:36px;height:36px;
-  border-radius:50%;background:rgba(255,255,255,.14);display:grid;place-items:center;color:#fff;border:0;font-size:15px}
-.nrd-close:hover{background:var(--gold);color:#2E240E}
-.nrd-head h2{font-family:var(--fd);font-size:clamp(19px,2.4vw,26px);font-weight:700;line-height:1.35;margin:14px 0 6px}
-.nrd-head .nrd-meta{font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
-.nrd-body{padding:28px 30px;max-height:60vh;overflow:auto}
-.nrd-body img{width:100%;border-radius:14px;margin-bottom:20px}
-.nrd-body .nrd-prose{font-size:15.5px;line-height:1.9;color:#22302C}
-.nrd-body .nrd-prose p{margin-bottom:16px}
-.nrd-src{margin-top:20px;font-family:var(--fm);font-size:10px;letter-spacing:.1em;color:#8A6A30;text-transform:uppercase}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:1024px){
@@ -485,22 +544,19 @@ html:not(.js) .topfab{display:none}
   .nav.open .nav-links{display:flex}
   .pin2,.duo,.ach2,.ms2,.about2,.apps{grid-template-columns:1fr}
   .cta-grid{grid-template-columns:1fr;gap:26px}
-  .f-grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:640px){
   :root{--head-h:58px;--mq-h:30px;--gov-h:28px}
   .logo .word{font-size:12px}
   .logo .word small{display:none}
   .nav .btn.sm{display:none}
-  .svc-grid,.pf-grid,.f-grid,.duo,.ach2{grid-template-columns:1fr}
+  .svc-grid,.pf-grid,.duo,.ach2{grid-template-columns:1fr}
   .hero{min-height:560px}
   .hero-overlay{background:
     linear-gradient(180deg,rgba(11,46,35,.86),rgba(11,46,35,.94)),
     radial-gradient(60% 80% at 88% 20%,rgba(198,161,91,.12),transparent 60%)}
   .hero-cta .btn{width:100%}
   .gov-l span:last-child{display:none}
-  .f-grid{grid-template-columns:1fr;gap:28px}
-  .f-bottom{flex-direction:column;gap:6px;text-align:center}
   .leader{flex-direction:column}
   .leader .ld-photo{width:100%;height:210px;border-radius:14px}
 }
@@ -517,44 +573,9 @@ html:not(.js) .topfab{display:none}
   h1{font-size:clamp(30px,4vw,52px)!important;line-height:1.08!important}
   .hero-sub{margin-top:14px!important;font-size:clamp(14.5px,1.3vw,16.5px)!important;max-width:50ch!important}
   .hero-cta{margin-top:20px!important}
-  .eyebrow{margin-bottom:16px!important}
   .vstrip{margin-top:18px!important;padding-top:14px!important}
   .vcard{max-width:380px}
 }
-   /* ═══ PENGATURAN + MODE MALAM + END BAR ═══ */
-.gov-r button{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;color:rgba(255,255,255,.72);transition:.18s;border:0;background:none;cursor:pointer}
-.gov-r button:hover{background:rgba(255,255,255,.12);color:#fff}
-.gov-r button .ic{width:12px;height:12px}
-html[data-theme="dark"]{--bg:#0C1611;--ink:#E6F0E9;--mut:#9CB3A5;--card:#12211A;--line:rgba(255,255,255,.10)}
-html[data-theme="dark"] .about2 .txt p,html[data-theme="dark"] .nrd-body .nrd-prose{color:#C7D6CC}
-html[data-theme="dark"] .nrd-box{background:var(--card)}
-body{transition:background .3s,color .3s}
-#setOv{position:fixed;inset:0;z-index:450;display:none;background:rgba(7,17,11,.6);backdrop-filter:blur(4px)}
-#setOv.open{display:block}
-#setPanel{position:absolute;top:0;right:0;bottom:0;width:min(360px,90vw);background:var(--card);color:var(--ink);overflow:auto;box-shadow:-24px 0 60px rgba(0,0,0,.35);animation:slideIn .3s var(--ease)}
-@keyframes slideIn{from{transform:translateX(30px);opacity:0}}
-.sp-head{background:var(--dark);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
-.sp-head b{font-family:var(--fd);font-size:15px}
-.sp-body{padding:20px 22px}
-.sp-sec{padding:16px 0;border-top:1px solid var(--line)}
-.sp-sec:first-child{border-top:0;padding-top:0}
-.sp-sec h4{font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
-.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;font-size:13.5px}
-.sw{width:46px;height:26px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;transition:.2s;flex:none;border:0}
-.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 6px rgba(0,0,0,.25)}
-.sw.on{background:var(--acc)}
-.sw.on::after{left:23px}
-.langbtns{display:flex;gap:8px}
-.langbtns button{flex:1;padding:10px;border:1.5px solid var(--line);border-radius:11px;font-weight:700;font-size:13px;color:var(--mut);background:transparent;cursor:pointer;transition:.15s}
-.langbtns button.on{background:var(--dark);color:#fff;border-color:var(--dark)}
-.sp-txt{font-size:12.5px;color:var(--mut);line-height:1.7}
-.sp-links a{display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-size:13.5px;font-weight:600;color:var(--ink);border-bottom:1px dashed var(--line)}
-.sp-links a:last-child{border-bottom:0}
-.sp-links .ic{width:13px;height:13px;color:var(--acc)}
-.endbar{background:var(--dark);color:rgba(255,255,255,.55);font-family:var(--fm);font-size:10.5px;letter-spacing:.06em}
-.endbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:16px;align-items:center}
-.endbar button{color:rgba(255,255,255,.7);font:inherit;cursor:pointer;border:0;background:none;border-bottom:1px solid rgba(255,255,255,.3)}
-.endbar button:hover{color:var(--gold)}
 </style>
 </head>
 <body>
@@ -562,7 +583,7 @@ body{transition:background .3s,color .3s}
 <div class="grain" aria-hidden="true"></div>
 <div id="progress" aria-hidden="true"></div>
 
-<!-- ═══════════ HEADER: PITA PEMERINTAH + NAV + MARQUEE ═══════════ -->
+<!-- ═══════════ HEADER STACK ═══════════ -->
 <div class="top">
   <div class="gov">
     <div class="wrap">
@@ -576,6 +597,7 @@ body{transition:background .3s,color .3s}
         <a href="https://www.youtube.com/channel/UCY8JX9qLg-LFE6lOzGy4X2g" target="_blank" rel="noopener noreferrer" aria-label="YouTube LPTQ NTB"><svg class="ic fill" viewBox="0 0 24 24"><path d="M23 7.2s-.2-1.6-.9-2.3c-.9-.9-1.9-.9-2.3-1C16.6 3.6 12 3.6 12 3.6s-4.6 0-7.8.3c-.4.1-1.4.1-2.3 1-.7.7-.9 2.3-.9 2.3S.8 9.1.8 11v1.8c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.6.3 7.6.3s4.6 0 7.8-.3c.4-.1 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V11c0-1.9-.2-3.8-.2-3.8zM9.8 15.1V8.4l6.1 3.4-6.1 3.3z"/></svg></a>
         <a href="https://www.tiktok.com/@mylptq.ntb" target="_blank" rel="noopener noreferrer" aria-label="TikTok MY LPTQ NTB"><svg class="ic fill" viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.59c.27 0 .53.04.78.12V9.77a5.76 5.76 0 0 0-.78-.05 5.66 5.66 0 1 0 5.66 5.66V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.28 4.28 0 0 1-3.22-1.48z"/></svg></a>
         <a href="mailto:sekretariat.lptqntb@gmail.com" aria-label="Email Sekretariat"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        <button id="btnSet" aria-label="Pengaturan aplikasi" title="Pengaturan"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.5M12 18.7v2.5M2.8 12h2.5M18.7 12h2.5M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8"/></svg></button>
         <a href="admin.html" aria-label="Panel admin berita" title="Panel Admin Berita"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M9.2 12l2 2 3.6-3.8"/></svg></a>
       </div>
     </div>
@@ -627,14 +649,30 @@ body{transition:background .3s,color .3s}
 
 <main id="top">
 
-  <!-- ═══════════ HERO ═══════════ -->
+  <!-- ═══════════ HERO — logo pemerintah kiri, LPTQ pusat, myLPTQ kanan ═══════════ -->
   <section class="hero">
     <div class="hero-bg" aria-hidden="true">
       <img src="masjid-ic-ntb.jpg" alt="" onerror="this.onerror=null;this.src='assets/img/masjid-ic-ntb.jpg';this.onerror=function(){this.remove()}">
     </div>
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="wrap">
-      <p class="eyebrow" data-io>Portal Resmi · Lembaga Pengembangan Tilawatil Qur'an Provinsi NTB</p>
+      <div class="hident" data-io>
+        <span class="hlogo imgbox">
+          <span class="ph-ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 40V24c0-8.8 7.2-16 16-16s16 7.2 16 16v16" stroke-linecap="round"/><path d="M4 40h40M16 40V26h16v14" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <img src="logo-ntb.png" alt="Lambang Pemerintah Provinsi Nusa Tenggara Barat" loading="lazy" onerror="this.remove()">
+        </span>
+        <span class="hmid">
+          <span class="hlogo mid imgbox">
+            <span class="ph-ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.5C10.5 5 8.4 4.5 6 4.5H3v13h3.5c2.2 0 4.2.5 5.5 2 1.3-1.5 3.3-2 5.5-2H21v-13h-3c-2.4 0-4.5.5-6 2zm0 0v13"/></svg></span>
+            <img src="lptqlogo.png" alt="Logo Lembaga Pengembangan Tilawatil Qur'an" loading="lazy" onerror="this.remove()">
+          </span>
+          <span class="hname">MY <i>LPTQ</i> NTB</span>
+        </span>
+        <span class="hlogo imgbox">
+          <span class="ph-ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.5C10.5 5 8.4 4.5 6 4.5H3v13h3.5c2.2 0 4.2.5 5.5 2 1.3-1.5 3.3-2 5.5-2H21v-13h-3c-2.4 0-4.5.5-6 2zm0 0v13"/></svg></span>
+          <img src="logo-mylptq.png" alt="Logo MY LPTQ NTB" loading="lazy" onerror="this.remove()">
+        </span>
+      </div>
       <h1 data-io style="--d:.06s">Membangun NTB sebagai<br><em>Serambi Al-Qur'an.</em></h1>
       <p class="hero-sub" data-io style="--d:.12s">Pusat informasi pembinaan Al-Qur'an, musabaqah, dan prestasi
         generasi Qur'ani — dikelola Sekretariat LPTQ Provinsi Nusa Tenggara Barat
@@ -992,7 +1030,7 @@ body{transition:background .3s,color .3s}
     </div>
   </section>
 
-  <!-- ═══════════ KONTAK ═══════════ -->
+  <!-- ═══════════ KONTAK (penutup) ═══════════ -->
   <section id="kontak">
     <div class="wrap">
       <div class="cta" data-io>
@@ -1023,57 +1061,55 @@ body{transition:background .3s,color .3s}
   </section>
 </main>
 
-<!-- ═══════════ FOOTER ═══════════ -->
-<footer>
-  <div class="wrap f-grid">
-    <div class="f-brand">
-      <a class="logo" href="#top">
-        <span class="lg"><img src="logo-mylptq.png" alt="" onerror="this.onerror=null;this.src='lptqlogo.png';this.onerror=function(){this.style.display='none'}"></span>
-        <span class="word">MY <i>LPTQ</i> NTB</span>
-      </a>
-      <p>Lembaga Pengembangan Tilawatil Qur'an Provinsi Nusa Tenggara Barat. Portal resmi informasi pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah — diperbarui setiap hari.</p>
-      <span class="f-status"><i></i>Portal Resmi · Aktif</span>
-      <span class="ar">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</span>
-    </div>
-    <div class="f-col">
-      <p class="f-h">Informasi</p>
-      <a href="#berita">Berita</a>
-      <a href="#profil">Profil</a>
-      <a href="#pengurus">Pengurus 2026–2031</a>
-      <a href="#program">Program</a>
-      <a href="#musabaqah">Musabaqah</a>
-      <a href="#prestasi">Prestasi</a>
-      <a href="#agenda">Agenda</a>
-      <a href="#galeri">Galeri</a>
-    </div>
-    <div class="f-col">
-      <p class="f-h">Instansi Terkait</p>
-      <a href="https://ntbprov.go.id" target="_blank" rel="noopener noreferrer">Pemerintah Provinsi NTB</a>
-      <a href="https://kemenag.go.id" target="_blank" rel="noopener noreferrer">Kementerian Agama RI</a>
-      <a href="https://ntb.kemenag.go.id" target="_blank" rel="noopener noreferrer">Kanwil Kemenag NTB</a>
-      <a href="https://ntbprov.go.id" target="_blank" rel="noopener noreferrer">Biro Kesra Setda NTB</a>
-    </div>
-    <div class="f-col">
-      <p class="f-h">Hubungi Kami</p>
-      <ul class="f-contact">
-        <li><svg class="ic"><use href="#i-mail"/></svg><a href="mailto:sekretariat.lptqntb@gmail.com">sekretariat.lptqntb@gmail.com</a></li>
-        <li><svg class="ic"><use href="#i-pin"/></svg><span>[Alamat resmi — menunggu verifikasi administrator]</span></li>
-      </ul>
-    </div>
+<!-- ═══════════ END BAR (pengganti footer) ═══════════ -->
+<div class="endbar">
+  <div class="wrap">
+    <span>© 2026 LPTQ Provinsi Nusa Tenggara Barat — Portal Resmi</span>
+    <button id="endSet">Pengaturan & Tentang Aplikasi</button>
   </div>
-  <div class="f-bottom">
-    <div class="wrap" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <p>© 2026 LPTQ Provinsi Nusa Tenggara Barat — All Rights Reserved</p>
-      <nav>
-        <a href="#top">Kebijakan Privasi</a>
-        <a href="#top">Disclaimer</a>
-        <a href="#top">Peta Situs</a>
-      </nav>
-    </div>
-  </div>
-</footer>
+</div>
 
 <button class="topfab" id="btnTop" aria-label="Kembali ke atas"><svg class="ic"><use href="#i-arr"/></svg></button>
+
+<!-- ═══════════ PANEL PENGATURAN ═══════════ -->
+<div id="setOv">
+  <aside id="setPanel" role="dialog" aria-modal="true" aria-label="Pengaturan">
+    <div class="sp-head"><b>Pengaturan</b><button class="nrd-close" id="setClose" aria-label="Tutup">✕</button></div>
+    <div class="sp-body">
+      <div class="sp-sec">
+        <h4>Tampilan</h4>
+        <div class="switch"><span>Mode Malam</span><button class="sw" id="swDark" role="switch" aria-checked="false" aria-label="Mode malam"></button></div>
+      </div>
+      <div class="sp-sec">
+        <h4>Bahasa / Language</h4>
+        <div class="langbtns"><button id="langID" class="on">Indonesia</button><button id="langEN">English</button></div>
+        <p class="sp-txt" style="margin-top:10px">Isi berita & dokumen resmi tetap dalam Bahasa Indonesia.</p>
+      </div>
+      <div class="sp-sec">
+        <h4>Tentang Aplikasi</h4>
+        <p class="sp-txt">MY LPTQ NTB adalah portal resmi Lembaga Pengembangan Tilawatil Qur'an Provinsi Nusa Tenggara Barat — pusat informasi pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah, dikelola Sekretariat LPTQ Provinsi NTB dan diperbarui setiap hari. Aplikasi mobile resmi: <a href="https://play.google.com/store/apps/details?id=com.mylptq.ntb" target="_blank" rel="noopener" style="color:var(--acc);font-weight:700">MY LPTQ NTB</a> (Google Play).</p>
+      </div>
+      <div class="sp-sec">
+        <h4>Struktur Organisasi</h4>
+        <p class="sp-txt">Kepengurusan Periode 2026–2031 berdasarkan SK Gubernur NTB No. 100.3.3.172/2026. Hierarki: Ketua Umum → Ketua Harian → Wakil Ketua → Sekretaris → Bendahara → Bidang-bidang → Anggota. Susunan lengkap menunggu verifikasi lampiran SK.</p>
+        <div class="sp-links" style="margin-top:10px">
+          <a href="#profil">Profil Lembaga <svg class="ic"><use href="#i-arr"/></svg></a>
+          <a href="#pengurus">Pengurus 2026–2031 <svg class="ic"><use href="#i-arr"/></svg></a>
+          <a href="admin.html">Panel Admin Berita <svg class="ic"><use href="#i-arr"/></svg></a>
+        </div>
+      </div>
+      <div class="sp-sec">
+        <h4>Instansi Terkait</h4>
+        <div class="sp-links">
+          <a href="https://ntbprov.go.id" target="_blank" rel="noopener noreferrer">Pemerintah Provinsi NTB <svg class="ic"><use href="#i-arr"/></svg></a>
+          <a href="https://kemenag.go.id" target="_blank" rel="noopener noreferrer">Kementerian Agama RI <svg class="ic"><use href="#i-arr"/></svg></a>
+          <a href="https://ntb.kemenag.go.id" target="_blank" rel="noopener noreferrer">Kanwil Kemenag NTB <svg class="ic"><use href="#i-arr"/></svg></a>
+          <a href="https://ntbprov.go.id" target="_blank" rel="noopener noreferrer">Biro Kesra Setda NTB <svg class="ic"><use href="#i-arr"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
 
 <!-- ═══════════ SIMBOL IKON ═══════════ -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -1099,7 +1135,7 @@ body{transition:background .3s,color .3s}
   <symbol id="b-tt" viewBox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
 </svg>
 
-<!-- ═══════════ SKRIP: INTERAKSI DASAR (terbukti stabil) ═══════════ -->
+<!-- ═══════════ SKRIP: INTERAKSI DASAR ═══════════ -->
 <script>
 (function(){
 "use strict";
@@ -1143,7 +1179,7 @@ try{
 })();
 </script>
 
-<!-- ═══════════ SISTEM BERITA DINAMIS (news.js) ═══════════ -->
+<!-- ═══════════ SISTEM BERITA (news.js) ═══════════ -->
 <script src="news.js"></script>
 <script>
 (function(){
@@ -1156,7 +1192,6 @@ try{
   var img=function(n){return n.foto?'<img src="'+esc(n.foto)+'" alt="" loading="lazy" onerror="this.remove()">'
     :'<span class="ph-ic" style="position:absolute;inset:0;display:grid;place-items:center;color:rgba(198,161,91,.4)"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" style="width:38px"><path d="M6 38V22l6-4 6 4v6l6-4 6 4v10a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4z" stroke-linejoin="round"/></svg></span>'};
 
-  /* HERO STRIP: 3 teratas */
   var hs=document.getElementById("heroStrip");
   if(hs)hs.innerHTML=list.slice(0,3).map(function(n,i){
     return '<a class="vcard" href="#berita" data-read="'+i+'">'+img(n)
@@ -1165,7 +1200,6 @@ try{
       +'<span class="vn">'+esc(n.judul)+'</span></a>';
   }).join("");
 
-  /* SECTION BERITA: 1 utama + 2 samping + sisanya */
   var g=document.getElementById("beritaGrid");
   if(g){
     var f=list[0];
@@ -1191,7 +1225,6 @@ try{
     }else g.querySelectorAll("[data-io]").forEach(function(el){el.classList.add("in")});
   }
 
-  /* PEMBACA ARTIKEL (modal) */
   var ov=document.createElement("div");
   ov.id="nrd";ov.setAttribute("role","dialog");ov.setAttribute("aria-modal","true");
   document.body.appendChild(ov);
@@ -1218,6 +1251,79 @@ try{
     ov.querySelector(".nrd-close").addEventListener("click",close);
     ov.classList.add("open");document.body.style.overflow="hidden";
   });
+}catch(e){}
+})();
+</script>
+
+<!-- ═══════════ PENGATURAN: MODE MALAM + BAHASA ═══════════ -->
+<script>
+(function(){
+"use strict";
+try{
+  var ov=document.getElementById('setOv');
+  function openS(){ov.classList.add('open');document.body.style.overflow='hidden'}
+  function closeS(){ov.classList.remove('open');document.body.style.overflow=''}
+  ['btnSet','endSet'].forEach(function(id){var b=document.getElementById(id);if(b)b.addEventListener('click',openS)});
+  document.getElementById('setClose').addEventListener('click',closeS);
+  ov.addEventListener('click',function(e){if(e.target===ov)closeS()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeS()});
+
+  /* Mode Malam */
+  var sw=document.getElementById('swDark'),root=document.documentElement;
+  function setTheme(d){root.setAttribute('data-theme',d?'dark':'light');
+    sw.classList.toggle('on',d);sw.setAttribute('aria-checked',d?'true':'false');
+    try{localStorage.setItem('lptq_theme',d?'dark':'light')}catch(e){}}
+  var th=null;try{th=localStorage.getItem('lptq_theme')}catch(e){}
+  setTheme(th==='dark');
+  sw.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')!=='dark')});
+
+  /* Bahasa */
+  var T={
+    nav:['News','Profile','Officials','Programs','Musabaqah','Achievements','Gallery','Contact'],
+    h1:'Building West Nusa Tenggara as<br><em>Serambi Al-Qur\u2019an.</em>',
+    sub:'The official hub for Qur\u2019anic development, musabaqah, and the achievements of the Qur\u2019anic generation \u2014 managed by the LPTQ Secretariat of West Nusa Tenggara Province, updated daily.',
+    cta1:'Latest News',cta2:'About the Institute',strip:'Latest news \u2014 read now',
+    kick:['News & Information','About the Institute','Leadership & Officials 2026\u20132031','Qur\u2019anic Development Programs','Musabaqah','Kafilah NTB Achievements','Upcoming Agenda','Official Announcements','Activity Gallery','LPTQ Regencies/Cities of NTB','Official App'],
+    more:'Full archive & submissions',read:'Read more',
+    ctaH:'Contact the LPTQ Secretariat of West Nusa Tenggara Province.',
+    ctaS:'Send inquiries, development partnerships, or information requests through our official channels.',
+    ctaB:'Send Email to the Secretariat'};
+  var nl=[].slice.call(document.querySelectorAll('#navLinks a'));
+  var ks=[].slice.call(document.querySelectorAll('.s-kicker'));
+  var oH1=document.querySelector('.hero h1'),oSub=document.querySelector('.hero-sub'),
+      oStrip=document.querySelector('.vstrip-lab'),
+      oMore=document.querySelector('#berita .link-more'),
+      oCH=document.querySelector('#kontak .cta h2'),oCS=document.querySelector('#kontak .cta .s-sub'),
+      oCB=document.querySelector('#kontak .cta-row .btn'),
+      oC1=document.querySelector('.hero-cta .btn.gold'),oC2=document.querySelector('.hero-cta .btn.ghost-w');
+  var orig={nav:nl.map(function(a){return a.textContent}),kick:ks.map(function(k){return k.textContent}),
+    h1:oH1?oH1.innerHTML:'',sub:oSub?oSub.textContent:'',
+    strip:oStrip?oStrip.lastChild.textContent.replace(/^\s+/,''):'',
+    more:oMore?oMore.lastChild.textContent.replace(/^\s+/,''):'',
+    ctaH:oCH?oCH.textContent:'',ctaS:oCS?oCS.textContent:'',
+    ctaB:oCB?oCB.lastChild.textContent.trim():'',
+    cta1:oC1?oC1.lastChild.textContent.trim():'',cta2:oC2?oC2.lastChild.textContent.trim():''};
+  function setBtn(btn,txt){if(btn&&btn.lastChild&&btn.lastChild.nodeType===3)btn.lastChild.textContent=' '+txt;}
+  function apply(lang){
+    var en=lang==='en';
+    nl.forEach(function(a,i){a.textContent=en?T.nav[i]:orig.nav[i]});
+    ks.forEach(function(k,i){k.textContent=en?T.kick[i]:orig.kick[i]});
+    if(oH1)oH1.innerHTML=en?T.h1:orig.h1;
+    if(oSub)oSub.textContent=en?T.sub:orig.sub;
+    if(oStrip)oStrip.lastChild.textContent=' '+(en?T.strip:orig.strip);
+    if(oMore)oMore.lastChild.textContent=' '+(en?T.more:orig.more);
+    if(oCH)oCH.textContent=en?T.ctaH:orig.ctaH;
+    if(oCS)oCS.textContent=en?T.ctaS:orig.ctaS;
+    setBtn(oCB,en?T.ctaB:orig.ctaB);setBtn(oC1,en?T.cta1:orig.cta1);setBtn(oC2,en?T.cta2:orig.cta2);
+    var b1=document.getElementById('langID'),b2=document.getElementById('langEN');
+    if(b1)b1.classList.toggle('on',!en);if(b2)b2.classList.toggle('on',en);
+    try{localStorage.setItem('lptq_lang',lang)}catch(e){}
+  }
+  var lg=null;try{lg=localStorage.getItem('lptq_lang')}catch(e){}
+  apply(lg||'id');
+  var b1=document.getElementById('langID'),b2=document.getElementById('langEN');
+  if(b1)b1.addEventListener('click',function(){apply('id')});
+  if(b2)b2.addEventListener('click',function(){apply('en')});
 }catch(e){}
 })();
 </script>
