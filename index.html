@@ -521,6 +521,40 @@ html:not(.js) .topfab{display:none}
   .vstrip{margin-top:18px!important;padding-top:14px!important}
   .vcard{max-width:380px}
 }
+   /* ═══ PENGATURAN + MODE MALAM + END BAR ═══ */
+.gov-r button{width:25px;height:25px;border-radius:7px;display:grid;place-items:center;color:rgba(255,255,255,.72);transition:.18s;border:0;background:none;cursor:pointer}
+.gov-r button:hover{background:rgba(255,255,255,.12);color:#fff}
+.gov-r button .ic{width:12px;height:12px}
+html[data-theme="dark"]{--bg:#0C1611;--ink:#E6F0E9;--mut:#9CB3A5;--card:#12211A;--line:rgba(255,255,255,.10)}
+html[data-theme="dark"] .about2 .txt p,html[data-theme="dark"] .nrd-body .nrd-prose{color:#C7D6CC}
+html[data-theme="dark"] .nrd-box{background:var(--card)}
+body{transition:background .3s,color .3s}
+#setOv{position:fixed;inset:0;z-index:450;display:none;background:rgba(7,17,11,.6);backdrop-filter:blur(4px)}
+#setOv.open{display:block}
+#setPanel{position:absolute;top:0;right:0;bottom:0;width:min(360px,90vw);background:var(--card);color:var(--ink);overflow:auto;box-shadow:-24px 0 60px rgba(0,0,0,.35);animation:slideIn .3s var(--ease)}
+@keyframes slideIn{from{transform:translateX(30px);opacity:0}}
+.sp-head{background:var(--dark);color:#fff;padding:18px 22px;display:flex;justify-content:space-between;align-items:center}
+.sp-head b{font-family:var(--fd);font-size:15px}
+.sp-body{padding:20px 22px}
+.sp-sec{padding:16px 0;border-top:1px solid var(--line)}
+.sp-sec:first-child{border-top:0;padding-top:0}
+.sp-sec h4{font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;font-size:13.5px}
+.sw{width:46px;height:26px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;transition:.2s;flex:none;border:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.sw.on{background:var(--acc)}
+.sw.on::after{left:23px}
+.langbtns{display:flex;gap:8px}
+.langbtns button{flex:1;padding:10px;border:1.5px solid var(--line);border-radius:11px;font-weight:700;font-size:13px;color:var(--mut);background:transparent;cursor:pointer;transition:.15s}
+.langbtns button.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+.sp-txt{font-size:12.5px;color:var(--mut);line-height:1.7}
+.sp-links a{display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-size:13.5px;font-weight:600;color:var(--ink);border-bottom:1px dashed var(--line)}
+.sp-links a:last-child{border-bottom:0}
+.sp-links .ic{width:13px;height:13px;color:var(--acc)}
+.endbar{background:var(--dark);color:rgba(255,255,255,.55);font-family:var(--fm);font-size:10.5px;letter-spacing:.06em}
+.endbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:16px;align-items:center}
+.endbar button{color:rgba(255,255,255,.7);font:inherit;cursor:pointer;border:0;background:none;border-bottom:1px solid rgba(255,255,255,.3)}
+.endbar button:hover{color:var(--gold)}
 </style>
 </head>
 <body>
