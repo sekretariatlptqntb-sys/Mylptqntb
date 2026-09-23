@@ -14,6 +14,16 @@ window.SITEDATA = {
   ],
   "gallery": [
     {
+      "id": "idmue3f49ild0b1",
+      "judul": "pekantikan pengurus  lptq ntb",
+      "foto": "assets/img/1771065405_img-20260214-wa0165.jpg"
+    },
+    {
+      "id": "idmue3ee3vyapx1",
+      "judul": "aplikasi my lptq ntb",
+      "foto": "assets/img/sddefault.jpg"
+    },
+    {
       "id": "idmudux5liq9hft",
       "judul": "juara 1 MTQ Nasional 2026 Cabang Qiroat mujawad dewasa putri",
       "foto": "khairunisa.png"
