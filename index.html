@@ -72,6 +72,7 @@ html[data-theme="dark"] .app-feats li,html[data-theme="dark"] .kk-chip,
 html[data-theme="dark"] .cabang-chips span{background:var(--card);border-color:var(--line)}
 html[data-theme="dark"] .marquee{background:#0B2E23}
 html[data-theme="dark"] .sec-alt{background:rgba(18,33,26,.6)}
+html[data-theme="dark"] .svc .svc-go{background:var(--dark);border-color:var(--line)}
 
 /* ============ LOGO (SATU) ============ */
 .logo{display:inline-flex;align-items:center;gap:10px}
@@ -158,7 +159,6 @@ html[data-theme="dark"] .marquee{background:#0B2E23}
   linear-gradient(0deg,rgba(11,46,35,.9) 0%,transparent 46%)}
 .hero .wrap{position:relative;z-index:2;width:100%;padding-block:clamp(48px,7vw,80px)}
 @media(min-width:1280px){.hero .wrap{max-width:1420px}}
-
 .hbrand{font-family:var(--fd);font-weight:800;font-size:clamp(16px,1.8vw,21px);
   letter-spacing:.14em;color:#fff;margin-bottom:clamp(16px,2vw,24px);
   display:inline-flex;align-items:center;gap:14px}
@@ -174,7 +174,6 @@ h1 em{font-style:normal;color:var(--gold)}
 .hero-sub{margin-top:18px;font-size:clamp(14.5px,1.6vw,17.5px);
   color:rgba(255,255,255,.78);max-width:56ch}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-
 .vstrip{margin-top:clamp(26px,3.4vw,42px);padding-top:20px;
   border-top:1px solid rgba(255,255,255,.16)}
 .vstrip-lab{display:inline-flex;align-items:center;gap:9px;
@@ -210,6 +209,7 @@ h1 em{font-style:normal;color:var(--gold)}
   .vcard{scroll-snap-align:start}
 }
 
+/* ============ SECTION HEAD ============ */
 .shrow{display:flex;align-items:center;justify-content:space-between;gap:14px;
   margin-bottom:clamp(18px,2.4vw,28px);flex-wrap:wrap}
 .s-kicker{display:inline-flex;align-items:center;gap:9px;font-family:var(--fm);
@@ -224,7 +224,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .link-more .ic{width:13px;height:13px;transition:transform .2s}
 .link-more:hover .ic{transform:translateX(3px)}
 
-/* berita */
+/* ============ BERITA ============ */
 .bgrid{display:grid;grid-template-columns:1.55fr 1fr;gap:16px}
 .bfeat{position:relative;border-radius:var(--r);overflow:hidden;min-height:380px;display:flex;
   background:var(--dark);border:1px solid var(--line)}
@@ -253,7 +253,30 @@ h1 em{font-style:normal;color:var(--gold)}
 .bmini small b{color:var(--acc);font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
 .bmore{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:14px}
 
-/* musabaqah */
+/* ═══════════ PROGRAM PEMBINAAN — grid auto-fit, kartu sejajar ═══════════ */
+#program{background:var(--card);border-block:1px solid var(--line)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.svc{display:flex;min-height:100%;background:var(--bg);border:1px solid var(--line);
+  border-radius:var(--r);overflow:hidden;position:relative;
+  transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.svc:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:transparent}
+.svc .svc-body{display:flex;flex-direction:column;gap:8px;flex:1;width:100%;
+  padding:clamp(18px,2vw,22px);position:relative}
+.svc .svc-tag{position:absolute;top:14px;right:16px;font-family:var(--fm);
+  font-weight:600;font-size:11px;color:var(--gold-d);font-variant-numeric:tabular-nums}
+.svc .svc-ic{width:46px;height:46px;border-radius:13px;background:var(--soft);color:var(--acc);
+  display:grid;place-items:center;transition:.25s}
+.svc .svc-ic .ic{width:21px;height:21px}
+.svc:hover .svc-ic{background:var(--acc);color:#fff}
+.svc .svc-body h3{font-family:var(--fd);font-size:15.5px;font-weight:700;letter-spacing:-.01em}
+.svc .svc-body p{color:var(--mut);font-size:13px;line-height:1.6}
+.svc .svc-foot{margin-top:auto;padding-top:12px;display:flex;justify-content:flex-end}
+.svc .svc-go{width:36px;height:36px;border-radius:50%;background:var(--bg);
+  border:1px solid var(--line);display:grid;place-items:center;transition:.3s var(--ease)}
+.svc .svc-go .ic{width:14px;height:14px}
+.svc:hover .svc-go{background:var(--acc);color:#fff;border-color:var(--acc);transform:rotate(45deg)}
+
+/* ============ MUSABAQAH ============ */
 .ms2{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;align-items:stretch}
 .evcard{background:var(--dark);color:#fff;border-radius:var(--r);padding:clamp(22px,2.6vw,30px);
   position:relative;overflow:hidden;display:flex;flex-direction:column}
@@ -279,7 +302,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .cabang-chips span{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;
   background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 14px;color:#33453B}
 
-/* agenda + pengumuman */
+/* ============ AGENDA + PENGUMUMAN ============ */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.5vw,28px)}
 .mini{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);
   border-radius:var(--r);padding:14px 16px;align-items:flex-start;transition:.2s;margin-bottom:11px}
@@ -295,7 +318,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .mini small{font-size:11px;color:var(--mut);display:block;margin-top:3px}
 .mini small b{font-family:var(--fm);font-size:10px;color:var(--ink)}
 
-/* prestasi */
+/* ============ PRESTASI ============ */
 .ach2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .achmini{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
   padding:16px 18px;transition:.25s;position:relative;overflow:hidden}
@@ -308,7 +331,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .achmini strong{font-family:var(--fd);font-size:13.5px;font-weight:600;line-height:1.45;display:block}
 .achmini small{font-size:11px;color:var(--mut)}
 
-/* galeri */
+/* ============ GALERI ============ */
 .pf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.3vw,14px)}
 .pf{position:relative;border-radius:var(--r);aspect-ratio:4/3;border:1px solid var(--line)}
 .pf img{transition:transform .8s var(--ease)}
@@ -319,7 +342,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .pf-cap small{display:block;font-family:var(--fm);font-weight:500;font-size:9.5px;
   opacity:.72;letter-spacing:.18em;text-transform:uppercase;margin-top:2px}
 
-/* kabkota */
+/* ============ KAB/KOTA ============ */
 .kk-chips{display:flex;flex-wrap:wrap;gap:10px}
 .kk-chip{display:inline-flex;align-items:center;gap:8px;background:var(--card);
   border:1.5px solid var(--line);border-radius:99px;padding:11px 18px;
@@ -327,7 +350,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .kk-chip:hover{border-color:var(--gold);color:var(--gold-d);background:#FBF7EE;transform:translateY(-2px)}
 .kk-chip .ic{width:14px;height:14px;color:var(--gold-d)}
 
-/* aplikasi */
+/* ============ APLIKASI ============ */
 .apps{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(14px,1.5vw,18px)}
 .app{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);
   padding:clamp(18px,2vw,24px);display:flex;gap:16px;align-items:flex-start;
@@ -349,7 +372,7 @@ h1 em{font-style:normal;color:var(--gold)}
   border:1px solid var(--line);border-radius:13px;padding:11px 15px;font-size:13px;font-weight:600}
 .app-feats .ic{color:var(--acc);width:15px;height:15px;flex:none}
 
-/* kontak */
+/* ============ KONTAK ============ */
 #kontak{padding-bottom:0}
 .cta{background:var(--dark);color:#fff;border-radius:clamp(20px,3vw,28px) clamp(20px,3vw,28px) 0 0;
   padding:clamp(28px,4.5vw,52px) clamp(20px,4.5vw,56px);position:relative;overflow:hidden}
@@ -379,7 +402,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .soc-mini b{font-family:var(--fm);font-size:10px;font-weight:500;letter-spacing:.1em;
   text-transform:uppercase;color:rgba(255,255,255,.5);margin-left:auto}
 
-/* end bar */
+/* ============ END BAR ============ */
 .endbar{background:var(--dark);color:rgba(255,255,255,.55);font-family:var(--fm);
   font-size:10.5px;letter-spacing:.06em}
 .endbar .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
@@ -388,7 +411,7 @@ h1 em{font-style:normal;color:var(--gold)}
   background:none;border-bottom:1px solid rgba(255,255,255,.3);padding:0 0 2px}
 .endbar button:hover{color:var(--gold)}
 
-/* panel pengaturan */
+/* ============ PANEL PENGATURAN ============ */
 #setOv{position:fixed;inset:0;z-index:450;display:none;
   background:rgba(7,17,11,.6);backdrop-filter:blur(4px)}
 #setOv.open{display:block}
@@ -422,7 +445,7 @@ h1 em{font-style:normal;color:var(--gold)}
 .sp-links a:last-child{border-bottom:0}
 .sp-links .ic{width:13px;height:13px;color:var(--acc)}
 
-/* pembaca artikel */
+/* ============ PEMBACA ARTIKEL ============ */
 #nrd{position:fixed;inset:0;z-index:600;display:none;align-items:flex-start;
   justify-content:center;padding:5vh 16px;background:rgba(7,17,11,.75);
   backdrop-filter:blur(6px);overflow:auto}
@@ -462,7 +485,7 @@ html:not(.js) .topfab{display:none}
 /* ============ RESPONSIVE ============ */
 @media (max-width:1024px){
   .apps{grid-template-columns:1fr}
-  .svc-grid,.pf-grid{grid-template-columns:1fr 1fr}
+  .pf-grid{grid-template-columns:1fr 1fr}
   .bgrid{grid-template-columns:1fr}
 }
 @media (max-width:900px){
@@ -483,7 +506,7 @@ html:not(.js) .topfab{display:none}
   .logo .word{font-size:12px}
   .logo .word small{display:none}
   .nav .btn.sm{display:none}
-  .svc-grid,.pf-grid,.duo,.ach2{grid-template-columns:1fr}
+  .pf-grid,.duo,.ach2{grid-template-columns:1fr}
   .hero{min-height:560px}
   .hero-overlay{background:
     linear-gradient(180deg,rgba(11,46,35,.86),rgba(11,46,35,.94)),
@@ -668,7 +691,7 @@ html:not(.js) .topfab{display:none}
     </div>
   </section>
 
-  <!-- ═══════════ PROGRAM ═══════════ -->
+  <!-- ═══════════ PROGRAM PEMBINAAN (grid auto-fit rapi) ═══════════ -->
   <section id="program">
     <div class="wrap">
       <div class="shrow" data-io><p class="s-kicker">Program Pembinaan Al-Qur'an</p></div>
