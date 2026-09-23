@@ -397,11 +397,13 @@ async function pullRemote(){
 });
 
 /* ═══ MEDIA ═══ */
+var MP='assets/img/';
+function fixPath(p){p=String(p==null?'':p);if(!p||p.indexOf('/')>=0||/^(https?:|data:|blob:)/i.test(p))return p;return MP+p}
 function mediaNames(){return S.data.media.map(function(m){return m.name})}
 function fillPickers(){
-  var names=mediaNames();
-  var opts='<option value="">— tanpa foto —</option>'+names.map(function(n){return '<option value="'+esc(n)+'">'+esc(n)+'</option>'}).join('');
-  ['#nF','#gF','#lkHero'].forEach(function(id){var el=$(id);if(el){var cur=el.value;el.innerHTML=opts;if(cur&&names.indexOf(cur)>=0)el.value=cur}});
+  var names=mediaNames(),paths=names.map(function(n){return MP+n});
+  var opts='<option value="">— tanpa foto —</option>'+names.map(function(n){return '<option value="'+esc(MP+n)+'">'+esc(n)+'</option>'}).join('');
+  ['#nF','#gF','#lkHero'].forEach(function(id){var el=$(id);if(el){var cur=el.value;el.innerHTML=opts;if(cur){var v=fixPath(cur);if(paths.indexOf(v)>=0)el.value=v}}});
 }
  $('#mUp').addEventListener('click',function(){
   var f=$('#mFile').files[0];
@@ -432,7 +434,7 @@ function renderMedia(){
   $('#cM').textContent=names.length;
   if(!names.length){el.innerHTML='<div class="empty">Belum ada foto. Upload di atas — foto akan tersedia untuk berita, galeri, dan tampilan hero.</div>';return}
   el.innerHTML='<div class="media-grid">'+names.map(function(n){
-    return '<figure><img src="'+esc(n)+'" alt="" loading="lazy" onerror="this.remove()"><figcaption>'+esc(n)+'</figcaption><button class="cp" data-cp="'+esc(n)+'">Salin nama</button></figure>';
+    return '<figure><img src="'+esc(MP+n)+'" alt="" loading="lazy" onerror="this.remove()"><figcaption>'+esc(n)+'</figcaption><button class="cp" data-cp="'+esc(MP+n)+'">Salin nama</button></figure>';
   }).join('')+'</div>';
   el.querySelectorAll('[data-cp]').forEach(function(b){b.addEventListener('click',function(){
     var v=b.dataset.cp;
@@ -454,7 +456,7 @@ function bindNews(){
     var n=S.data.news.find(function(x){return x.judul===b.dataset.en});if(!n)return;
     S.editNews=n.judul;$('#nfTitle').textContent='Sunting Berita';
     $('#nT').value=n.tanggal;$('#nC').value=n.kategori;$('#nJ').value=n.judul;
-    $('#nP').value=n.penulis||'';$('#nF').value=n.foto||'';$('#nR').value=n.ringkasan||'';
+    $('#nP').value=n.penulis||'';$('#nF').value=fixPath(n.foto);$('#nR').value=n.ringkasan||'';
     $('#nI').value=String(n.isi||'').split('||').join('\n\n');
     $('#newsForm').classList.add('on');$('#newsForm').scrollIntoView({behavior:'smooth'});
   })});
@@ -562,7 +564,7 @@ function renderAc(){
 function renderGa(){
   $('#cG').textContent=S.data.gallery.length;
   $('#gaList').innerHTML=S.data.gallery.length?'<table class="tbl"><thead><tr><th>Foto</th><th></th></tr></thead><tbody>'+
-    S.data.gallery.map(function(f){return '<tr><td><div style="display:flex;gap:12px;align-items:center"><img src="'+esc(f.foto)+'" style="width:64px;height:44px;object-fit:cover;border-radius:8px" onerror="this.style.display=\'none\'"><div><div class="tt">'+esc(f.judul)+'</div><div class="ts">'+esc(f.foto)+'</div></div></div></td><td style="text-align:right"><button class="icb del" data-dga="'+esc(f.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+    S.data.gallery.map(function(f){return '<tr><td><div style="display:flex;gap:12px;align-items:center"><img src="'+esc(fixPath(f.foto))+'" style="width:64px;height:44px;object-fit:cover;border-radius:8px" onerror="this.style.display=\'none\'"><div><div class="tt">'+esc(f.judul)+'</div><div class="ts">'+esc(f.foto)+'</div></div></div></td><td style="text-align:right"><button class="icb del" data-dga="'+esc(f.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
     :'<div class="empty">Belum ada foto galeri.</div>';
   $$('#gaList [data-dga]').forEach(function(b){b.addEventListener('click',function(){
     if(!confirm('Hapus foto galeri ini?'))return;
@@ -617,7 +619,7 @@ function renderSet(){
 
 /* ═══ BOOT ═══ */
 function refreshAll(){renderNews();renderAg();renderAn();renderAc();renderGa();renderMedia();fillPickers();
-  $('#lkHero').value=(S.data.settings.images||{}).hero||'';
+  $('#lkHero').value=fixPath((S.data.settings.images||{}).hero||'');
   $('#cN').textContent=S.data.news.length;$('#cA').textContent=S.data.agenda.length;
   $('#cAn').textContent=S.data.ann.length;$('#cAc').textContent=S.data.ach.length;$('#cG').textContent=S.data.gallery.length;}
 function renderAll(){refreshAll();renderSet()}
