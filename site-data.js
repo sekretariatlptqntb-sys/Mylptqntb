@@ -2,7 +2,16 @@
 window.SITEDATA = {
   "agenda": [],
   "ann": [],
-  "ach": [],
+  "ach": [
+    {
+      "id": "idmudspvoxxidfl",
+      "tingkat": "Nasional",
+      "tahun": 2026,
+      "cabang": "Lainnya",
+      "event": "Lainnya",
+      "peraih": "Khairunnisa Raih Juara I MTQ Nasional XXXI"
+    }
+  ],
   "gallery": [],
   "settings": {
     "email": "sekretariat.lptqntb@gmail.com",
