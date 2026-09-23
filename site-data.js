@@ -8,11 +8,17 @@ window.SITEDATA = {
       "tingkat": "Nasional",
       "tahun": 2026,
       "cabang": "Lainnya",
-      "event": "Lainnya",
+      "event": "mtq semarang 2026",
       "peraih": "Khairunnisa Raih Juara I MTQ Nasional XXXI"
     }
   ],
-  "gallery": [],
+  "gallery": [
+    {
+      "id": "idmudsww4i7zsg1",
+      "judul": "mtq 2026",
+      "foto": "mtq-semarang.png"
+    }
+  ],
   "settings": {
     "email": "sekretariat.lptqntb@gmail.com",
     "address": "",
