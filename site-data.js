@@ -7,7 +7,7 @@ window.SITEDATA = {
       "id": "idmudspvoxxidfl",
       "tingkat": "Nasional",
       "tahun": 2026,
-      "cabang": "Lainnya",
+      "cabang": "Qiraat",
       "event": "mtq semarang 2026",
       "peraih": "Khairunnisa Raih Juara I MTQ Nasional XXXI"
     }
