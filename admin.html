@@ -56,6 +56,44 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
 .media-grid .cp.del:hover{background:#F5DAD3}
 .chkline{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;margin:12px 0 2px;cursor:pointer}
 .chkline input{width:auto;margin:0;accent-color:var(--acc)}
+/* daftar berita modern dengan thumbnail */
+.nal{display:flex;flex-direction:column;gap:10px}
+.nal-item{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:12px 14px;transition:.2s}
+.nal-item:hover{box-shadow:0 8px 22px rgba(16,25,19,.09);border-color:#CBDFD3}
+.nal-th{width:88px;height:62px;border-radius:10px;overflow:hidden;flex:none;background:var(--soft);
+  display:grid;place-items:center;color:#9DB8AA}
+.nal-th img{width:100%;height:100%;object-fit:cover;display:block}
+.nal-body{flex:1;min-width:0}
+.nal-title{font-weight:700;font-size:14px;line-height:1.4;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.nal-meta{font-size:11.5px;color:var(--mut);margin-top:3px}
+.nal-ic{width:48px;height:48px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-size:18px;flex:none}
+.nal-ic.gold{background:#F7EFE0}
+.pzrow{display:grid;gap:8px;background:#FAFCFA;border:1px solid var(--line);border-radius:12px;padding:12px 12px 10px;margin-bottom:10px;position:relative}
+.pzrow .icb{position:absolute;top:8px;right:8px}
+.pzrow select{margin-top:8px;font-size:12px;padding:8px 10px;background:#fff}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px rgba(22,121,75,.1)}
+.btn:active{transform:translateY(1px)}
+.stat .st-top{display:flex;align-items:center;gap:9px;margin-bottom:4px}
+.stat .st-top span{font-size:15px;width:32px;height:32px;border-radius:10px;background:var(--soft);display:grid;place-items:center}
+.stat h2{font-size:23px!important;margin:0}
+.stat p{font-size:11.5px;color:var(--mut);margin:2px 0 0}
+/* ═ KEDALAMAN & MIKRO-INTERAKSI ═ */
+body{background:linear-gradient(180deg,#F4F8F4 0%,#ECF1EC 100%) fixed}
+.card{box-shadow:0 1px 2px rgba(16,25,19,.04),0 10px 28px rgba(16,25,19,.06)}
+.btn{box-shadow:0 3px 10px rgba(15,61,46,.16)}
+.btn.gold{box-shadow:0 3px 12px rgba(198,161,91,.35)}
+.btn.ghost{box-shadow:none}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(15,61,46,.2)}
+.btn.ghost:hover{box-shadow:0 4px 12px rgba(16,25,19,.1)}
+.side{background:linear-gradient(180deg,#0F3D2E 0%,#0A2C21 100%)}
+.side .brand{box-shadow:inset 0 -1px 0 rgba(255,255,255,.1)}
+.side nav button.on{box-shadow:0 4px 14px rgba(198,161,91,.35)}
+.mtop{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+input,select,textarea{background:#FBFDFB}
+.stat{border-top:3px solid var(--g)}
+.nal-item{box-shadow:0 1px 2px rgba(16,25,19,.03)}
+.toast{box-shadow:0 10px 30px rgba(16,25,19,.2)}
 /* app shell */
 #app{display:none;min-height:100vh}
 .shell{display:flex;min-height:100vh}
@@ -167,12 +205,12 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
     <div class="view on" id="v-dash">
       <h2>Dashboard</h2><p class="vsub">Ringkasan konten portal</p>
       <div class="row" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
-        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cN">0</h2><p style="font-size:11.5px;color:var(--mut)">Berita</p></div>
-        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cA">0</h2><p style="font-size:11.5px;color:var(--mut)">Agenda</p></div>
-        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cAn">0</h2><p style="font-size:11.5px;color:var(--mut)">Pengumuman</p></div>
-        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cAc">0</h2><p style="font-size:11.5px;color:var(--mut)">Prestasi</p></div>
-        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cG">0</h2><p style="font-size:11.5px;color:var(--mut)">Galeri</p></div>
-        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cM">0</h2><p style="font-size:11.5px;color:var(--mut)">Media</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span>📰</span><h2 id="cN">0</h2></div><p>Berita tayang / total</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span>📅</span><h2 id="cA">0</h2></div><p>Agenda</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span>📢</span><h2 id="cAn">0</h2></div><p>Pengumuman</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span>🏅</span><h2 id="cAc">0</h2></div><p>Prestasi</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span>🖼️</span><h2 id="cG">0</h2></div><p>Galeri</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span>🌄</span><h2 id="cM">0</h2></div><p>Media</p></div>
       </div>
     </div>
 
@@ -187,7 +225,7 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
             <option>LPTQ NTB</option><option>Musabaqah</option><option>MTQ</option><option>MTQH</option>
             <option>Pembinaan</option><option>Tilawah</option><option>Tahfiz</option><option>Tafsir</option>
             <option>Fahmil Qur'an</option><option>Syarhil Qur'an</option><option>Khattil Qur'an</option>
-            <option>Qiraat</option><option>Prestasi</option><option>Kegiatan</option><option>Pengumuman</option><option>MY LPTQ</option>
+            <option>Qiraat</option><option>Karya Tulis Ilmiah</option><option>Prestasi</option><option>Kegiatan</option><option>Pengumuman</option><option>MY LPTQ</option>
           </select></div>
         </div>
         <label>Judul Berita *</label><input id="nJ" placeholder="cth: LPTQ NTB Gelar Pembinaan Tilawah Terpadu">
@@ -269,12 +307,14 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
       <button class="btn" id="btnAddGa" style="margin-bottom:14px">＋ Tambah Foto Galeri</button>
       <div class="formwrap card" id="gaForm">
         <label>Judul Foto *</label><input id="gJ" placeholder="cth: Pembinaan Tilawah Terpadu">
-        <label>Foto * <small>(pilih dari Media atau upload langsung)</small></label>
+        <label>Foto <small>(pilih dari Media atau upload langsung)</small></label>
         <div class="frow">
           <select id="gF"></select>
           <button type="button" class="btn sm gold" data-up="gF" title="Upload foto baru dari komputer">⬆ Upload</button>
           <input type="file" accept="image/*" hidden data-file="gF">
         </div>
+        <label>atau Link Video <small>(opsional — tempel link YouTube, video langsung tampil di galeri website)</small></label>
+        <input id="gV" placeholder="https://youtube.com/watch?v=… atau https://youtu.be/…">
         <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="gaSave">💾 Simpan</button><button class="btn ghost" id="gaCancel">Batal</button></div>
       </div>
       <div id="gaList"></div>
@@ -303,7 +343,42 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
         </div>
         <button class="btn gold sm" id="lkSave" style="margin-top:14px">💾 Simpan Tampilan</button>
       </div>
-      <div class="note">Galeri beranda mengikuti 4 foto pertama di menu <b>Galeri</b>. Foto kartu berita mengikuti foto tiap berita.</div>
+      <div class="card">
+        <h2>Teks Hero <small style="font-weight:400;color:var(--mut)">(judul besar halaman depan)</small></h2>
+        <label>Judul <small>(boleh memakai &lt;br&gt; untuk baris baru dan &lt;em&gt; untuk aksen emas)</small></label>
+        <input id="hzJ" placeholder="Membangun NTB sebagai&lt;br&gt;&lt;em&gt;Serambi Al-Qur'an.&lt;/em&gt;">
+        <label>Paragraf Pengantar</label>
+        <textarea id="hzS" style="min-height:76px"></textarea>
+        <button class="btn gold sm" id="hzSave" style="margin-top:14px">💾 Simpan Teks Hero</button>
+      </div>
+      <div class="card">
+        <h2>Kartu Musabaqah <small style="font-weight:400;color:var(--mut)">(section Musabaqah di website)</small></h2>
+        <div class="row">
+          <div><label>Tingkat</label><input id="mzT" placeholder="cth: Nasional · MTQ XXXI"></div>
+          <div><label>Waktu</label><input id="mzW" placeholder="cth: September 2026"></div>
+        </div>
+        <div class="row" style="margin-top:4px">
+          <div><label>Lokasi</label><input id="mzL" placeholder="cth: Semarang, Jawa Tengah"></div>
+          <div><label>Judul Edisi</label><input id="mzE" placeholder="cth: XXXI"></div>
+        </div>
+        <label>Catatan Kaki</label><input id="mzN" placeholder="cth: Nomenklatur resmi sesuai SK Gubernur">
+        <button class="btn gold sm" id="mzSave" style="margin-top:14px">💾 Simpan Kartu Musabaqah</button>
+      </div>
+      <div class="card">
+        <h2>Program Pembinaan <small style="font-weight:400;color:var(--mut)">(8 kartu di website)</small></h2>
+        <div id="pzList"></div>
+        <div style="display:flex;gap:9px;margin-top:12px">
+          <button class="btn sm" id="pzAdd">＋ Tambah Program</button>
+          <button class="btn gold sm" id="pzSave">💾 Simpan Program</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Daftar LPTQ Kabupaten/Kota</h2>
+        <label>Satu nama per baris</label>
+        <textarea id="kkT" style="min-height:130px"></textarea>
+        <button class="btn gold sm" id="kkSave" style="margin-top:14px">💾 Simpan Daerah</button>
+      </div>
+      <div class="note">Galeri beranda mengikuti foto-foto di menu <b>Galeri</b>. Foto kartu berita mengikuti foto tiap berita.</div>
     </div>
 
     <div class="view" id="v-set">
@@ -367,6 +442,8 @@ async function sha256(t){var b=await crypto.subtle.digest('SHA-256',new TextEnco
 var DEF={
   news:[{tanggal:today(),kategori:"LPTQ NTB",judul:"Portal Berita Resmi MY LPTQ NTB Aktif",penulis:"Humas LPTQ NTB",ringkasan:"Portal resmi LPTQ Provinsi Nusa Tenggara Barat kini berjalan — berita pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah diperbarui setiap hari.",foto:"",isi:"Portal berita resmi MY LPTQ NTB telah aktif.||Seluruh berita pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah NTB akan dipublikasikan melalui portal ini secara berkala.||Kiriman berita dapat disampaikan kepada Humas LPTQ Provinsi NTB melalui email resmi sekretariat."}],
   agenda:[],ann:[],ach:[],gallery:[],
+  msq:{tingkat:"",waktu:"",lokasi:"",edisi:"",catatan:""},
+  prog:[],kabkota:[],
   media:[],settings:{email:"sekretariat.lptqntb@gmail.com",address:"",appUrl:"https://play.google.com/store/apps/details?id=com.mylptq.ntb",ig:"https://www.instagram.com/lptqntb/",fb:"https://www.facebook.com/profile.php?id=61588414983297",yt:"https://www.youtube.com/channel/UCY8JX9qLg-LFE6lOzGy4X2g",tt:"https://www.tiktok.com/@mylptq.ntb",images:{hero:""}}
 };
 var S={data:JSON.parse(JSON.stringify(DEF)),gh:{token:"",owner:"sekretariatlptqntb-sys",repo:"Mylptqntb",branch:"main"},editNews:null,editAg:null,editAn:null,editAc:null,editGa:null};
@@ -441,6 +518,9 @@ async function pullRemote(){
     var js=await ghGet('site-data.js');var t2=d64u(js.content);
     var fs=new Function(t2+';return window.SITEDATA;');var sd=fs();
     if(sd){['agenda','ann','ach','gallery'].forEach(function(k){if(sd[k])S.data[k]=sd[k]});
+      if(sd.msq)S.data.msq=Object.assign({},S.data.msq||{},sd.msq);
+      if(sd.prog)S.data.prog=sd.prog;
+      if(sd.kabkota)S.data.kabkota=sd.kabkota;
       if(sd.settings)S.data.settings=Object.assign(S.data.settings,sd.settings)}
   }catch(e){}
   save();toast('Data terbaru berhasil ditarik dari GitHub.');
@@ -453,7 +533,7 @@ async function pullRemote(){
   try{
     var newsJs='/* Diterbitkan otomatis oleh Admin MY LPTQ NTB — '+new Date().toISOString()+' */\nwindow.NEWS = '+JSON.stringify(S.data.news,null,2)+';\n';
     await ghPut('news.js',newsJs,'Update berita via admin');
-    var sd={agenda:S.data.agenda,ann:S.data.ann,ach:S.data.ach,gallery:S.data.gallery,settings:S.data.settings};
+    var sd={agenda:S.data.agenda,ann:S.data.ann,ach:S.data.ach,gallery:S.data.gallery,msq:S.data.msq||{},prog:S.data.prog||[],kabkota:S.data.kabkota||[],settings:S.data.settings};
     var sdJs='/* Diterbitkan otomatis oleh Admin MY LPTQ NTB */\nwindow.SITEDATA = '+JSON.stringify(sd,null,2)+';\n';
     await ghPut('site-data.js',sdJs,'Update data situs via admin');
     toast('✔ Berhasil! Website akan diperbarui dalam ±1 menit.');
@@ -544,11 +624,24 @@ function renderMedia(){
 }
 
 /* ═══ BERITA ═══ */
+var NAL_PH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:22px"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 15.5l-4.5-4.5L7 20.5"/></svg>';
 function renderNews(){
-  $('#cN').textContent=S.data.news.filter(function(n){return n.tampil!==false}).length+' / '+S.data.news.length;
+  var tampil=S.data.news.filter(function(n){return n.tampil!==false}).length;
+  $('#cN').textContent=tampil+' / '+S.data.news.length;
   var L=S.data.news.slice().sort(function(a,b){return (b.tanggal||'').localeCompare(a.tanggal||'')});
-  $('#newsList').innerHTML=L.length?'<table class="tbl"><thead><tr><th>Berita</th><th style="text-align:right">Website · Aksi</th></tr></thead><tbody>'+
-    L.map(function(n){return '<tr><td><div class="tt">'+esc(n.judul)+(n.tampil===false?' <span class="badge" style="background:#FBF0ED;color:var(--red)">disembunyikan</span>':'')+'</div><div class="ts">'+esc(n.kategori)+' · '+fmt(n.tanggal)+' · '+esc(n.penulis||'Humas LPTQ NTB')+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-tn="'+esc(n.judul)+'" title="'+(n.tampil===false?'Tampilkan di website':'Sembunyikan dari website')+'">'+(n.tampil===false?'🚫':'👁')+'</button><button class="icb" data-en="'+esc(n.judul)+'">✏️</button><button class="icb del" data-dn="'+esc(n.judul)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+  $('#newsList').innerHTML=L.length?'<div class="nal">'+L.map(function(n){
+    var th=n.foto?'<span class="nal-th"><img src="'+esc(fixPath(n.foto))+'" loading="lazy"></span>'
+      :'<span class="nal-th">'+NAL_PH+'</span>';
+    return '<div class="nal-item">'+th
+      +'<div class="nal-body"><div class="nal-title">'+esc(n.judul)
+      +(n.tampil===false?' <span class="badge" style="background:#FBF0ED;color:var(--red)">disembunyikan</span>':'')
+      +'</div><div class="nal-meta">'+esc(n.kategori)+' · '+fmt(n.tanggal)+' · '+esc(n.penulis||'Humas LPTQ NTB')+'</div></div>'
+      +'<div class="nal-act" style="display:flex;gap:4px;flex:none">'
+      +'<button class="icb" data-tn="'+esc(n.judul)+'" title="'+(n.tampil===false?'Tampilkan di website':'Sembunyikan dari website')+'">'+(n.tampil===false?'🚫':'👁')+'</button>'
+      +'<button class="icb" data-en="'+esc(n.judul)+'" title="Sunting">✏️</button>'
+      +'<button class="icb del" data-dn="'+esc(n.judul)+'" title="Hapus">🗑</button>'
+      +'</div></div>';
+  }).join('')+'</div>'
     :'<div class="empty">Belum ada berita. Klik "Tulis Berita Baru".</div>';
   bindNews();
 }
@@ -594,8 +687,7 @@ function bindNews(){
 function renderAg(){
   $('#cA').textContent=S.data.agenda.length;
   var L=S.data.agenda.slice().sort(function(a,b){return a.tanggal<b.tanggal?-1:1});
-  $('#agList').innerHTML=L.length?'<table class="tbl"><thead><tr><th>Agenda</th><th></th></tr></thead><tbody>'+
-    L.map(function(a){return '<tr><td><div class="tt">'+esc(a.judul)+'</div><div class="ts">'+fmt(a.tanggal)+' · '+esc(a.waktu||'—')+' · '+esc(a.tempat||'—')+' · '+esc(a.status)+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-ea="'+esc(a.id)+'">✏️</button><button class="icb del" data-da="'+esc(a.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+  $('#agList').innerHTML=L.length?'<div class="nal">'+L.map(function(a){return '<div class="nal-item"><span class="nal-ic">📅</span><div class="nal-body"><div class="nal-title">'+esc(a.judul)+(a.status==='Selesai'?' <span class="badge" style="background:#EEF2EF;color:var(--mut)">selesai</span>':'')+'</div><div class="nal-meta">'+fmt(a.tanggal)+' · '+esc(a.waktu||'—')+' · '+esc(a.tempat||'—')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ea="'+esc(a.id)+'" title="Sunting">✏️</button><button class="icb del" data-da="'+esc(a.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada agenda.</div>';
   $$('#agList [data-ea]').forEach(function(b){b.addEventListener('click',function(){
     var a=S.data.agenda.find(function(x){return x.id===b.dataset.ea});if(!a)return;
@@ -620,8 +712,7 @@ function renderAg(){
 /* ═══ PENGUMUMAN ═══ */
 function renderAn(){
   $('#cAn').textContent=S.data.ann.length;
-  $('#anList').innerHTML=S.data.ann.length?'<table class="tbl"><thead><tr><th>Pengumuman</th><th></th></tr></thead><tbody>'+
-    S.data.ann.map(function(a){return '<tr><td><div class="tt">'+esc(a.judul)+'</div><div class="ts">'+esc(a.no||'—')+' · '+fmt(a.tanggal)+(a.pdf?' · PDF':'')+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-ean="'+esc(a.id)+'">✏️</button><button class="icb del" data-dan="'+esc(a.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+  $('#anList').innerHTML=S.data.ann.length?'<div class="nal">'+S.data.ann.map(function(a){return '<div class="nal-item"><span class="nal-ic gold">📄</span><div class="nal-body"><div class="nal-title">'+esc(a.judul)+'</div><div class="nal-meta">'+esc(a.no||'—')+' · '+fmt(a.tanggal)+(a.pdf?' · <span style="color:var(--acc);font-weight:700">PDF</span>':'')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ean="'+esc(a.id)+'" title="Sunting">✏️</button><button class="icb del" data-dan="'+esc(a.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada pengumuman.</div>';
   $$('#anList [data-ean]').forEach(function(b){b.addEventListener('click',function(){
     var a=S.data.ann.find(function(x){return x.id===b.dataset.ean});if(!a)return;
@@ -646,8 +737,7 @@ function renderAn(){
 /* ═══ PRESTASI ═══ */
 function renderAc(){
   $('#cAc').textContent=S.data.ach.length;
-  $('#acList').innerHTML=S.data.ach.length?'<table class="tbl"><thead><tr><th>Prestasi</th><th></th></tr></thead><tbody>'+
-    S.data.ach.map(function(a){return '<tr><td><div class="tt">'+esc(a.cabang)+' — '+esc(a.event||'')+' ('+esc(a.tahun)+')</div><div class="ts">'+esc(a.tingkat)+' · '+esc(a.peraih)+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-eac="'+esc(a.id)+'">✏️</button><button class="icb del" data-dac="'+esc(a.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+  $('#acList').innerHTML=S.data.ach.length?'<div class="nal">'+S.data.ach.map(function(a){return '<div class="nal-item"><span class="nal-ic">🏅</span><div class="nal-body"><div class="nal-title">'+esc(a.cabang)+' — '+esc(a.event||'')+' <span class="badge">'+esc(a.tahun)+'</span></div><div class="nal-meta">'+esc(a.tingkat)+' · '+esc(a.peraih)+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-eac="'+esc(a.id)+'" title="Sunting">✏️</button><button class="icb del" data-dac="'+esc(a.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada data prestasi.</div>';
   $$('#acList [data-eac]').forEach(function(b){b.addEventListener('click',function(){
     var a=S.data.ach.find(function(x){return x.id===b.dataset.eac});if(!a)return;
@@ -672,20 +762,19 @@ function renderAc(){
 /* ═══ GALERI ═══ */
 function renderGa(){
   $('#cG').textContent=S.data.gallery.length;
-  $('#gaList').innerHTML=S.data.gallery.length?'<table class="tbl"><thead><tr><th>Foto</th><th></th></tr></thead><tbody>'+
-    S.data.gallery.map(function(f){return '<tr><td><div style="display:flex;gap:12px;align-items:center"><img src="'+esc(fixPath(f.foto))+'" style="width:64px;height:44px;object-fit:cover;border-radius:8px" onerror="this.style.display=\'none\'"><div><div class="tt">'+esc(f.judul)+'</div><div class="ts">'+esc(f.foto)+'</div></div></div></td><td style="text-align:right"><button class="icb del" data-dga="'+esc(f.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+  $('#gaList').innerHTML=S.data.gallery.length?'<div class="nal">'+S.data.gallery.map(function(f){return '<div class="nal-item"><span class="nal-th"><img src="'+esc(fixPath(f.foto))+'" loading="lazy"></span><div class="nal-body"><div class="nal-title">'+esc(f.judul)+'</div><div class="nal-meta">'+esc(f.foto)+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb del" data-dga="'+esc(f.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada foto galeri.</div>';
   $$('#gaList [data-dga]').forEach(function(b){b.addEventListener('click',function(){
     if(!confirm('Hapus foto galeri ini?'))return;
     S.data.gallery=S.data.gallery.filter(function(x){return x.id!==b.dataset.dga});save();renderGa();toast('Dihapus.');
   })});
 }
- $('#btnAddGa').addEventListener('click',function(){if(!mediaNames().length){toast('Upload foto dulu di menu Media Foto.',true);return}$('#gJ').value='';$('#gaForm').classList.add('on')});
+ $('#btnAddGa').addEventListener('click',function(){$('#gJ').value='';$('#gV')&&($('#gV').value='');$('#gaForm').classList.add('on')});
  $('#gaCancel').addEventListener('click',function(){$('#gaForm').classList.remove('on')});
  $('#gaSave').addEventListener('click',function(){
-  if(!$('#gJ').value.trim()||!$('#gF').value){toast('Lengkapi judul & foto.',true);return}
-  S.data.gallery.unshift({id:uid(),judul:$('#gJ').value.trim(),foto:$('#gF').value});
-  save();renderGa();$('#gaForm').classList.remove('on');toast('Foto galeri tersimpan.');
+  if(!$('#gJ').value.trim()||(!$('#gF').value&&!($('#gV')&&$('#gV').value.trim()))){toast('Lengkapi judul, lalu foto atau link video.',true);return}
+  S.data.gallery.unshift({id:uid(),judul:$('#gJ').value.trim(),foto:$('#gF').value,video:$('#gV')?$('#gV').value.trim():''});
+  save();renderGa();$('#gaForm').classList.remove('on');toast('Galeri tersimpan.');
 });
 
 /* ═══ TAMPILAN ═══ */
@@ -693,6 +782,48 @@ function renderGa(){
   S.data.settings.images=S.data.settings.images||{};
   S.data.settings.images.hero=$('#lkHero').value;
   save();toast('Tampilan hero tersimpan. Klik 🚀 Publikasikan.');
+});
+/* Kartu Musabaqah */
+ $('#mzSave').addEventListener('click',function(){
+  S.data.msq={tingkat:$('#mzT').value.trim(),waktu:$('#mzW').value.trim(),lokasi:$('#mzL').value.trim(),
+    edisi:$('#mzE').value.trim(),catatan:$('#mzN').value.trim()};
+  save();toast('Kartu Musabaqah tersimpan. Klik 🚀 Publikasikan.');
+});
+/* Teks Hero */
+ $('#hzSave').addEventListener('click',function(){
+  S.data.settings.hero={judul:$('#hzJ').value,sub:$('#hzS').value};
+  save();toast('Teks hero tersimpan. Klik 🚀 Publikasikan.');
+});
+/* Program Pembinaan */
+function renderPz(){
+  var L=S.data.prog||[];var el=$('#pzList');
+  el.innerHTML=L.length?L.map(function(p,i){return '<div class="pzrow" data-i="'+i+'">'
+    +'<input placeholder="Nama program (cth: Tilawah)" value="'+esc(p.nama||'')+'" data-pn>'
+    +'<textarea placeholder="Deskripsi singkat…" data-pd>'+esc(p.desk||'')+'</textarea>'
+    +'<select data-pf></select>'
+    +'<button class="icb del" data-pdel="'+i+'" title="Hapus program">🗑</button></div>'}).join('')
+    :'<p style="font-size:12px;color:var(--mut);margin-bottom:8px">Kosong — website memakai daftar bawaan.</p>';
+  el.querySelectorAll('.pzrow').forEach(function(r){
+    r.querySelector('[data-pn]').addEventListener('input',function(){S.data.prog[+r.dataset.i].nama=this.value});
+    r.querySelector('[data-pd]').addEventListener('input',function(){S.data.prog[+r.dataset.i].desk=this.value});
+    var pf=r.querySelector('[data-pf]');
+    if(pf){pf.innerHTML='<option value="">— foto kartu (opsional) —</option>'+mediaNames().map(function(m){return '<option value="'+esc(MP+m)+'">'+esc(m)+'</option>'}).join('');pf.value=fixPath(S.data.prog[+r.dataset.i].foto||'');if(pf.selectedIndex<0)pf.selectedIndex=0;pf.addEventListener('change',function(){S.data.prog[+r.dataset.i].foto=this.value;save()})}
+  });
+  el.querySelectorAll('[data-pdel]').forEach(function(b){b.addEventListener('click',function(){
+    S.data.prog.splice(+b.dataset.pdel,1);save();renderPz()})});
+}
+ $('#pzAdd').addEventListener('click',function(){
+  S.data.prog=S.data.prog||[];S.data.prog.push({nama:'',desk:''});save();renderPz();
+  var rows=$$('#pzList .pzrow');if(rows.length)rows[rows.length-1].querySelector('[data-pn]').focus();
+});
+ $('#pzSave').addEventListener('click',function(){
+  S.data.prog=(S.data.prog||[]).filter(function(p){return (p.nama||'').trim()});
+  save();renderPz();toast('Program tersimpan. Klik 🚀 Publikasikan.');
+});
+/* Kab/Kota */
+ $('#kkSave').addEventListener('click',function(){
+  S.data.kabkota=$('#kkT').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);
+  save();toast('Daftar daerah tersimpan. Klik 🚀 Publikasikan.');
 });
 
 /* ═══ SETTINGS ═══ */
@@ -729,6 +860,13 @@ function renderSet(){
 /* ═══ BOOT ═══ */
 function refreshAll(){renderNews();renderAg();renderAn();renderAc();renderGa();renderMedia();fillPickers();
   $('#lkHero').value=fixPath((S.data.settings.images||{}).hero||'');
+  var mz=S.data.msq||{};
+  $('#mzT').value=mz.tingkat||'';$('#mzW').value=mz.waktu||'';$('#mzL').value=mz.lokasi||'';
+  $('#mzE').value=mz.edisi||'';$('#mzN').value=mz.catatan||'';
+  var hz=S.data.settings.hero||{};
+  $('#hzJ').value=hz.judul||'';$('#hzS').value=hz.sub||'';
+  $('#kkT').value=(S.data.kabkota||[]).join('\n');
+  renderPz();
   $('#cN').textContent=S.data.news.length;$('#cA').textContent=S.data.agenda.length;
   $('#cAn').textContent=S.data.ann.length;$('#cAc').textContent=S.data.ach.length;$('#cG').textContent=S.data.gallery.length;}
 function renderAll(){refreshAll();renderSet()}
