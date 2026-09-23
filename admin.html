@@ -48,6 +48,14 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
 .peye:hover{background:var(--soft);color:var(--d)}
 .peye svg{width:19px;height:19px}
 .lfoot{margin-top:18px;text-align:center;font-size:10.5px;color:var(--mut);letter-spacing:.02em}
+/* upload inline & hapus media */
+.frow{display:flex;gap:8px;align-items:stretch}
+.frow select{flex:1;min-width:0}
+.frow .btn.sm{display:grid;place-items:center;padding:8px 12px}
+.media-grid .cp.del{color:var(--red);background:#FBF0ED}
+.media-grid .cp.del:hover{background:#F5DAD3}
+.chkline{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;margin:12px 0 2px;cursor:pointer}
+.chkline input{width:auto;margin:0;accent-color:var(--acc)}
 /* app shell */
 #app{display:none;min-height:100vh}
 .shell{display:flex;min-height:100vh}
@@ -166,7 +174,6 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
         <div class="card" style="margin:0"><h2 style="font-size:22px" id="cG">0</h2><p style="font-size:11.5px;color:var(--mut)">Galeri</p></div>
         <div class="card" style="margin:0"><h2 style="font-size:22px" id="cM">0</h2><p style="font-size:11.5px;color:var(--mut)">Media</p></div>
       </div>
-      <div class="note"><b>Cara kerja singkat:</b> Semua perubahan tersimpan otomatis di panel ini. Klik <b>🚀 Publikasikan ke Website</b> di bar atas untuk mengirim ke GitHub — website publik akan diperbarui dalam ±1 menit. Upload foto di menu <b>Media Foto</b>, lalu pilih fotonya saat menulis berita.</div>
     </div>
 
     <div class="view" id="v-news">
@@ -186,10 +193,17 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
         <label>Judul Berita *</label><input id="nJ" placeholder="cth: LPTQ NTB Gelar Pembinaan Tilawah Terpadu">
         <div class="row">
           <div><label>Penulis</label><input id="nP" value="Humas LPTQ NTB"></div>
-          <div><label>Foto <small>(pilih dari Media, boleh kosong)</small></label><select id="nF"></select></div>
+          <div><label>Foto <small>(pilih dari Media atau upload langsung)</small></label>
+            <div class="frow">
+              <select id="nF"></select>
+              <button type="button" class="btn sm gold" data-up="nF" title="Upload foto baru dari komputer">⬆ Upload</button>
+              <input type="file" accept="image/*" hidden data-file="nF">
+            </div>
+          </div>
         </div>
         <label>Ringkasan (1–2 kalimat) *</label><textarea id="nR" style="min-height:64px"></textarea>
         <label>Isi Berita — paragraf dipisah 1 baris kosong *</label><textarea id="nI" style="min-height:150px"></textarea>
+        <label class="chkline"><input type="checkbox" id="nShow" checked> Tampilkan berita ini di website</label>
         <div style="display:flex;gap:9px;margin-top:15px;flex-wrap:wrap">
           <button class="btn gold" id="nSave">💾 Simpan Berita</button>
           <button class="btn ghost" id="nCancel">Batal</button>
@@ -255,7 +269,12 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
       <button class="btn" id="btnAddGa" style="margin-bottom:14px">＋ Tambah Foto Galeri</button>
       <div class="formwrap card" id="gaForm">
         <label>Judul Foto *</label><input id="gJ" placeholder="cth: Pembinaan Tilawah Terpadu">
-        <label>Foto * <small>(pilih dari Media — upload dulu di menu Media Foto)</small></label><select id="gF"></select>
+        <label>Foto * <small>(pilih dari Media atau upload langsung)</small></label>
+        <div class="frow">
+          <select id="gF"></select>
+          <button type="button" class="btn sm gold" data-up="gF" title="Upload foto baru dari komputer">⬆ Upload</button>
+          <input type="file" accept="image/*" hidden data-file="gF">
+        </div>
         <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="gaSave">💾 Simpan</button><button class="btn ghost" id="gaCancel">Batal</button></div>
       </div>
       <div id="gaList"></div>
@@ -276,8 +295,12 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
       <h2>Tampilan Website</h2><p class="vsub">Ganti gambar latar & elemen visual halaman depan</p>
       <div class="card">
         <h2>Latar Hero (foto besar halaman depan)</h2>
-        <label>Foto <small>(upload dulu di menu Media Foto)</small></label>
-        <select id="lkHero"></select>
+        <label>Foto <small>(pilih dari Media atau upload langsung)</small></label>
+        <div class="frow">
+          <select id="lkHero"></select>
+          <button type="button" class="btn sm gold" data-up="lkHero" title="Upload foto baru dari komputer">⬆ Upload</button>
+          <input type="file" accept="image/*" hidden data-file="lkHero">
+        </div>
         <button class="btn gold sm" id="lkSave" style="margin-top:14px">💾 Simpan Tampilan</button>
       </div>
       <div class="note">Galeri beranda mengikuti 4 foto pertama di menu <b>Galeri</b>. Foto kartu berita mengikuti foto tiap berita.</div>
@@ -450,56 +473,99 @@ function fillPickers(){
  $('#mUp').addEventListener('click',function(){
   var f=$('#mFile').files[0];
   if(!f){toast('Pilih file foto dulu.',true);return}
-  if(!ghOK()){toast('Hubungkan GitHub dulu di Pengaturan.',true);return}
   var b=this;b.textContent='⏳ Mengunggah…';b.disabled=true;
-  var rd=new FileReader();
-  rd.onload=async function(){
-    var b64=rd.result.split(',')[1];
-    var name=f.name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9._-]/g,'');
-    var path='assets/img/'+name;
-    try{
-      var sha=null;try{var j=await ghGet(path);sha=j.sha}catch(e){}
-      var r=await fetch('https://api.github.com/repos/'+S.gh.owner+'/'+S.gh.repo+'/contents/'+path,{
-        method:'PUT',headers:{Authorization:'Bearer '+S.gh.token,Accept:'application/vnd.github+json','Content-Type':'application/json'},
-        body:JSON.stringify({message:'Upload gambar: '+name,content:b64,sha:sha,branch:S.gh.branch})});
-      if(!r.ok){var e2=await r.json().catch(function(){return{}});throw new Error(e2.message||'Gagal upload')}
-      S.data.media=S.data.media.filter(function(m){return m.name!==name});
-      S.data.media.unshift({name:name});
-      save();$('#mFile').value='';toast('✔ Foto terupload: '+name);
-    }catch(e){toast('Gagal: '+e.message,true)}
-    b.textContent='⬆ Upload ke Website';b.disabled=false;
-  };
-  rd.readAsDataURL(f);
+  uploadImageFile(f).then(function(name){
+    $('#mFile').value='';toast('✔ Foto terupload: '+name);
+  }).catch(function(e){toast('Gagal: '+e.message,true)})
+  .finally(function(){b.textContent='⬆ Upload ke Website';b.disabled=false});
 });
+/* Upload bersama — dipakai menu Media & tombol ⬆ di form berita/galeri/hero */
+async function uploadImageFile(file){
+  if(!ghOK())throw new Error('Hubungkan GitHub dulu di menu Pengaturan.');
+  var b64=await new Promise(function(res){var rd=new FileReader();rd.onload=function(){res(rd.result.split(',')[1])};rd.readAsDataURL(file)});
+  var name=file.name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9._-]/g,'');
+  var path=MP+name;
+  var sha=null;try{var j=await ghGet(path);sha=j.sha}catch(e){}
+  var r=await fetch('https://api.github.com/repos/'+S.gh.owner+'/'+S.gh.repo+'/contents/'+path,{
+    method:'PUT',headers:{Authorization:'Bearer '+S.gh.token,Accept:'application/vnd.github+json','Content-Type':'application/json'},
+    body:JSON.stringify({message:'Upload gambar: '+name,content:b64,sha:sha,branch:S.gh.branch})});
+  if(!r.ok){var e2=await r.json().catch(function(){return{}});throw new Error(e2.message||'Gagal upload')}
+  S.data.media=S.data.media.filter(function(m){return m.name!==name});
+  S.data.media.unshift({name:name});
+  save();renderMedia();fillPickers();
+  return path;
+}
+/* Tombol ⬆ Upload di samping pilihan foto */
+$$('[data-up]').forEach(function(b){b.addEventListener('click',function(){
+  var inp=document.querySelector('[data-file="'+b.dataset.up+'"]');if(inp)inp.click();
+})});
+$$('[data-file]').forEach(function(inp){inp.addEventListener('change',async function(){
+  var f=inp.files[0];if(!f)return;
+  var key=inp.dataset.file,btn=document.querySelector('[data-up="'+key+'"]');
+  var old=btn?btn.textContent:'';if(btn){btn.textContent='⏳…';btn.disabled=true}
+  try{
+    var p=await uploadImageFile(f);
+    var sel=$('#'+key);if(sel)sel.value=p;
+    toast('✔ Foto terupload & terpilih: '+p.split('/').pop()+' — jangan lupa klik Simpan.');
+  }catch(e){toast('Gagal: '+e.message,true)}
+  if(btn){btn.textContent=old;btn.disabled=false}
+  inp.value='';
+})});
+/* Hapus file foto dari GitHub */
+async function ghDel(path){
+  var j=await ghGet(path);
+  var r=await fetch('https://api.github.com/repos/'+S.gh.owner+'/'+S.gh.repo+'/contents/'+path,{
+    method:'DELETE',headers:{Authorization:'Bearer '+S.gh.token,Accept:'application/vnd.github+json','Content-Type':'application/json'},
+    body:JSON.stringify({message:'Hapus gambar: '+path.split('/').pop(),sha:j.sha,branch:S.gh.branch})});
+  if(!r.ok){var e=await r.json().catch(function(){return{}});throw new Error(e.message||('GitHub '+r.status))}
+}
 function renderMedia(){
   var names=mediaNames(),el=$('#mList');
   $('#cM').textContent=names.length;
   if(!names.length){el.innerHTML='<div class="empty">Belum ada foto. Upload di atas — foto akan tersedia untuk berita, galeri, dan tampilan hero.</div>';return}
   el.innerHTML='<div class="media-grid">'+names.map(function(n){
-    return '<figure><img src="'+esc(MP+n)+'" alt="" loading="lazy" onerror="this.remove()"><figcaption>'+esc(n)+'</figcaption><button class="cp" data-cp="'+esc(MP+n)+'">Salin nama</button></figure>';
+    return '<figure><img src="'+esc(MP+n)+'" alt="" loading="lazy" onerror="this.remove()"><figcaption>'+esc(n)+'</figcaption><button class="cp" data-cp="'+esc(MP+n)+'">Salin path</button><button class="cp del" data-dm="'+esc(n)+'">🗑 Hapus</button></figure>';
   }).join('')+'</div>';
   el.querySelectorAll('[data-cp]').forEach(function(b){b.addEventListener('click',function(){
     var v=b.dataset.cp;
-    if(navigator.clipboard)navigator.clipboard.writeText(v).then(function(){toast('Nama disalin: '+v)});
+    if(navigator.clipboard)navigator.clipboard.writeText(v).then(function(){toast('Path disalin: '+v)});
+  })});
+  el.querySelectorAll('[data-dm]').forEach(function(b){b.addEventListener('click',async function(){
+    var name=b.dataset.dm;
+    if(!confirm('Hapus foto "'+name+'" dari GitHub?\n\nFoto yang sedang dipakai berita/galeri akan kehilangan gambarnya.'))return;
+    b.textContent='⏳…';b.disabled=true;
+    try{
+      await ghDel(MP+name);
+      S.data.media=S.data.media.filter(function(m){return m.name!==name});
+      save();renderMedia();fillPickers();
+      toast('Foto dihapus: '+name);
+    }catch(e){toast('Gagal: '+e.message,true);renderMedia()}
   })});
 }
 
 /* ═══ BERITA ═══ */
 function renderNews(){
-  $('#cN').textContent=S.data.news.length;
+  $('#cN').textContent=S.data.news.filter(function(n){return n.tampil!==false}).length+' / '+S.data.news.length;
   var L=S.data.news.slice().sort(function(a,b){return (b.tanggal||'').localeCompare(a.tanggal||'')});
-  $('#newsList').innerHTML=L.length?'<table class="tbl"><thead><tr><th>Berita</th><th></th></tr></thead><tbody>'+
-    L.map(function(n){return '<tr><td><div class="tt">'+esc(n.judul)+'</div><div class="ts">'+esc(n.kategori)+' · '+fmt(n.tanggal)+' · '+esc(n.penulis||'Humas LPTQ NTB')+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-en="'+esc(n.judul)+'">✏️</button><button class="icb del" data-dn="'+esc(n.judul)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+  $('#newsList').innerHTML=L.length?'<table class="tbl"><thead><tr><th>Berita</th><th style="text-align:right">Website · Aksi</th></tr></thead><tbody>'+
+    L.map(function(n){return '<tr><td><div class="tt">'+esc(n.judul)+(n.tampil===false?' <span class="badge" style="background:#FBF0ED;color:var(--red)">disembunyikan</span>':'')+'</div><div class="ts">'+esc(n.kategori)+' · '+fmt(n.tanggal)+' · '+esc(n.penulis||'Humas LPTQ NTB')+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-tn="'+esc(n.judul)+'" title="'+(n.tampil===false?'Tampilkan di website':'Sembunyikan dari website')+'">'+(n.tampil===false?'🚫':'👁')+'</button><button class="icb" data-en="'+esc(n.judul)+'">✏️</button><button class="icb del" data-dn="'+esc(n.judul)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
     :'<div class="empty">Belum ada berita. Klik "Tulis Berita Baru".</div>';
   bindNews();
 }
 function bindNews(){
+  $$('#newsList [data-tn]').forEach(function(b){b.addEventListener('click',function(){
+    var n=S.data.news.find(function(x){return x.judul===b.dataset.tn});if(!n)return;
+    n.tampil=(n.tampil===false)?true:false;
+    save();renderNews();
+    toast(n.tampil===false?'Berita disembunyikan dari website.':'Berita tampil di website — klik 🚀 Publikasikan.');
+  })});
   $$('#newsList [data-en]').forEach(function(b){b.addEventListener('click',function(){
     var n=S.data.news.find(function(x){return x.judul===b.dataset.en});if(!n)return;
     S.editNews=n.judul;$('#nfTitle').textContent='Sunting Berita';
     $('#nT').value=n.tanggal;$('#nC').value=n.kategori;$('#nJ').value=n.judul;
     $('#nP').value=n.penulis||'';$('#nF').value=fixPath(n.foto);$('#nR').value=n.ringkasan||'';
     $('#nI').value=String(n.isi||'').split('||').join('\n\n');
+    $('#nShow').checked=n.tampil!==false;
     $('#newsForm').classList.add('on');$('#newsForm').scrollIntoView({behavior:'smooth'});
   })});
   $$('#newsList [data-dn]').forEach(function(b){b.addEventListener('click',function(){
@@ -510,6 +576,7 @@ function bindNews(){
  $('#btnAddNews').addEventListener('click',function(){
   S.editNews=null;$('#nfTitle').textContent='Tulis Berita Baru';
   $('#nT').value=today();$('#nJ').value='';$('#nR').value='';$('#nI').value='';$('#nF').value='';
+  $('#nShow').checked=true;
   $('#newsForm').classList.add('on');$('#newsForm').scrollIntoView({behavior:'smooth'});
 });
  $('#nCancel').addEventListener('click',function(){$('#newsForm').classList.remove('on')});
@@ -517,7 +584,7 @@ function bindNews(){
   var g=function(id){return $(id).value.trim()};
   if(!g('#nT')||!g('#nJ')||!g('#nR')||!g('#nI')){toast('Lengkapi: Tanggal, Judul, Ringkasan, Isi.',true);return}
   var isi=g('#nI').split(/\n\s*\n/).map(function(p){return p.replace(/\s+/g,' ')}).filter(Boolean).join('||');
-  var obj={tanggal:g('#nT'),kategori:$('#nC').value,judul:g('#nJ'),penulis:g('#nP')||'Humas LPTQ NTB',ringkasan:g('#nR'),foto:g('#nF'),isi:isi};
+  var obj={tanggal:g('#nT'),kategori:$('#nC').value,judul:g('#nJ'),penulis:g('#nP')||'Humas LPTQ NTB',ringkasan:g('#nR'),foto:g('#nF'),isi:isi,tampil:$('#nShow').checked};
   if(S.editNews){S.data.news=S.data.news.filter(function(x){return x.judul!==S.editNews})}
   S.data.news.unshift(obj);save();renderNews();fillPickers();
   $('#newsForm').classList.remove('on');toast('Berita tersimpan. Klik 🚀 Publikasikan di bar atas.');
