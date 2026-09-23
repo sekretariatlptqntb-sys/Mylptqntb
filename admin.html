@@ -315,6 +315,8 @@ input,select,textarea{background:#FBFDFB}
         </div>
         <label>atau Link Video <small>(opsional — tempel link YouTube, video langsung tampil di galeri website)</small></label>
         <input id="gV" placeholder="https://youtube.com/watch?v=… atau https://youtu.be/…">
+        <label>Tag Berita Terkait <small>(opsional — pengunjung yang membuka item galeri ini akan ditawari berita kategori ini)</small></label>
+        <select id="gT"></select>
         <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="gaSave">💾 Simpan</button><button class="btn ghost" id="gaCancel">Batal</button></div>
       </div>
       <div id="gaList"></div>
@@ -762,11 +764,11 @@ function renderAc(){
 /* ═══ GALERI ═══ */
 function renderGa(){
   $('#cG').textContent=S.data.gallery.length;
-  $('#gaList').innerHTML=S.data.gallery.length?'<div class="nal">'+S.data.gallery.map(function(f){return '<div class="nal-item"><span class="nal-th">'+(f.video?'🎬':(f.foto?'<img src="'+esc(fixPath(f.foto))+'" loading="lazy">':'🖼'))+'</span><div class="nal-body"><div class="nal-title">'+esc(f.judul)+(f.video?' <span class="badge" style="background:#F7EFE0;color:#8A6D1F">video</span>':'')+'</div><div class="nal-meta">'+esc(f.video||f.foto||'—')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ega="'+esc(f.id)+'" title="Sunting">✏️</button><button class="icb del" data-dga="'+esc(f.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
+  $('#gaList').innerHTML=S.data.gallery.length?'<div class="nal">'+S.data.gallery.map(function(f){return '<div class="nal-item"><span class="nal-th">'+(f.video?'🎬':(f.foto?'<img src="'+esc(fixPath(f.foto))+'" loading="lazy">':'🖼'))+'</span><div class="nal-body"><div class="nal-title">'+esc(f.judul)+(f.video?' <span class="badge" style="background:#F7EFE0;color:#8A6D1F">video</span>':'')+'</div><div class="nal-meta">'+esc(f.video||f.foto||'—')+(f.tag?' · 📰 '+esc(f.tag):'')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ega="'+esc(f.id)+'" title="Sunting">✏️</button><button class="icb del" data-dga="'+esc(f.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada foto galeri.</div>';
   $$('#gaList [data-ega]').forEach(function(b){b.addEventListener('click',function(){
     var f=S.data.gallery.find(function(x){return x.id===b.dataset.ega});if(!f)return;
-    S.editGa=f.id;$('#gJ').value=f.judul;$('#gF').value=fixPath(f.foto||'');if($('#gV'))$('#gV').value=f.video||'';
+    S.editGa=f.id;$('#gJ').value=f.judul;$('#gF').value=fixPath(f.foto||'');if($('#gV'))$('#gV').value=f.video||'';if($('#gT'))$('#gT').value=f.tag||'';
     $('#gaForm').classList.add('on');$('#gaForm').scrollIntoView({behavior:'smooth'});
   })});
   $$('#gaList [data-dga]').forEach(function(b){b.addEventListener('click',function(){
@@ -774,11 +776,11 @@ function renderGa(){
     S.data.gallery=S.data.gallery.filter(function(x){return x.id!==b.dataset.dga});save();renderGa();toast('Dihapus.');
   })});
 }
- $('#btnAddGa').addEventListener('click',function(){S.editGa=null;$('#gJ').value='';$('#gV')&&($('#gV').value='');$('#gaForm').classList.add('on')});
+ $('#btnAddGa').addEventListener('click',function(){S.editGa=null;$('#gJ').value='';$('#gV')&&($('#gV').value='');if($('#gT'))$('#gT').value='';$('#gaForm').classList.add('on')});
  $('#gaCancel').addEventListener('click',function(){S.editGa=null;$('#gaForm').classList.remove('on')});
  $('#gaSave').addEventListener('click',function(){
   if(!$('#gJ').value.trim()||(!$('#gF').value&&!($('#gV')&&$('#gV').value.trim()))){toast('Lengkapi judul, lalu foto atau link video.',true);return}
-  var obj={id:S.editGa||uid(),judul:$('#gJ').value.trim(),foto:$('#gF').value,video:$('#gV')?$('#gV').value.trim():''};
+  var obj={id:S.editGa||uid(),judul:$('#gJ').value.trim(),foto:$('#gF').value,video:$('#gV')?$('#gV').value.trim():'',tag:$('#gT')?$('#gT').value:''};
   if(S.editGa){S.data.gallery=S.data.gallery.map(function(f){return f.id===S.editGa?obj:f})}
   else{S.data.gallery.unshift(obj)}
   S.editGa=null;save();renderGa();$('#gaForm').classList.remove('on');toast('Galeri tersimpan.');
@@ -866,6 +868,7 @@ function renderSet(){
 
 /* ═══ BOOT ═══ */
 function refreshAll(){renderNews();renderAg();renderAn();renderAc();renderGa();renderMedia();fillPickers();
+  var gT=$('#gT');if(gT&&!gT.options.length)gT.innerHTML='<option value="">— tidak ada —</option>'+$('#nC').innerHTML;
   $('#lkHero').value=fixPath((S.data.settings.images||{}).hero||'');
   var mz=S.data.msq||{};
   $('#mzT').value=mz.tingkat||'';$('#mzW').value=mz.waktu||'';$('#mzL').value=mz.lokasi||'';
