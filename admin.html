@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — MY LPTQ NTB</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--d:#0F3D2E;--d2:#0B2E23;--g:#C6A15B;--acc:#16794B;--soft:#EAF5EF;--line:#E2E9E4;--mut:#5C6B62;--red:#B3402F}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F4F1;color:#17221D}
+button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+input,select,textarea{font:inherit;font-size:14px;padding:11px 13px;border:1.5px solid var(--line);border-radius:11px;width:100%}
+textarea{resize:vertical}
+label{display:block;font-size:12px;font-weight:700;margin:12px 0 5px}
+label small{color:var(--mut);font-weight:500}
+h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--d);color:#fff;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:11px;border:0;cursor:pointer}
+.btn:hover{background:#14532D}
+.btn.gold{background:var(--g);color:#2E240E}
+.btn.red{background:var(--red)}
+.btn.ghost{background:#fff;color:#17221D;border:1.5px solid var(--line)}
+.btn.sm{padding:8px 13px;font-size:12px}
+.badge{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--soft);color:var(--acc-d)}
+/* login */
+#login{min-height:100vh;display:grid;place-items:center;background:radial-gradient(900px 500px at 70% -10%,#155540,transparent),var(--d);padding:20px}
+.lcard{background:#fff;border-radius:20px;padding:36px 32px;width:min(390px,100%);border-top:4px solid var(--g);box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.lcard h1{font-family:Sora,sans-serif;font-size:18px;text-align:center;color:var(--d)}
+.lcard .sub{text-align:center;font-size:12.5px;color:var(--mut);margin:6px 0 20px}
+.err{display:none;background:#FBF0ED;color:var(--red);font-size:12px;border-radius:10px;padding:10px 14px;margin-bottom:12px}
+.err.on{display:block}
+.hint{margin-top:15px;font-size:11px;color:var(--mut);text-align:center;background:#F7F9F8;border-radius:10px;padding:10px;line-height:1.7}
+/* app shell */
+#app{display:none;min-height:100vh}
+.shell{display:flex;min-height:100vh}
+.side{width:210px;flex:none;background:var(--d);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.side .brand{padding:20px 18px;border-bottom:1px solid rgba(255,255,255,.12);font-family:Sora,sans-serif;font-weight:700;font-size:14px}
+.side .brand i{font-style:normal;color:var(--g)}
+.side nav{flex:1;padding:10px}
+.side nav button{display:flex;align-items:center;gap:11px;width:100%;padding:11px 14px;border-radius:11px;font-size:13.5px;font-weight:600;color:#C9DCD1;text-align:left;margin-bottom:2px}
+.side nav button:hover{background:rgba(255,255,255,.08);color:#fff}
+.side nav button.on{background:var(--g);color:#2E240E}
+.side .foot{padding:14px 18px;border-top:1px solid rgba(255,255,255,.12);font-size:11px;color:#8FB39E}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.mtop{background:#fff;border-bottom:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mtop .st{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:99px}
+.st.ok{background:var(--soft);color:var(--acc-d)}
+.st.no{background:#FBF0ED;color:var(--red)}
+.sp{flex:1}
+.view{display:none;padding:22px;max-width:1000px}
+.view.on{display:block}
+.view h2{font-family:Sora,sans-serif;font-size:19px;color:var(--d);margin-bottom:2px}
+.view .vsub{font-size:12.5px;color:var(--mut);margin-bottom:18px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tbl th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);padding:10px 12px;border-bottom:1.5px solid var(--line)}
+.tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr:hover td{background:#FAFCFA}
+.tbl .tt{font-weight:700;line-height:1.4}
+.tbl .ts{font-size:11px;color:var(--mut);margin-top:2px}
+.icb{width:30px;height:30px;border-radius:8px;display:inline-grid;place-items:center;color:var(--mut);font-size:13px}
+.icb:hover{background:var(--soft);color:var(--d)}
+.icb.del:hover{background:#FBF0ED;color:var(--red)}
+.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.media-grid figure{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.media-grid img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.media-grid figcaption{font-size:9.5px;padding:7px 9px;color:var(--mut);word-break:break-all;line-height:1.5}
+.media-grid .cp{display:block;width:100%;border:0;border-top:1px solid var(--line);background:var(--soft);color:var(--acc-d);font-size:10px;font-weight:700;padding:6px;cursor:pointer}
+.note{background:#FBF7EE;border:1.5px dashed var(--g);border-radius:12px;padding:13px 16px;font-size:12px;color:#7A6437;line-height:1.7;margin-bottom:16px}
+.formwrap{display:none}
+.formwrap.on{display:block}
+#toasts{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:99;display:flex;flex-direction:column;gap:9px;width:min(430px,92vw)}
+.toast{background:var(--d);color:#fff;border-left:3px solid var(--g);border-radius:12px;padding:13px 17px;font-size:13px;box-shadow:0 12px 30px rgba(0,0,0,.3)}
+.toast.err{border-color:#F0A08E}
+.empty{padding:26px;text-align:center;color:var(--mut);font-size:13px;border:1.5px dashed var(--line);border-radius:12px}
+.gh-field{display:flex;gap:8px}
+@media(max-width:860px){
+  .shell{flex-direction:column}
+  .side{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;align-items:center}
+  .side nav{display:flex;overflow-x:auto;width:100%}
+  .side nav button{white-space:nowrap;width:auto}
+  .side .foot{display:none}
+  .row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ LOGIN ═══ -->
+<div id="login">
+  <div class="lcard">
+    <h1>Admin MY LPTQ NTB</h1>
+    <p class="sub">Panel pengelolaan konten portal resmi</p>
+    <div class="err" id="lErr">Kata sandi salah.</div>
+    <form id="lForm">
+      <label>Kata Sandi Admin</label>
+      <input type="password" id="lPass" autocomplete="current-password" required style="margin-bottom:16px">
+      <button class="btn" style="width:100%;justify-content:center" type="submit">Masuk ke Dashboard</button>
+    </form>
+    <div class="hint">Halaman ini terpisah dari website publik.<br>Aktivitas publikasi memerlukan koneksi GitHub (diatur setelah masuk).</div>
+  </div>
+</div>
+
+<!-- ═══ APP ═══ -->
+<div id="app">
+<div class="shell">
+  <aside class="side">
+    <div class="brand">ADMIN · MY <i>LPTQ</i> NTB</div>
+    <nav id="sideNav">
+      <button data-v="dash" class="on">▦ Dashboard</button>
+      <button data-v="news">📄 Berita</button>
+      <button data-v="agenda">📅 Agenda</button>
+      <button data-v="ann">📢 Pengumuman</button>
+      <button data-v="ach">🏅 Prestasi</button>
+      <button data-v="gallery">🖼️ Galeri</button>
+      <button data-v="media">🌄 Media Foto</button>
+      <button data-v="look">🎨 Tampilan</button>
+      <button data-v="set">⚙️ Pengaturan</button>
+    </nav>
+    <div class="foot">Periode 2026–2031<br>Sekretariat LPTQ Provinsi NTB</div>
+  </aside>
+  <div class="main">
+    <div class="mtop">
+      <span class="st no" id="ghStatus">GitHub: belum terhubung</span>
+      <span class="sp"></span>
+      <button class="btn sm gold" id="btnPub">🚀 Publikasikan ke Website</button>
+      <a class="btn sm ghost" href="/" target="_blank">Lihat Website</a>
+      <button class="btn sm ghost" id="btnOut">Keluar</button>
+    </div>
+
+    <div class="view on" id="v-dash">
+      <h2>Dashboard</h2><p class="vsub">Ringkasan konten portal</p>
+      <div class="row" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
+        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cN">0</h2><p style="font-size:11.5px;color:var(--mut)">Berita</p></div>
+        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cA">0</h2><p style="font-size:11.5px;color:var(--mut)">Agenda</p></div>
+        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cAn">0</h2><p style="font-size:11.5px;color:var(--mut)">Pengumuman</p></div>
+        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cAc">0</h2><p style="font-size:11.5px;color:var(--mut)">Prestasi</p></div>
+        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cG">0</h2><p style="font-size:11.5px;color:var(--mut)">Galeri</p></div>
+        <div class="card" style="margin:0"><h2 style="font-size:22px" id="cM">0</h2><p style="font-size:11.5px;color:var(--mut)">Media</p></div>
+      </div>
+      <div class="note"><b>Cara kerja singkat:</b> Semua perubahan tersimpan otomatis di panel ini. Klik <b>🚀 Publikasikan ke Website</b> di bar atas untuk mengirim ke GitHub — website publik akan diperbarui dalam ±1 menit. Upload foto di menu <b>Media Foto</b>, lalu pilih fotonya saat menulis berita.</div>
+    </div>
+
+    <div class="view" id="v-news">
+      <h2>Berita</h2><p class="vsub">Berita terbaru tampil paling atas di website (hero + section berita)</p>
+      <button class="btn" id="btnAddNews" style="margin-bottom:14px">＋ Tulis Berita Baru</button>
+      <div class="formwrap card" id="newsForm">
+        <h2 id="nfTitle">Tulis Berita Baru</h2>
+        <div class="row">
+          <div><label>Tanggal *</label><input type="date" id="nT"></div>
+          <div><label>Kategori</label><select id="nC">
+            <option>LPTQ NTB</option><option>Musabaqah</option><option>MTQ</option><option>MTQH</option>
+            <option>Pembinaan</option><option>Tilawah</option><option>Tahfiz</option><option>Tafsir</option>
+            <option>Fahmil Qur'an</option><option>Syarhil Qur'an</option><option>Khattil Qur'an</option>
+            <option>Qiraat</option><option>Prestasi</option><option>Kegiatan</option><option>Pengumuman</option><option>MY LPTQ</option>
+          </select></div>
+        </div>
+        <label>Judul Berita *</label><input id="nJ" placeholder="cth: LPTQ NTB Gelar Pembinaan Tilawah Terpadu">
+        <div class="row">
+          <div><label>Penulis</label><input id="nP" value="Humas LPTQ NTB"></div>
+          <div><label>Foto <small>(pilih dari Media, boleh kosong)</small></label><select id="nF"></select></div>
+        </div>
+        <label>Ringkasan (1–2 kalimat) *</label><textarea id="nR" style="min-height:64px"></textarea>
+        <label>Isi Berita — paragraf dipisah 1 baris kosong *</label><textarea id="nI" style="min-height:150px"></textarea>
+        <div style="display:flex;gap:9px;margin-top:15px;flex-wrap:wrap">
+          <button class="btn gold" id="nSave">💾 Simpan Berita</button>
+          <button class="btn ghost" id="nCancel">Batal</button>
+        </div>
+      </div>
+      <div id="newsList"></div>
+    </div>
+
+    <div class="view" id="v-agenda">
+      <h2>Agenda</h2><p class="vsub">Tampil di section Agenda Terdekat website</p>
+      <button class="btn" id="btnAddAg" style="margin-bottom:14px">＋ Tambah Agenda</button>
+      <div class="formwrap card" id="agForm">
+        <div class="row">
+          <div><label>Tanggal *</label><input type="date" id="aT"></div>
+          <div><label>Waktu</label><input id="aW" placeholder="08.00–13.00 WITA"></div>
+        </div>
+        <label>Nama Acara *</label><input id="aJ">
+        <div class="row">
+          <div><label>Tempat</label><input id="aP" placeholder="Aula Sekretariat LPTQ NTB"></div>
+          <div><label>Status</label><select id="aS"><option>Terjadwal</option><option>Selesai</option></select></div>
+        </div>
+        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="aSave">💾 Simpan</button><button class="btn ghost" id="aCancel">Batal</button></div>
+      </div>
+      <div id="agList"></div>
+    </div>
+
+    <div class="view" id="v-ann">
+      <h2>Pengumuman Resmi</h2><p class="vsub">Dokumen & surat resmi sekretariat</p>
+      <button class="btn" id="btnAddAn" style="margin-bottom:14px">＋ Tambah Pengumuman</button>
+      <div class="formwrap card" id="anForm">
+        <label>Judul *</label><input id="anJ">
+        <div class="row">
+          <div><label>Nomor Dokumen</label><input id="anN" placeholder="001/LPTQ-NTB/2026"></div>
+          <div><label>Tanggal</label><input type="date" id="anT"></div>
+        </div>
+        <label>URL PDF <small>(opsional — jika sudah dihosting)</small></label><input id="anP" placeholder="https://…/file.pdf">
+        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="anSave">💾 Simpan</button><button class="btn ghost" id="anCancel">Batal</button></div>
+      </div>
+      <div id="anList"></div>
+    </div>
+
+    <div class="view" id="v-ach">
+      <h2>Prestasi Kafilah NTB</h2><p class="vsub">Hanya data terverifikasi dari dokumen hasil resmi</p>
+      <div class="note"><b>WAJIB:</b> nama peraih hanya diisi dari dokumen hasil resmi. Jangan mengarang nama/peringkat.</div>
+      <button class="btn" id="btnAddAc" style="margin-bottom:14px">＋ Tambah Prestasi</button>
+      <div class="formwrap card" id="acForm">
+        <div class="row">
+          <div><label>Tingkat</label><select id="cL"><option>Provinsi</option><option selected>Nasional</option><option>Internasional</option></select></div>
+          <div><label>Tahun</label><input type="number" id="cY"></div>
+        </div>
+        <div class="row">
+          <div><label>Cabang</label><select id="cB"><option>Tilawah</option><option>Tahfiz</option><option>Tafsir</option><option>Fahmil Qur'an</option><option>Syarhil Qur'an</option><option>Khattil Qur'an</option><option>Qiraat</option><option>Karya Tulis Ilmiah</option><option>Lainnya</option></select></div>
+          <div><label>Event</label><input id="cE" placeholder="MTQ Nasional XXX — Semarang"></div>
+        </div>
+        <label>Nama Peraih / Kafilah * <small>(sesuai dokumen resmi)</small></label><input id="cW">
+        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="acSave">💾 Simpan</button><button class="btn ghost" id="acCancel">Batal</button></div>
+      </div>
+      <div id="acList"></div>
+    </div>
+
+    <div class="view" id="v-gallery">
+      <h2>Galeri</h2><p class="vsub">4 foto pertama tampil di beranda; foto diunggah lewat menu Media Foto</p>
+      <button class="btn" id="btnAddGa" style="margin-bottom:14px">＋ Tambah Foto Galeri</button>
+      <div class="formwrap card" id="gaForm">
+        <label>Judul Foto *</label><input id="gJ" placeholder="cth: Pembinaan Tilawah Terpadu">
+        <label>Foto * <small>(pilih dari Media — upload dulu di menu Media Foto)</small></label><select id="gF"></select>
+        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="gaSave">💾 Simpan</button><button class="btn ghost" id="gaCancel">Batal</button></div>
+      </div>
+      <div id="gaList"></div>
+    </div>
+
+    <div class="view" id="v-media">
+      <h2>Media Foto</h2><p class="vsub">Upload foto sekali, pakai di berita & galeri. Tersimpan langsung ke repo GitHub.</p>
+      <div class="card">
+        <h2>Upload Foto Baru</h2>
+        <input type="file" id="mFile" accept="image/*" style="padding:9px">
+        <button class="btn gold" id="mUp" style="margin-top:12px">⬆ Upload ke Website</button>
+        <p style="font-size:11.5px;color:var(--mut);margin-top:9px">JPG/PNG/WebP, disarankan maks ±300 KB. Nama file dirapikan otomatis.</p>
+      </div>
+      <div class="card"><h2>Foto Tersedia</h2><div id="mList"></div></div>
+    </div>
+
+    <div class="view" id="v-look">
+      <h2>Tampilan Website</h2><p class="vsub">Ganti gambar latar & elemen visual halaman depan</p>
+      <div class="card">
+        <h2>Latar Hero (foto besar halaman depan)</h2>
+        <label>Foto <small>(upload dulu di menu Media Foto)</small></label>
+        <select id="lkHero"></select>
+        <button class="btn gold sm" id="lkSave" style="margin-top:14px">💾 Simpan Tampilan</button>
+      </div>
+      <div class="note">Galeri beranda mengikuti 4 foto pertama di menu <b>Galeri</b>. Foto kartu berita mengikuti foto tiap berita.</div>
+    </div>
+
+    <div class="view" id="v-set">
+      <h2>Pengaturan</h2><p class="vsub">Koneksi GitHub, kontak resmi, dan keamanan panel</p>
+      <div class="card">
+        <h2>Koneksi GitHub <small style="font-weight:400;color:var(--mut)">(untuk tombol Publikasikan)</small></h2>
+        <label>Personal Access Token <small>(fine-grained, hanya repo Mylptqntb, Contents: Read and write)</small></label>
+        <div class="gh-field"><input type="password" id="ghTok" placeholder="github_pat_…"><button class="btn sm" id="ghSave" style="flex:none">Simpan</button></div>
+        <div class="row" style="margin-top:12px">
+          <div><label>Pemilik Repo (username/organisasi)</label><input id="ghOwn" placeholder="sekretariatlptqntb-sys"></div>
+          <div><label>Nama Repo</label><input id="ghRepo" placeholder="Mylptqntb"></div>
+        </div>
+        <button class="btn sm" id="ghTest" style="margin-top:12px">🔌 Uji Koneksi & Tarik Data Terbaru</button>
+      </div>
+      <div class="card">
+        <h2>Kontak Resmi Website</h2>
+        <div class="row">
+          <div><label>Email Sekretariat</label><input id="sEmail"></div>
+          <div><label>Alamat <small>(tampil di Pengaturan website)</small></label><input id="sAddr"></div>
+        </div>
+        <div class="row" style="margin-top:4px">
+          <div><label>URL Aplikasi MY LPTQ</label><input id="sApp"></div>
+          <div><label>Instagram</label><input id="sIg"></div>
+        </div>
+        <div class="row" style="margin-top:4px">
+          <div><label>Facebook</label><input id="sFb"></div>
+          <div><label>YouTube</label><input id="sYt"></div>
+        </div>
+        <div class="row" style="margin-top:4px">
+          <div><label>TikTok</label><input id="sTt"></div>
+          <div></div>
+        </div>
+        <button class="btn gold sm" id="sSave" style="margin-top:14px">💾 Simpan Kontak</button>
+      </div>
+      <div class="card">
+        <h2>Keamanan Panel</h2>
+        <label>Kata Sandi Admin Baru</label><input type="password" id="pwNew" placeholder="minimal 6 karakter">
+        <button class="btn sm" id="pwSave" style="margin-top:12px">Ganti Kata Sandi</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s)},$$=function(s){return [].slice.call(document.querySelectorAll(s))};
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function uid(){return 'id'+Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function today(){return new Date().toISOString().slice(0,10)}
+function fmt(d){try{return new Date(d+"T00:00:00").toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"})}catch(e){return d}}
+function lsG(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsS(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function toast(m,err){var t=document.createElement('div');t.className='toast'+(err?' err':'');t.textContent=m;$('#toasts').appendChild(t);setTimeout(function(){t.style.opacity='0';t.style.transition='.4s';setTimeout(function(){t.remove()},400)},3200)}
+async function sha256(t){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return [].map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2)}).join('')}
+
+/* ═══ STATE ═══ */
+var DEF={
+  news:[{tanggal:today(),kategori:"LPTQ NTB",judul:"Portal Berita Resmi MY LPTQ NTB Aktif",penulis:"Humas LPTQ NTB",ringkasan:"Portal resmi LPTQ Provinsi Nusa Tenggara Barat kini berjalan — berita pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah diperbarui setiap hari.",foto:"",isi:"Portal berita resmi MY LPTQ NTB telah aktif.||Seluruh berita pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah NTB akan dipublikasikan melalui portal ini secara berkala.||Kiriman berita dapat disampaikan kepada Humas LPTQ Provinsi NTB melalui email resmi sekretariat."}],
+  agenda:[],ann:[],ach:[],gallery:[],
+  media:[],settings:{email:"sekretariat.lptqntb@gmail.com",address:"",appUrl:"https://play.google.com/store/apps/details?id=com.mylptq.ntb",ig:"https://www.instagram.com/lptqntb/",fb:"https://www.facebook.com/profile.php?id=61588414983297",yt:"https://www.youtube.com/channel/UCY8JX9qLg-LFE6lOzGy4X2g",tt:"https://www.tiktok.com/@mylptq.ntb",images:{hero:""}}
+};
+var S={data:JSON.parse(JSON.stringify(DEF)),gh:{token:"",owner:"sekretariatlptqntb-sys",repo:"Mylptqntb",branch:"main"},editNews:null,editAg:null,editAn:null,editAc:null,editGa:null};
+
+function load(){try{var d=lsG('lptq_admin_data');if(d)S.data=JSON.parse(d)}catch(e){}
+  try{var g=lsG('lptq_gh');if(g)S.gh=JSON.parse(g)}catch(e){}}
+function save(){lsS('lptq_admin_data',JSON.stringify(S.data));refreshAll()}
+
+/* ═══ LOGIN ═══ */
+async function pwHash(){var h=lsG('lptq_pw');if(!h){h=await sha256('lptqntb2025');lsS('lptq_pw',h)}return h}
+ $('#lForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var h=await pwHash(),v=await sha256($('#lPass').value);
+  if(v===h){$('#lErr').classList.remove('on');sessionStorage.setItem('lptq_adm','1');enter()}
+  else $('#lErr').classList.add('on');
+});
+function enter(){$('#login').style.display='none';$('#app').style.display='block';boot()}
+ $('#btnOut').addEventListener('click',function(){sessionStorage.removeItem('lptq_adm');location.reload()});
+if(sessionStorage.getItem('lptq_adm')==='1'){enter()}
+
+/* ═══ NAV ═══ */
+ $('#sideNav').addEventListener('click',function(e){
+  var b=e.target.closest('[data-v]');if(!b)return;
+  $$('#sideNav button').forEach(function(x){x.classList.toggle('on',x===b)});
+  $$('.view').forEach(function(v){v.classList.toggle('on',v.id==='v-'+b.dataset.v)});
+});
+
+/* ═══ GITHUB ═══ */
+function ghOK(){return !!(S.gh.token&&S.gh.owner&&S.gh.repo)}
+function ghStatus(){
+  var el=$('#ghStatus');
+  if(ghOK()){el.textContent='GitHub: terhubung · '+S.gh.repo;el.className='st ok'}
+  else{el.textContent='GitHub: belum terhubung — atur di Pengaturan';el.className='st no'}
+}
+function b64u(s){return btoa(unescape(encodeURIComponent(s)))}
+function d64u(b){return decodeURIComponent(escape(atob(b.replace(/\s/g,''))))}
+async function ghGet(path){
+  var r=await fetch('https://api.github.com/repos/'+S.gh.owner+'/'+S.gh.repo+'/contents/'+path+'?ref='+S.gh.branch,{headers:{Authorization:'Bearer '+S.gh.token,Accept:'application/vnd.github+json'}});
+  if(!r.ok)throw new Error('GitHub '+r.status);
+  return await r.json();
+}
+async function ghPut(path,text,msg){
+  var sha=null;try{var j=await ghGet(path);sha=j.sha}catch(e){}
+  var r=await fetch('https://api.github.com/repos/'+S.gh.owner+'/'+S.gh.repo+'/contents/'+path,{
+    method:'PUT',headers:{Authorization:'Bearer '+S.gh.token,Accept:'application/vnd.github+json','Content-Type':'application/json'},
+    body:JSON.stringify({message:msg,content:b64u(text),sha:sha,branch:S.gh.branch})});
+  if(!r.ok){var e=await r.json().catch(function(){return{}});throw new Error(e.message||('GitHub '+r.status))}
+  return await r.json();
+}
+async function pullRemote(){
+  if(!ghOK())return;
+  try{
+    var jn=await ghGet('news.js');var txt=d64u(jn.content);
+    var fn=new Function(txt+';return window.NEWS;');var nn=fn();
+    if(nn&&nn.length)S.data.news=nn;
+  }catch(e){}
+  try{
+    var js=await ghGet('site-data.js');var t2=d64u(js.content);
+    var fs=new Function(t2+';return window.SITEDATA;');var sd=fs();
+    if(sd){['agenda','ann','ach','gallery'].forEach(function(k){if(sd[k])S.data[k]=sd[k]});
+      if(sd.settings)S.data.settings=Object.assign(S.data.settings,sd.settings)}
+  }catch(e){}
+  save();toast('Data terbaru berhasil ditarik dari GitHub.');
+}
+
+/* ═══ PUBLISH ═══ */
+ $('#btnPub').addEventListener('click',async function(){
+  if(!ghOK()){toast('Hubungkan GitHub dulu di menu Pengaturan.',true);return}
+  var b=$('#btnPub');b.textContent='⏳ Mempublikasikan…';b.disabled=true;
+  try{
+    var newsJs='/* Diterbitkan otomatis oleh Admin MY LPTQ NTB — '+new Date().toISOString()+' */\nwindow.NEWS = '+JSON.stringify(S.data.news,null,2)+';\n';
+    await ghPut('news.js',newsJs,'Update berita via admin');
+    var sd={agenda:S.data.agenda,ann:S.data.ann,ach:S.data.ach,gallery:S.data.gallery,settings:S.data.settings};
+    var sdJs='/* Diterbitkan otomatis oleh Admin MY LPTQ NTB */\nwindow.SITEDATA = '+JSON.stringify(sd,null,2)+';\n';
+    await ghPut('site-data.js',sdJs,'Update data situs via admin');
+    toast('✔ Berhasil! Website akan diperbarui dalam ±1 menit.');
+  }catch(e){toast('Gagal: '+e.message,true)}
+  b.textContent='🚀 Publikasikan ke Website';b.disabled=false;
+});
+
+/* ═══ MEDIA ═══ */
+function mediaNames(){return S.data.media.map(function(m){return m.name})}
+function fillPickers(){
+  var names=mediaNames();
+  var opts='<option value="">— tanpa foto —</option>'+names.map(function(n){return '<option value="'+esc(n)+'">'+esc(n)+'</option>'}).join('');
+  ['#nF','#gF','#lkHero'].forEach(function(id){var el=$(id);if(el){var cur=el.value;el.innerHTML=opts;if(cur&&names.indexOf(cur)>=0)el.value=cur}});
+}
+ $('#mUp').addEventListener('click',function(){
+  var f=$('#mFile').files[0];
+  if(!f){toast('Pilih file foto dulu.',true);return}
+  if(!ghOK()){toast('Hubungkan GitHub dulu di Pengaturan.',true);return}
+  var b=this;b.textContent='⏳ Mengunggah…';b.disabled=true;
+  var rd=new FileReader();
+  rd.onload=async function(){
+    var b64=rd.result.split(',')[1];
+    var name=f.name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9._-]/g,'');
+    var path='assets/img/'+name;
+    try{
+      var sha=null;try{var j=await ghGet(path);sha=j.sha}catch(e){}
+      var r=await fetch('https://api.github.com/repos/'+S.gh.owner+'/'+S.gh.repo+'/contents/'+path,{
+        method:'PUT',headers:{Authorization:'Bearer '+S.gh.token,Accept:'application/vnd.github+json','Content-Type':'application/json'},
+        body:JSON.stringify({message:'Upload gambar: '+name,content:b64,sha:sha,branch:S.gh.branch})});
+      if(!r.ok){var e2=await r.json().catch(function(){return{}});throw new Error(e2.message||'Gagal upload')}
+      S.data.media=S.data.media.filter(function(m){return m.name!==name});
+      S.data.media.unshift({name:name});
+      save();$('#mFile').value='';toast('✔ Foto terupload: '+name);
+    }catch(e){toast('Gagal: '+e.message,true)}
+    b.textContent='⬆ Upload ke Website';b.disabled=false;
+  };
+  rd.readAsDataURL(f);
+});
+function renderMedia(){
+  var names=mediaNames(),el=$('#mList');
+  $('#cM').textContent=names.length;
+  if(!names.length){el.innerHTML='<div class="empty">Belum ada foto. Upload di atas — foto akan tersedia untuk berita, galeri, dan tampilan hero.</div>';return}
+  el.innerHTML='<div class="media-grid">'+names.map(function(n){
+    return '<figure><img src="'+esc(n)+'" alt="" loading="lazy" onerror="this.remove()"><figcaption>'+esc(n)+'</figcaption><button class="cp" data-cp="'+esc(n)+'">Salin nama</button></figure>';
+  }).join('')+'</div>';
+  el.querySelectorAll('[data-cp]').forEach(function(b){b.addEventListener('click',function(){
+    var v=b.dataset.cp;
+    if(navigator.clipboard)navigator.clipboard.writeText(v).then(function(){toast('Nama disalin: '+v)});
+  })});
+}
+
+/* ═══ BERITA ═══ */
+function renderNews(){
+  $('#cN').textContent=S.data.news.length;
+  var L=S.data.news.slice().sort(function(a,b){return (b.tanggal||'').localeCompare(a.tanggal||'')});
+  $('#newsList').innerHTML=L.length?'<table class="tbl"><thead><tr><th>Berita</th><th></th></tr></thead><tbody>'+
+    L.map(function(n){return '<tr><td><div class="tt">'+esc(n.judul)+'</div><div class="ts">'+esc(n.kategori)+' · '+fmt(n.tanggal)+' · '+esc(n.penulis||'Humas LPTQ NTB')+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-en="'+esc(n.judul)+'">✏️</button><button class="icb del" data-dn="'+esc(n.judul)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+    :'<div class="empty">Belum ada berita. Klik "Tulis Berita Baru".</div>';
+  bindNews();
+}
+function bindNews(){
+  $$('#newsList [data-en]').forEach(function(b){b.addEventListener('click',function(){
+    var n=S.data.news.find(function(x){return x.judul===b.dataset.en});if(!n)return;
+    S.editNews=n.judul;$('#nfTitle').textContent='Sunting Berita';
+    $('#nT').value=n.tanggal;$('#nC').value=n.kategori;$('#nJ').value=n.judul;
+    $('#nP').value=n.penulis||'';$('#nF').value=n.foto||'';$('#nR').value=n.ringkasan||'';
+    $('#nI').value=String(n.isi||'').split('||').join('\n\n');
+    $('#newsForm').classList.add('on');$('#newsForm').scrollIntoView({behavior:'smooth'});
+  })});
+  $$('#newsList [data-dn]').forEach(function(b){b.addEventListener('click',function(){
+    if(!confirm('Hapus berita ini?'))return;
+    S.data.news=S.data.news.filter(function(x){return x.judul!==b.dataset.dn});save();renderNews();toast('Berita dihapus.');
+  })});
+}
+ $('#btnAddNews').addEventListener('click',function(){
+  S.editNews=null;$('#nfTitle').textContent='Tulis Berita Baru';
+  $('#nT').value=today();$('#nJ').value='';$('#nR').value='';$('#nI').value='';$('#nF').value='';
+  $('#newsForm').classList.add('on');$('#newsForm').scrollIntoView({behavior:'smooth'});
+});
+ $('#nCancel').addEventListener('click',function(){$('#newsForm').classList.remove('on')});
+ $('#nSave').addEventListener('click',function(){
+  var g=function(id){return $(id).value.trim()};
+  if(!g('#nT')||!g('#nJ')||!g('#nR')||!g('#nI')){toast('Lengkapi: Tanggal, Judul, Ringkasan, Isi.',true);return}
+  var isi=g('#nI').split(/\n\s*\n/).map(function(p){return p.replace(/\s+/g,' ')}).filter(Boolean).join('||');
+  var obj={tanggal:g('#nT'),kategori:$('#nC').value,judul:g('#nJ'),penulis:g('#nP')||'Humas LPTQ NTB',ringkasan:g('#nR'),foto:g('#nF'),isi:isi};
+  if(S.editNews){S.data.news=S.data.news.filter(function(x){return x.judul!==S.editNews})}
+  S.data.news.unshift(obj);save();renderNews();fillPickers();
+  $('#newsForm').classList.remove('on');toast('Berita tersimpan. Klik 🚀 Publikasikan di bar atas.');
+});
+
+/* ═══ AGENDA ═══ */
+function renderAg(){
+  $('#cA').textContent=S.data.agenda.length;
+  var L=S.data.agenda.slice().sort(function(a,b){return a.tanggal<b.tanggal?-1:1});
+  $('#agList').innerHTML=L.length?'<table class="tbl"><thead><tr><th>Agenda</th><th></th></tr></thead><tbody>'+
+    L.map(function(a){return '<tr><td><div class="tt">'+esc(a.judul)+'</div><div class="ts">'+fmt(a.tanggal)+' · '+esc(a.waktu||'—')+' · '+esc(a.tempat||'—')+' · '+esc(a.status)+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-ea="'+esc(a.id)+'">✏️</button><button class="icb del" data-da="'+esc(a.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+    :'<div class="empty">Belum ada agenda.</div>';
+  $$('#agList [data-ea]').forEach(function(b){b.addEventListener('click',function(){
+    var a=S.data.agenda.find(function(x){return x.id===b.dataset.ea});if(!a)return;
+    S.editAg=a.id;$('#aT').value=a.tanggal;$('#aW').value=a.waktu||'';$('#aJ').value=a.judul;$('#aP').value=a.tempat||'';$('#aS').value=a.status||'Terjadwal';
+    $('#agForm').classList.add('on');$('#agForm').scrollIntoView({behavior:'smooth'});
+  })});
+  $$('#agList [data-da]').forEach(function(b){b.addEventListener('click',function(){
+    if(!confirm('Hapus agenda ini?'))return;
+    S.data.agenda=S.data.agenda.filter(function(x){return x.id!==b.dataset.da});save();renderAg();toast('Agenda dihapus.');
+  })});
+}
+ $('#btnAddAg').addEventListener('click',function(){S.editAg=null;$('#aT').value=today();$('#aJ').value='';$('#aW').value='';$('#aP').value='';$('#agForm').classList.add('on')});
+ $('#aCancel').addEventListener('click',function(){$('#agForm').classList.remove('on')});
+ $('#aSave').addEventListener('click',function(){
+  var g=function(id){return $(id).value.trim()};
+  if(!g('#aT')||!g('#aJ')){toast('Lengkapi Tanggal & Nama Acara.',true);return}
+  var obj={id:S.editAg||uid(),tanggal:g('#aT'),waktu:g('#aW')||'—',judul:g('#aJ'),tempat:g('#aP')||'—',status:$('#aS').value};
+  if(S.editAg)S.data.agenda=S.data.agenda.filter(function(x){return x.id!==S.editAg});
+  S.data.agenda.push(obj);save();renderAg();$('#agForm').classList.remove('on');toast('Agenda tersimpan.');
+});
+
+/* ═══ PENGUMUMAN ═══ */
+function renderAn(){
+  $('#cAn').textContent=S.data.ann.length;
+  $('#anList').innerHTML=S.data.ann.length?'<table class="tbl"><thead><tr><th>Pengumuman</th><th></th></tr></thead><tbody>'+
+    S.data.ann.map(function(a){return '<tr><td><div class="tt">'+esc(a.judul)+'</div><div class="ts">'+esc(a.no||'—')+' · '+fmt(a.tanggal)+(a.pdf?' · PDF':'')+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-ean="'+esc(a.id)+'">✏️</button><button class="icb del" data-dan="'+esc(a.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+    :'<div class="empty">Belum ada pengumuman.</div>';
+  $$('#anList [data-ean]').forEach(function(b){b.addEventListener('click',function(){
+    var a=S.data.ann.find(function(x){return x.id===b.dataset.ean});if(!a)return;
+    S.editAn=a.id;$('#anJ').value=a.judul;$('#anN').value=a.no||'';$('#anT').value=a.tanggal;$('#anP').value=a.pdf||'';
+    $('#anForm').classList.add('on');$('#anForm').scrollIntoView({behavior:'smooth'});
+  })});
+  $$('#anList [data-dan]').forEach(function(b){b.addEventListener('click',function(){
+    if(!confirm('Hapus pengumuman ini?'))return;
+    S.data.ann=S.data.ann.filter(function(x){return x.id!==b.dataset.dan});save();renderAn();toast('Dihapus.');
+  })});
+}
+ $('#btnAddAn').addEventListener('click',function(){S.editAn=null;$('#anJ').value='';$('#anN').value='';$('#anT').value=today();$('#anP').value='';$('#anForm').classList.add('on')});
+ $('#anCancel').addEventListener('click',function(){$('#anForm').classList.remove('on')});
+ $('#anSave').addEventListener('click',function(){
+  var g=function(id){return $(id).value.trim()};
+  if(!g('#anJ')){toast('Judul wajib diisi.',true);return}
+  var obj={id:S.editAn||uid(),judul:g('#anJ'),no:g('#anN')||'—',tanggal:g('#anT')||today(),pdf:g('#anP')||null};
+  if(S.editAn)S.data.ann=S.data.ann.filter(function(x){return x.id!==S.editAn});
+  S.data.ann.unshift(obj);save();renderAn();$('#anForm').classList.remove('on');toast('Pengumuman tersimpan.');
+});
+
+/* ═══ PRESTASI ═══ */
+function renderAc(){
+  $('#cAc').textContent=S.data.ach.length;
+  $('#acList').innerHTML=S.data.ach.length?'<table class="tbl"><thead><tr><th>Prestasi</th><th></th></tr></thead><tbody>'+
+    S.data.ach.map(function(a){return '<tr><td><div class="tt">'+esc(a.cabang)+' — '+esc(a.event||'')+' ('+esc(a.tahun)+')</div><div class="ts">'+esc(a.tingkat)+' · '+esc(a.peraih)+'</div></td><td style="white-space:nowrap;text-align:right"><button class="icb" data-eac="'+esc(a.id)+'">✏️</button><button class="icb del" data-dac="'+esc(a.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+    :'<div class="empty">Belum ada data prestasi.</div>';
+  $$('#acList [data-eac]').forEach(function(b){b.addEventListener('click',function(){
+    var a=S.data.ach.find(function(x){return x.id===b.dataset.eac});if(!a)return;
+    S.editAc=a.id;$('#cL').value=a.tingkat;$('#cY').value=a.tahun;$('#cB').value=a.cabang;$('#cE').value=a.event||'';$('#cW').value=a.peraih;
+    $('#acForm').classList.add('on');$('#acForm').scrollIntoView({behavior:'smooth'});
+  })});
+  $$('#acList [data-dac]').forEach(function(b){b.addEventListener('click',function(){
+    if(!confirm('Hapus prestasi ini?'))return;
+    S.data.ach=S.data.ach.filter(function(x){return x.id!==b.dataset.dac});save();renderAc();toast('Dihapus.');
+  })});
+}
+ $('#btnAddAc').addEventListener('click',function(){S.editAc=null;$('#cY').value=new Date().getFullYear();$('#cE').value='';$('#cW').value='';$('#acForm').classList.add('on')});
+ $('#acCancel').addEventListener('click',function(){$('#acForm').classList.remove('on')});
+ $('#acSave').addEventListener('click',function(){
+  var g=function(id){return $(id).value.trim()};
+  if(!g('#cW')){toast('Nama peraih wajib diisi (dari dokumen resmi).',true);return}
+  var obj={id:S.editAc||uid(),tingkat:$('#cL').value,tahun:+$('#cY').value||new Date().getFullYear(),cabang:$('#cB').value,event:g('#cE')||$('#cB').value,peraih:g('#cW')};
+  if(S.editAc)S.data.ach=S.data.ach.filter(function(x){return x.id!==S.editAc});
+  S.data.ach.push(obj);save();renderAc();$('#acForm').classList.remove('on');toast('Prestasi tersimpan.');
+});
+
+/* ═══ GALERI ═══ */
+function renderGa(){
+  $('#cG').textContent=S.data.gallery.length;
+  $('#gaList').innerHTML=S.data.gallery.length?'<table class="tbl"><thead><tr><th>Foto</th><th></th></tr></thead><tbody>'+
+    S.data.gallery.map(function(f){return '<tr><td><div style="display:flex;gap:12px;align-items:center"><img src="'+esc(f.foto)+'" style="width:64px;height:44px;object-fit:cover;border-radius:8px" onerror="this.style.display=\'none\'"><div><div class="tt">'+esc(f.judul)+'</div><div class="ts">'+esc(f.foto)+'</div></div></div></td><td style="text-align:right"><button class="icb del" data-dga="'+esc(f.id)+'">🗑</button></td></tr>'}).join('')+'</tbody></table>'
+    :'<div class="empty">Belum ada foto galeri.</div>';
+  $$('#gaList [data-dga]').forEach(function(b){b.addEventListener('click',function(){
+    if(!confirm('Hapus foto galeri ini?'))return;
+    S.data.gallery=S.data.gallery.filter(function(x){return x.id!==b.dataset.dga});save();renderGa();toast('Dihapus.');
+  })});
+}
+ $('#btnAddGa').addEventListener('click',function(){if(!mediaNames().length){toast('Upload foto dulu di menu Media Foto.',true);return}$('#gJ').value='';$('#gaForm').classList.add('on')});
+ $('#gaCancel').addEventListener('click',function(){$('#gaForm').classList.remove('on')});
+ $('#gaSave').addEventListener('click',function(){
+  if(!$('#gJ').value.trim()||!$('#gF').value){toast('Lengkapi judul & foto.',true);return}
+  S.data.gallery.unshift({id:uid(),judul:$('#gJ').value.trim(),foto:$('#gF').value});
+  save();renderGa();$('#gaForm').classList.remove('on');toast('Foto galeri tersimpan.');
+});
+
+/* ═══ TAMPILAN ═══ */
+ $('#lkSave').addEventListener('click',function(){
+  S.data.settings.images=S.data.settings.images||{};
+  S.data.settings.images.hero=$('#lkHero').value;
+  save();toast('Tampilan hero tersimpan. Klik 🚀 Publikasikan.');
+});
+
+/* ═══ SETTINGS ═══ */
+function renderSet(){
+  $('#ghTok').value=S.gh.token;$('#ghOwn').value=S.gh.owner;$('#ghRepo').value=S.gh.repo;
+  var s=S.data.settings;
+  $('#sEmail').value=s.email||'';$('#sAddr').value=s.address||'';$('#sApp').value=s.appUrl||'';
+  $('#sIg').value=s.ig||'';$('#sFb').value=s.fb||'';$('#sYt').value=s.yt||'';$('#sTt').value=s.tt||'';
+}
+ $('#ghSave').addEventListener('click',function(){
+  S.gh.token=$('#ghTok').value.trim();S.gh.owner=$('#ghOwn').value.trim()||S.gh.owner;S.gh.repo=$('#ghRepo').value.trim()||S.gh.repo;
+  lsS('lptq_gh',JSON.stringify(S.gh));ghStatus();toast('Koneksi GitHub disimpan.');
+});
+ $('#ghTest').addEventListener('click',function(){
+  S.gh.token=$('#ghTok').value.trim();S.gh.owner=$('#ghOwn').value.trim();S.gh.repo=$('#ghRepo').value.trim();
+  if(!ghOK()){toast('Lengkapi token, pemilik, dan nama repo.',true);return}
+  lsS('lptq_gh',JSON.stringify(S.gh));ghStatus();
+  var b=$('#ghTest');b.textContent='⏳ Mengambil…';b.disabled=true;
+  pullRemote().then(function(){b.textContent='🔌 Uji Koneksi & Tarik Data Terbaru';b.disabled=false;renderAll();ghStatus()})
+    .catch(function(e){b.textContent='🔌 Uji Koneksi & Tarik Data Terbaru';b.disabled=false;toast('Gagal: '+e.message,true)});
+});
+ $('#sSave').addEventListener('click',function(){
+  S.data.settings.email=$('#sEmail').value.trim();S.data.settings.address=$('#sAddr').value.trim();
+  S.data.settings.appUrl=$('#sApp').value.trim();S.data.settings.ig=$('#sIg').value.trim();
+  S.data.settings.fb=$('#sFb').value.trim();S.data.settings.yt=$('#sYt').value.trim();S.data.settings.tt=$('#sTt').value.trim();
+  save();toast('Kontak resmi tersimpan. Klik 🚀 Publikasikan.');
+});
+ $('#pwSave').addEventListener('click',async function(){
+  var v=$('#pwNew').value;
+  if(v.length<6){toast('Kata sandi minimal 6 karakter.',true);return}
+  lsS('lptq_pw',await sha256(v));$('#pwNew').value='';toast('Kata sandi admin diperbarui.');
+});
+
+/* ═══ BOOT ═══ */
+function refreshAll(){renderNews();renderAg();renderAn();renderAc();renderGa();renderMedia();fillPickers();
+  $('#lkHero').value=(S.data.settings.images||{}).hero||'';
+  $('#cN').textContent=S.data.news.length;$('#cA').textContent=S.data.agenda.length;
+  $('#cAn').textContent=S.data.ann.length;$('#cAc').textContent=S.data.ach.length;$('#cG').textContent=S.data.gallery.length;}
+function renderAll(){refreshAll();renderSet()}
+function boot(){load();renderAll();ghStatus();
+  if(ghOK()){toast('Terhubung GitHub. Klik "Uji Koneksi" di Pengaturan untuk menarik data terbaru.')}
+}
+})();
+</script>
+</body>
+</html>
