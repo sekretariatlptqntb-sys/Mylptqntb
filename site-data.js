@@ -14,6 +14,11 @@ window.SITEDATA = {
   ],
   "gallery": [
     {
+      "id": "idmudux5liq9hft",
+      "judul": "juara 1 MTQ Nasional 2026 Cabang Qiroat mujawad dewasa putri",
+      "foto": "khairunisa.png"
+    },
+    {
       "id": "idmudsww4i7zsg1",
       "judul": "mtq 2026",
       "foto": "mtq-semarang.png"
