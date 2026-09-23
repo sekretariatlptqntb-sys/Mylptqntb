@@ -24,13 +24,30 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
 .btn.sm{padding:8px 13px;font-size:12px}
 .badge{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--soft);color:var(--acc-d)}
 /* login */
-#login{min-height:100vh;display:grid;place-items:center;background:radial-gradient(900px 500px at 70% -10%,#155540,transparent),var(--d);padding:20px}
-.lcard{background:#fff;border-radius:20px;padding:36px 32px;width:min(390px,100%);border-top:4px solid var(--g);box-shadow:0 30px 70px rgba(0,0,0,.35)}
-.lcard h1{font-family:Sora,sans-serif;font-size:18px;text-align:center;color:var(--d)}
-.lcard .sub{text-align:center;font-size:12.5px;color:var(--mut);margin:6px 0 20px}
+#login{min-height:100vh;display:grid;place-items:center;position:relative;padding:24px;overflow:hidden;background:var(--d2)}
+.lbg{position:absolute;inset:0;z-index:0}
+.lbg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.lbg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(205deg,rgba(15,61,46,.68) 0%,rgba(11,46,35,.86) 55%,rgba(7,33,25,.94) 100%)}
+.lcard{position:relative;z-index:1;background:rgba(255,255,255,.985);border-radius:22px;padding:32px 32px 26px;width:min(400px,100%);
+  border-top:4px solid var(--g);box-shadow:0 40px 90px rgba(0,0,0,.5);animation:lup .55s cubic-bezier(.16,1,.3,1) both}
+@keyframes lup{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+.llogos{display:flex;justify-content:center;align-items:center;gap:20px;margin-bottom:16px}
+.llogos img{height:56px;width:auto;object-fit:contain;filter:drop-shadow(0 3px 8px rgba(16,25,19,.18))}
+.llogos .lsep{width:1px;height:36px;background:var(--line)}
+.lcard h1{font-family:Sora,sans-serif;font-size:19px;text-align:center;color:var(--d);letter-spacing:-.01em;margin-bottom:4px}
+.lsub{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:20px}
+.lsub::before,.lsub::after{content:"";height:1px;width:44px;background:var(--line)}
+.lsub span{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--g);font-weight:600}
 .err{display:none;background:#FBF0ED;color:var(--red);font-size:12px;border-radius:10px;padding:10px 14px;margin-bottom:12px}
 .err.on{display:block}
-.hint{margin-top:15px;font-size:11px;color:var(--mut);text-align:center;background:#F7F9F8;border-radius:10px;padding:10px;line-height:1.7}
+.pwrap{position:relative}
+.pwrap input{padding-right:48px}
+.pwrap input:focus{border-color:var(--acc);outline:none;box-shadow:0 0 0 3px rgba(22,121,75,.13)}
+.peye{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:36px;height:36px;display:grid;place-items:center;color:#7A8A80;border-radius:9px}
+.peye:hover{background:var(--soft);color:var(--d)}
+.peye svg{width:19px;height:19px}
+.lfoot{margin-top:18px;text-align:center;font-size:10.5px;color:var(--mut);letter-spacing:.02em}
 /* app shell */
 #app{display:none;min-height:100vh}
 .shell{display:flex;min-height:100vh}
@@ -88,16 +105,27 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
 
 <!-- ═══ LOGIN ═══ -->
 <div id="login">
+  <div class="lbg" aria-hidden="true"><img src="masjid-ic-ntb.jpg" alt=""></div>
   <div class="lcard">
+    <div class="llogos">
+      <img src="lptqlogo.png" alt="Logo LPTQ">
+      <span class="lsep" aria-hidden="true"></span>
+      <img src="logo-ntb.png" alt="Logo Provinsi NTB">
+    </div>
     <h1>Admin MY LPTQ NTB</h1>
-    <p class="sub">Panel pengelolaan konten portal resmi</p>
+    <div class="lsub"><span>Area Terbatas</span></div>
     <div class="err" id="lErr">Kata sandi salah.</div>
     <form id="lForm">
-      <label>Kata Sandi Admin</label>
-      <input type="password" id="lPass" autocomplete="current-password" required style="margin-bottom:16px">
+      <label for="lPass">Kata Sandi Admin</label>
+      <div class="pwrap">
+        <input type="password" id="lPass" autocomplete="current-password" placeholder="Masukkan kata sandi" required style="margin-bottom:16px">
+        <button type="button" class="peye" id="lEye" aria-label="Tampilkan kata sandi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.04 12c1.39-4.28 5.32-7.3 9.96-7.3s8.57 3.02 9.96 7.3c-1.39 4.28-5.32 7.3-9.96 7.3S3.43 16.28 2.04 12z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
       <button class="btn" style="width:100%;justify-content:center" type="submit">Masuk ke Dashboard</button>
     </form>
-    <div class="hint">Halaman ini terpisah dari website publik.<br>Aktivitas publikasi memerlukan koneksi GitHub (diatur setelah masuk).</div>
+    <p class="lfoot">© 2026 LPTQ Provinsi Nusa Tenggara Barat</p>
   </div>
 </div>
 
@@ -335,6 +363,20 @@ async function pwHash(){var h=lsG('lptq_pw');if(!h){h=await sha256('lptqntb2025'
 function enter(){$('#login').style.display='none';$('#app').style.display='block';boot()}
  $('#btnOut').addEventListener('click',function(){sessionStorage.removeItem('lptq_adm');location.reload()});
 if(sessionStorage.getItem('lptq_adm')==='1'){enter()}
+
+/* Toggle tampil/sembunyi kata sandi */
+(function(){
+  var p=$('#lPass'),b=$('#lEye');if(!p||!b)return;
+  var eye='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.04 12c1.39-4.28 5.32-7.3 9.96-7.3s8.57 3.02 9.96 7.3c-1.39 4.28-5.32 7.3-9.96 7.3S3.43 16.28 2.04 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  var eyeOff='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.58 5.15A11 11 0 0 1 12 5.05c4.64 0 8.57 3.02 9.96 7.3a10.5 10.5 0 0 1-3.13 4.5M6.32 6.8A10.4 10.4 0 0 0 2.04 12.05c1.39 4.28 5.32 7.3 9.96 7.3 1.31 0 2.57-.24 3.73-.68"/><path d="M9.9 9.93a3 3 0 0 0 4.2 4.2"/></svg>';
+  b.addEventListener('click',function(){
+    var show=p.type==='password';
+    p.type=show?'text':'password';
+    b.innerHTML=show?eyeOff:eye;
+    b.setAttribute('aria-label',show?'Sembunyikan kata sandi':'Tampilkan kata sandi');
+    p.focus();
+  });
+})();
 
 /* ═══ NAV ═══ */
  $('#sideNav').addEventListener('click',function(e){
