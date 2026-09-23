@@ -762,19 +762,26 @@ function renderAc(){
 /* ═══ GALERI ═══ */
 function renderGa(){
   $('#cG').textContent=S.data.gallery.length;
-  $('#gaList').innerHTML=S.data.gallery.length?'<div class="nal">'+S.data.gallery.map(function(f){return '<div class="nal-item"><span class="nal-th"><img src="'+esc(fixPath(f.foto))+'" loading="lazy"></span><div class="nal-body"><div class="nal-title">'+esc(f.judul)+'</div><div class="nal-meta">'+esc(f.foto)+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb del" data-dga="'+esc(f.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
+  $('#gaList').innerHTML=S.data.gallery.length?'<div class="nal">'+S.data.gallery.map(function(f){return '<div class="nal-item"><span class="nal-th">'+(f.video?'🎬':(f.foto?'<img src="'+esc(fixPath(f.foto))+'" loading="lazy">':'🖼'))+'</span><div class="nal-body"><div class="nal-title">'+esc(f.judul)+(f.video?' <span class="badge" style="background:#F7EFE0;color:#8A6D1F">video</span>':'')+'</div><div class="nal-meta">'+esc(f.video||f.foto||'—')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ega="'+esc(f.id)+'" title="Sunting">✏️</button><button class="icb del" data-dga="'+esc(f.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada foto galeri.</div>';
+  $$('#gaList [data-ega]').forEach(function(b){b.addEventListener('click',function(){
+    var f=S.data.gallery.find(function(x){return x.id===b.dataset.ega});if(!f)return;
+    S.editGa=f.id;$('#gJ').value=f.judul;$('#gF').value=fixPath(f.foto||'');if($('#gV'))$('#gV').value=f.video||'';
+    $('#gaForm').classList.add('on');$('#gaForm').scrollIntoView({behavior:'smooth'});
+  })});
   $$('#gaList [data-dga]').forEach(function(b){b.addEventListener('click',function(){
-    if(!confirm('Hapus foto galeri ini?'))return;
+    if(!confirm('Hapus foto/video galeri ini?'))return;
     S.data.gallery=S.data.gallery.filter(function(x){return x.id!==b.dataset.dga});save();renderGa();toast('Dihapus.');
   })});
 }
- $('#btnAddGa').addEventListener('click',function(){$('#gJ').value='';$('#gV')&&($('#gV').value='');$('#gaForm').classList.add('on')});
- $('#gaCancel').addEventListener('click',function(){$('#gaForm').classList.remove('on')});
+ $('#btnAddGa').addEventListener('click',function(){S.editGa=null;$('#gJ').value='';$('#gV')&&($('#gV').value='');$('#gaForm').classList.add('on')});
+ $('#gaCancel').addEventListener('click',function(){S.editGa=null;$('#gaForm').classList.remove('on')});
  $('#gaSave').addEventListener('click',function(){
   if(!$('#gJ').value.trim()||(!$('#gF').value&&!($('#gV')&&$('#gV').value.trim()))){toast('Lengkapi judul, lalu foto atau link video.',true);return}
-  S.data.gallery.unshift({id:uid(),judul:$('#gJ').value.trim(),foto:$('#gF').value,video:$('#gV')?$('#gV').value.trim():''});
-  save();renderGa();$('#gaForm').classList.remove('on');toast('Galeri tersimpan.');
+  var obj={id:S.editGa||uid(),judul:$('#gJ').value.trim(),foto:$('#gF').value,video:$('#gV')?$('#gV').value.trim():''};
+  if(S.editGa){S.data.gallery=S.data.gallery.map(function(f){return f.id===S.editGa?obj:f})}
+  else{S.data.gallery.unshift(obj)}
+  S.editGa=null;save();renderGa();$('#gaForm').classList.remove('on');toast('Galeri tersimpan.');
 });
 
 /* ═══ TAMPILAN ═══ */
