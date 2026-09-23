@@ -14,6 +14,12 @@ window.SITEDATA = {
   ],
   "gallery": [
     {
+      "id": "idmuehlef8a0d0s",
+      "judul": "peresmian aplikasi my lptq ntb 2026",
+      "foto": "",
+      "video": "https://youtube.com/live/GhwLfj7SagI?feature=share"
+    },
+    {
       "id": "idmue3f49ild0b1",
       "judul": "pekantikan pengurus  lptq ntb",
       "foto": "assets/img/1771065405_img-20260214-wa0165.jpg"
@@ -34,6 +40,9 @@ window.SITEDATA = {
       "foto": "mtq-semarang.png"
     }
   ],
+  "msq": {},
+  "prog": [],
+  "kabkota": [],
   "settings": {
     "email": "sekretariat.lptqntb@gmail.com",
     "address": "",
