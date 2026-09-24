@@ -5,6 +5,13 @@ window.SITEDATA = {
   "ach": [],
   "gallery": [
     {
+      "id": "idmufe8c1md1jh4",
+      "judul": "launching aplikasi my lptq ntb",
+      "foto": "assets/img/1778979784632745_367effd2cb_berita_mataram.webp",
+      "video": "https://youtube.com/live/GhwLfj7SagI?feature=share",
+      "tag": "Kegiatan"
+    },
+    {
       "id": "idmue3ee3vyapx1",
       "judul": "aplikasi my lptq ntb",
       "foto": "assets/img/sddefault.jpg"
