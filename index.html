@@ -219,6 +219,64 @@ h1 em{font-style:normal;color:var(--gold)}
 .link-more .ic{width:13px;height:13px;transition:transform .2s}
 .link-more:hover .ic{transform:translateX(3px)}
 
+/* BANNER APLIKASI (section Aplikasi Resmi) */
+#aplikasi .apps{display:block}
+.ap-card{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:clamp(22px,4vw,56px);
+  background:linear-gradient(135deg,#14503C 0%,#0F3D2E 48%,#0B2E23 100%);
+  border:1px solid rgba(198,161,91,.4);border-radius:clamp(20px,2.6vw,28px);
+  padding:clamp(24px,3.4vw,44px) clamp(22px,3.6vw,46px);color:#fff;position:relative;overflow:hidden;
+  box-shadow:0 24px 60px rgba(11,46,35,.3);transition:transform .35s var(--ease),box-shadow .35s}
+.ap-card:hover{transform:translateY(-4px);box-shadow:0 32px 70px rgba(11,46,35,.4)}
+.ap-card::before{content:"";position:absolute;inset:0;opacity:.05;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23C6A15B' stroke-width='1.2'%3E%3Crect x='18' y='18' width='36' height='36'/%3E%3Crect x='18' y='18' width='36' height='36' transform='rotate(45 36 36)'/%3E%3C/g%3E%3C/svg%3E")}
+.ap-main{display:flex;gap:clamp(18px,2.6vw,34px);align-items:center;position:relative;z-index:1;min-width:0;flex-wrap:wrap}
+.ap-icon{width:clamp(80px,8vw,108px);aspect-ratio:1;border-radius:26%;overflow:hidden;flex:none;
+  background:#fff;box-shadow:0 14px 34px rgba(0,0,0,.35),0 0 0 5px rgba(198,161,91,.28);
+  display:grid;place-items:center;transform:rotate(-3deg);transition:transform .35s var(--ease)}
+.ap-card:hover .ap-icon{transform:rotate(0) scale(1.05)}
+.ap-icon img{width:88%;height:88%;object-fit:contain}
+.ap-info{min-width:min(320px,100%)}
+.ap-kicker{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:10px;
+  font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.ap-kicker::before{content:"";width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+.ap-info h3{font-family:var(--fd);font-size:clamp(18px,2.1vw,25px);font-weight:700;letter-spacing:-.02em}
+.ap-sub{color:rgba(255,255,255,.74);font-size:var(--fs-small);margin-top:6px;max-width:54ch}
+.ap-rate{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12.5px;color:rgba(255,255,255,.75)}
+.ap-stars{color:var(--gold);letter-spacing:2px;font-size:13px}
+.ap-rate b{color:#fff}
+.ap-rate i{font-style:normal;opacity:.5}
+.ap-feats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ap-feats span{font-size:11.5px;font-weight:600;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:5px 12px;color:rgba(255,255,255,.85)}
+.ap-btns{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+.gp-badge{display:inline-flex;align-items:center;gap:11px;background:#0D0F0E;border:1px solid rgba(255,255,255,.18);
+  border-radius:14px;padding:9px 20px 9px 16px;transition:transform .2s,box-shadow .2s,border-color .2s}
+.gp-badge:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.4);border-color:var(--gold)}
+.gp-ic{width:26px;height:26px;flex:none}
+.gp-txt{display:grid;line-height:1.25}
+.gp-txt small{font-size:10px;color:rgba(255,255,255,.65);letter-spacing:.02em}
+.gp-txt b{font-family:var(--fd);font-size:15.5px;color:#fff}
+.ap-note{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ap-phone{width:clamp(150px,15vw,196px);aspect-ratio:9/18.6;border-radius:30px;background:linear-gradient(160deg,#1A5A42,#0B2E23);
+  border:5px solid #0D1811;box-shadow:0 22px 50px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.12);
+  position:relative;display:grid;place-items:center;flex:none;
+  transform:rotate(4deg);transition:transform .4s var(--ease)}
+.ap-card:hover .ap-phone{transform:rotate(0) translateY(-6px)}
+.ap-notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:52px;height:16px;
+  background:#0D1811;border-radius:99px;z-index:2}
+.ap-screen{display:grid;justify-items:center;gap:0;padding-top:44px;width:100%}
+.ap-screen img{width:52px;height:52px;border-radius:24%;object-fit:contain;background:#fff;padding:5px;
+  box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.ap-app{font-family:var(--fd);font-weight:700;font-size:10.5px;color:#fff;margin-top:12px;letter-spacing:.02em}
+.ap-bar{display:block;height:7px;border-radius:99px;background:rgba(255,255,255,.16);margin-top:9px}
+.ap-bar.b1{width:64%}.ap-bar.b2{width:80%}.ap-bar.b3{width:48%}
+.ap-open{margin-top:16px;font-size:10px;font-weight:700;color:#2E240E;background:var(--gold);
+  border-radius:99px;padding:7px 16px}
+@media(max-width:960px){.ap-card{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .ap-main{flex-direction:column;text-align:center;justify-items:center}
+  .ap-info{min-width:0}.ap-rate,.ap-btns{justify-content:center}.ap-phone{margin-top:8px}}
+@media(max-width:520px){.ap-sub{margin-inline:auto}}
+
 /* BERITA */
 .bgrid{display:grid;grid-template-columns:1.55fr 1fr;gap:16px}
 .bfeat{position:relative;border-radius:var(--r);overflow:hidden;
@@ -713,7 +771,7 @@ html:not(.js) .topfab{display:none}
         dan diperbarui setiap hari.</p>
       <div class="hero-cta" data-io style="--d:.18s">
         <a class="btn big gold" href="#berita">Baca Berita Terkini <svg class="ic"><use href="#i-arr"/></svg></a>
-        <a class="btn big ghost-w" id="appCta" href="https://play.google.com/store/apps/details?id=com.mylptq.ntb" target="_blank" rel="noopener"><svg class="ic"><use href="#i-dl"/></svg> Aplikasi MY LPTQ NTB</a>
+        <a class="btn big ghost-w ap-cta2" href="https://play.google.com/store/apps/details?id=com.mylptq.ntb" target="_blank" rel="noopener"><svg class="ic"><use href="#i-dl"/></svg> Aplikasi MY LPTQ NTB</a>
       </div>
       <div class="vstrip" data-io style="--d:.24s">
         <p class="vstrip-lab"><i></i>Berita terkini — baca langsung</p>
@@ -902,23 +960,34 @@ html:not(.js) .topfab{display:none}
     <div class="wrap">
       <div class="shrow" data-io><p class="s-kicker">Aplikasi Resmi</p></div>
       <div class="apps">
-        <div class="app" data-io>
-          <span class="app-ic"><svg class="ic"><use href="#i-sp"/></svg></span>
-          <div class="app-info">
-            <h3>MY LPTQ NTB</h3>
-            <p>Aplikasi Android resmi Al-Qur'an digital untuk mendukung pembinaan dan kegiatan LPTQ Provinsi Nusa Tenggara Barat.</p>
-            <div class="app-meta"><span class="plat grn">Android</span><span class="plat">Terbit di Google Play</span></div>
-            <a class="btn sm" id="appBtn" href="https://play.google.com/store/apps/details?id=com.mylptq.ntb" target="_blank" rel="noopener">
-              <svg class="ic"><use href="#i-dl"/></svg> Lihat di Google Play
-            </a>
+      <div class="ap-card" data-io>
+        <div class="ap-main">
+          <div class="ap-icon"><img src="logo-mylptq.png" alt="Aplikasi MY LPTQ NTB" onerror="this.onerror=null;this.src='lptqlogo.png'"></div>
+          <div class="ap-info">
+            <p class="ap-kicker">Aplikasi Resmi LPTQ NTB</p>
+            <h3>MY LPTQ NTB — Al-Qur’an Digital</h3>
+            <p class="ap-sub">Tilawah, murottal, dan pembelajaran Al-Qur’an dalam satu genggaman. Gratis untuk seluruh umat.</p>
+            <div class="ap-rate"><span class="ap-stars">★★★★★</span><b>4.9</b><i>·</i><span>RB+ unduhan</span></div>
+            <div class="ap-feats"><span>📖 Al-Qur’an Digital</span><span>🎧 Audio Murottal</span><span>📴 Mode Offline</span></div>
+            <div class="ap-btns">
+              <a id="appCta" class="gp-badge" href="https://play.google.com/store/apps/details?id=com.mylptq.ntb" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" class="gp-ic"><path d="M4 2.5l11.2 9.5L4 21.5c-.3-.2-.5-.6-.5-1V3.5c0-.4.2-.8.5-1z" fill="#34D399"/><path d="M4 2.5l11.2 9.5 3-2.6L6.6 2.1C5.8 1.6 4.7 1.8 4 2.5z" fill="#60D3F9"/><path d="M4 21.5l11.2-9.5 3 2.6-11.6 6.8c-.8.5-1.9.3-2.6-.4z" fill="#F87171"/><path d="M18.2 11.3l3 2.6c.9.7.9 1.9 0 2.6l-3 2.6L15.2 12l3-.7z" fill="#FBBF24"/></svg>
+                <span class="gp-txt"><small>Siap Download Now di</small><b>Google Play</b></span>
+              </a>
+              <small class="ap-note">📱 Android · Gratis</small>
+            </div>
           </div>
         </div>
-        <ul class="app-feats" data-io style="--d:.08s">
-          <li><svg class="ic"><use href="#i-check"/></svg>Al-Qur'an Digital</li>
-          <li><svg class="ic"><use href="#i-check"/></svg>Mode Online & Offline</li>
-          <li><svg class="ic"><use href="#i-check"/></svg>Terjemahan & Audio Tilawah</li>
-          <li><svg class="ic"><use href="#i-check"/></svg>Pembelajaran & Informasi LPTQ</li>
-        </ul>
+        <div class="ap-phone" aria-hidden="true">
+          <div class="ap-notch"></div>
+          <div class="ap-screen">
+            <img src="logo-mylptq.png" alt="" onerror="this.onerror=null;this.src='lptqlogo.png'">
+            <p class="ap-app">MY LPTQ NTB</p>
+            <span class="ap-bar b1"></span><span class="ap-bar b2"></span><span class="ap-bar b3"></span>
+            <span class="ap-open">Buka Aplikasi</span>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -1159,6 +1228,7 @@ try{
   document.body.appendChild(lbx);
   var lbxBox=lbx.querySelector(".lbx-box"),lbxBar=lbx.querySelector(".lbx-bar");
   function lbxClose(){lbx.classList.remove("open");document.body.classList.remove("lbx-lock");lbxBox.innerHTML="";lbxBar.innerHTML=""}
+  function lbxBuka(media,bar){lbxBox.innerHTML=media;lbxBar.innerHTML=bar||"";lbx.classList.add("open");document.body.classList.add("lbx-lock")}
   document.addEventListener("click",function(e){
     var t=e.target.closest(".pf-tag");
     if(t){e.stopPropagation();var k=t.getAttribute("data-gtag");lbxClose();if(window.lptqFilterBerita)window.lptqFilterBerita(k);return}
