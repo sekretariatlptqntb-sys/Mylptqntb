@@ -2,28 +2,8 @@
 window.SITEDATA = {
   "agenda": [],
   "ann": [],
-  "ach": [
-    {
-      "id": "idmudspvoxxidfl",
-      "tingkat": "Nasional",
-      "tahun": 2026,
-      "cabang": "Qiraat",
-      "event": "mtq semarang 2026",
-      "peraih": "Khairunnisa Raih Juara I MTQ Nasional XXXI"
-    }
-  ],
+  "ach": [],
   "gallery": [
-    {
-      "id": "idmuehlef8a0d0s",
-      "judul": "peresmian aplikasi my lptq ntb 2026",
-      "foto": "",
-      "video": "https://youtube.com/live/GhwLfj7SagI?feature=share"
-    },
-    {
-      "id": "idmue3f49ild0b1",
-      "judul": "pekantikan pengurus  lptq ntb",
-      "foto": "assets/img/1771065405_img-20260214-wa0165.jpg"
-    },
     {
       "id": "idmue3ee3vyapx1",
       "judul": "aplikasi my lptq ntb",
@@ -33,11 +13,6 @@ window.SITEDATA = {
       "id": "idmudux5liq9hft",
       "judul": "juara 1 MTQ Nasional 2026 Cabang Qiroat mujawad dewasa putri",
       "foto": "khairunisa.png"
-    },
-    {
-      "id": "idmudsww4i7zsg1",
-      "judul": "mtq 2026",
-      "foto": "mtq-semarang.png"
     }
   ],
   "msq": {},
