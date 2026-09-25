@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Admin — MY LPTQ NTB</title>
+<link rel="icon" type="image/png" href="logo-mylptq.png">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-:root{--d:#0F3D2E;--d2:#0B2E23;--g:#C6A15B;--acc:#16794B;--soft:#EAF5EF;--line:#E2E9E4;--mut:#5C6B62;--red:#B3402F}
+:root{--d:#0F3D2E;--d2:#0B2E23;--g:#C6A15B;--acc:#16794B;--acc-d:#0F5C38;--soft:#EAF5EF;--line:#E2E9E4;--mut:#5C6B62;--red:#B3402F}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:#F1F4F1;color:#17221D}
 button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
@@ -15,8 +16,8 @@ label{display:block;font-size:12px;font-weight:700;margin:12px 0 5px}
 label small{color:var(--mut);font-weight:500}
 h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px}
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--d);color:#fff;font-weight:700;font-size:13.5px;padding:11px 18px;border-radius:11px;border:0;cursor:pointer}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--d);color:#fff;font-weight:700;font-size:13.5px;padding:11px 19px;border-radius:999px;border:0;cursor:pointer}
 .btn:hover{background:#14532D}
 .btn.gold{background:var(--g);color:#2E240E}
 .btn.red{background:var(--red)}
@@ -59,7 +60,7 @@ h2{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:14px}
 /* daftar berita modern dengan thumbnail */
 .nal{display:flex;flex-direction:column;gap:10px}
 .nal-item{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);
-  border-radius:14px;padding:12px 14px;transition:.2s}
+  border-radius:16px;padding:12px 14px;transition:.2s}
 .nal-item:hover{box-shadow:0 8px 22px rgba(16,25,19,.09);border-color:#CBDFD3}
 .nal-th{width:88px;height:62px;border-radius:10px;overflow:hidden;flex:none;background:var(--soft);
   display:grid;place-items:center;color:#9DB8AA}
@@ -79,7 +80,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box
 .stat h2{font-size:23px!important;margin:0}
 .stat p{font-size:11.5px;color:var(--mut);margin:2px 0 0}
 /* ═ KEDALAMAN & MIKRO-INTERAKSI ═ */
-body{background:linear-gradient(180deg,#F4F8F4 0%,#ECF1EC 100%) fixed}
+body{background:linear-gradient(180deg,#F7F9F8 0%,#EFF3F1 100%) fixed}
 .card{box-shadow:0 1px 2px rgba(16,25,19,.04),0 10px 28px rgba(16,25,19,.06)}
 .btn{box-shadow:0 3px 10px rgba(15,61,46,.16)}
 .btn.gold{box-shadow:0 3px 12px rgba(198,161,91,.35)}
@@ -98,7 +99,9 @@ input,select,textarea{background:#FBFDFB}
 #app{display:none;min-height:100vh}
 .shell{display:flex;min-height:100vh}
 .side{width:210px;flex:none;background:var(--d);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
-.side .brand{padding:20px 18px;border-bottom:1px solid rgba(255,255,255,.12);font-family:Sora,sans-serif;font-weight:700;font-size:14px}
+.side .brand{display:flex;align-items:center;gap:11px;padding:18px 16px;border-bottom:1px solid rgba(255,255,255,.12)}
+.side .brand img{width:38px;height:38px;border-radius:50%;background:#fff;object-fit:contain;padding:3px;flex:none;box-shadow:0 3px 8px rgba(0,0,0,.25)}
+.side .brand span{font-family:Sora,sans-serif;font-weight:700;font-size:14.5px;letter-spacing:.04em;white-space:nowrap;color:#fff}
 .side .brand i{font-style:normal;color:var(--g)}
 .side nav{flex:1;padding:10px}
 .side nav button{display:flex;align-items:center;gap:11px;width:100%;padding:11px 14px;border-radius:11px;font-size:13.5px;font-weight:600;color:#C9DCD1;text-align:left;margin-bottom:2px}
@@ -113,9 +116,9 @@ input,select,textarea{background:#FBFDFB}
 .sp{flex:1}
 .view{display:none;padding:22px;max-width:1000px}
 .view.on{display:block}
-.view h2{font-family:Sora,sans-serif;font-size:19px;color:var(--d);margin-bottom:2px}
+.view h2{font-family:Sora,sans-serif;font-size:19px;color:var(--d);margin-bottom:16px}
 .view .vsub{font-size:12.5px;color:var(--mut);margin-bottom:18px}
-.tbl{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
 .tbl th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);padding:10px 12px;border-bottom:1.5px solid var(--line)}
 .tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
 .tbl tr:hover td{background:#FAFCFA}
@@ -137,6 +140,22 @@ input,select,textarea{background:#FBFDFB}
 .toast.err{border-color:#F0A08E}
 .empty{padding:26px;text-align:center;color:var(--mut);font-size:13px;border:1.5px dashed var(--line);border-radius:12px}
 .gh-field{display:flex;gap:8px}
+/* ikon SVG konsisten (mengganti emoji) */
+.ic{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.side nav button .ic{width:17px;height:17px}
+.icb .ic{width:15px;height:15px}
+.nal-ic .ic{width:19px;height:19px}
+.stat .st-top .ic{width:16px;height:16px}
+.btn .ic{width:15px;height:15px}
+/* dialog konfirmasi */
+#dlgOv{position:fixed;inset:0;z-index:130;display:none;place-items:center;background:rgba(7,17,11,.55);backdrop-filter:blur(3px);padding:20px}
+#dlgOv.on{display:grid}
+.dlg{background:#fff;border-radius:16px;padding:22px;width:min(400px,94vw);border-top:4px solid var(--red);box-shadow:0 30px 80px rgba(0,0,0,.35);animation:lup .3s cubic-bezier(.16,1,.3,1) both}
+.dlg h3{font-family:Sora,sans-serif;font-size:15px;color:var(--d);margin-bottom:8px}
+.dlg p{font-size:13px;color:#33453B;line-height:1.65;margin-bottom:18px}
+.dlg-act{display:flex;gap:9px;justify-content:flex-end}
+/* setup sandi pertama kali */
+.snote{font-size:12px;color:var(--mut);line-height:1.6;margin-bottom:14px;background:var(--soft);border-radius:10px;padding:10px 13px}
 @media(max-width:860px){
   .shell{flex-direction:column}
   .side{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;align-items:center}
@@ -171,6 +190,14 @@ input,select,textarea{background:#FBFDFB}
       </div>
       <button class="btn" style="width:100%;justify-content:center" type="submit">Masuk ke Dashboard</button>
     </form>
+    <form id="sForm" style="display:none">
+      <div class="err" id="sErr"></div>
+      <label for="sPass">Kata Sandi Baru</label>
+      <input type="password" id="sPass" autocomplete="new-password" placeholder="minimal 6 karakter" required style="margin-bottom:14px">
+      <label for="sPass2">Ulangi Kata Sandi</label>
+      <input type="password" id="sPass2" autocomplete="new-password" placeholder="ulangi kata sandi" required style="margin-bottom:16px">
+      <button class="btn" style="width:100%;justify-content:center" type="submit">Buat Sandi &amp; Masuk</button>
+    </form>
     <p class="lfoot">© 2026 LPTQ Provinsi Nusa Tenggara Barat</p>
   </div>
 </div>
@@ -179,17 +206,17 @@ input,select,textarea{background:#FBFDFB}
 <div id="app">
 <div class="shell">
   <aside class="side">
-    <div class="brand">ADMIN · MY <i>LPTQ</i> NTB</div>
+    <div class="brand"><img src="lptqlogo.png" alt="Logo MY LPTQ"><span>MY <i>LPTQ</i> NTB</span></div>
     <nav id="sideNav">
-      <button data-v="dash" class="on">▦ Dashboard</button>
-      <button data-v="news">📄 Berita</button>
-      <button data-v="agenda">📅 Agenda</button>
-      <button data-v="ann">📢 Pengumuman</button>
-      <button data-v="ach">🏅 Prestasi</button>
-      <button data-v="gallery">🖼️ Galeri</button>
-      <button data-v="media">🌄 Media Foto</button>
-      <button data-v="look">🎨 Tampilan</button>
-      <button data-v="set">⚙️ Pengaturan</button>
+      <button data-v="dash" class="on"><svg class="ic" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>Dashboard</button>
+      <button data-v="news"><svg class="ic" viewBox="0 0 24 24"><path d="M6 3.5h8L19 8.5V20a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 20V5a1.5 1.5 0 0 1 1-1.5z"/><path d="M13.5 3.5v5h5M9 12.5h6M9 16h6"/></svg>Berita</button>
+      <button data-v="agenda"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M8 3.5v4M16 3.5v4M4 10.5h16"/></svg>Agenda</button>
+      <button data-v="ann"><svg class="ic" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>Pengumuman</button>
+      <button data-v="ach"><svg class="ic" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a2 2 0 0 0 2 5h1M17 6h3a2 2 0 0 1-2 5h-1"/></svg>Prestasi</button>
+      <button data-v="gallery"><svg class="ic" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M20.5 15.5 15 10l-9.5 9.5"/></svg>Galeri</button>
+      <button data-v="media"><svg class="ic" viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/><circle cx="12" cy="13" r="3.5"/></svg>Media Foto</button>
+      <button data-v="look"><svg class="ic" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M3.5 9.5h17M9.5 9.5v11"/></svg>Tampilan</button>
+      <button data-v="set"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.5M12 18.7v2.5M2.8 12h2.5M18.7 12h2.5M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8"/></svg>Pengaturan</button>
     </nav>
     <div class="foot">Periode 2026–2031<br>Sekretariat LPTQ Provinsi NTB</div>
   </aside>
@@ -197,26 +224,26 @@ input,select,textarea{background:#FBFDFB}
     <div class="mtop">
       <span class="st no" id="ghStatus">GitHub: belum terhubung</span>
       <span class="sp"></span>
-      <button class="btn sm gold" id="btnPub">🚀 Publikasikan ke Website</button>
+      <button class="btn sm gold" id="btnPub"><svg class="ic" viewBox="0 0 24 24"><path d="M21.5 2.5 11 13M21.5 2.5l-6.8 19-3.7-8.5L2.5 9.3z"/></svg><span id="pubLbl">Publikasikan ke Website</span></button>
       <a class="btn sm ghost" href="/" target="_blank">Lihat Website</a>
       <button class="btn sm ghost" id="btnOut">Keluar</button>
     </div>
 
     <div class="view on" id="v-dash">
-      <h2>Dashboard</h2><p class="vsub">Ringkasan konten portal</p>
+      <h2>Dashboard</h2>
       <div class="row" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))">
-        <div class="card stat" style="margin:0"><div class="st-top"><span>📰</span><h2 id="cN">0</h2></div><p>Berita tayang / total</p></div>
-        <div class="card stat" style="margin:0"><div class="st-top"><span>📅</span><h2 id="cA">0</h2></div><p>Agenda</p></div>
-        <div class="card stat" style="margin:0"><div class="st-top"><span>📢</span><h2 id="cAn">0</h2></div><p>Pengumuman</p></div>
-        <div class="card stat" style="margin:0"><div class="st-top"><span>🏅</span><h2 id="cAc">0</h2></div><p>Prestasi</p></div>
-        <div class="card stat" style="margin:0"><div class="st-top"><span>🖼️</span><h2 id="cG">0</h2></div><p>Galeri</p></div>
-        <div class="card stat" style="margin:0"><div class="st-top"><span>🌄</span><h2 id="cM">0</h2></div><p>Media</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span><svg class="ic" viewBox="0 0 24 24"><path d="M6 3.5h8L19 8.5V20a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 20V5a1.5 1.5 0 0 1 1-1.5z"/><path d="M13.5 3.5v5h5M9 12.5h6M9 16h6"/></svg></span><h2 id="cN">0</h2></div><p>Berita tayang / total</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M8 3.5v4M16 3.5v4M4 10.5h16"/></svg></span><h2 id="cA">0</h2></div><p>Agenda</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span><svg class="ic" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><h2 id="cAn">0</h2></div><p>Pengumuman</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span><svg class="ic" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a2 2 0 0 0 2 5h1M17 6h3a2 2 0 0 1-2 5h-1"/></svg></span><h2 id="cAc">0</h2></div><p>Prestasi</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span><svg class="ic" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M20.5 15.5 15 10l-9.5 9.5"/></svg></span><h2 id="cG">0</h2></div><p>Galeri</p></div>
+        <div class="card stat" style="margin:0"><div class="st-top"><span><svg class="ic" viewBox="0 0 24 24"><path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/><circle cx="12" cy="13" r="3.5"/></svg></span><h2 id="cM">0</h2></div><p>Media</p></div>
       </div>
     </div>
 
     <div class="view" id="v-news">
-      <h2>Berita</h2><p class="vsub">Berita terbaru tampil paling atas di website (hero + section berita)</p>
-      <button class="btn" id="btnAddNews" style="margin-bottom:14px">＋ Tulis Berita Baru</button>
+      <h2>Berita</h2>
+      <button class="btn" id="btnAddNews" style="margin-bottom:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tulis Berita Baru</button>
       <div class="formwrap card" id="newsForm">
         <h2 id="nfTitle">Tulis Berita Baru</h2>
         <div class="row">
@@ -234,7 +261,7 @@ input,select,textarea{background:#FBFDFB}
           <div><label>Foto <small>(pilih dari Media atau upload langsung)</small></label>
             <div class="frow">
               <select id="nF"></select>
-              <button type="button" class="btn sm gold" data-up="nF" title="Upload foto baru dari komputer">⬆ Upload</button>
+              <button type="button" class="btn sm gold" data-up="nF" title="Upload foto baru dari komputer"><svg class="ic" viewBox="0 0 24 24"><path d="M12 16V5m0 0 4.5 4.5M12 5 7.5 9.5"/><path d="M5 19h14"/></svg> Upload</button>
               <input type="file" accept="image/*" hidden data-file="nF">
             </div>
           </div>
@@ -243,7 +270,7 @@ input,select,textarea{background:#FBFDFB}
         <label>Isi Berita — paragraf dipisah 1 baris kosong *</label><textarea id="nI" style="min-height:150px"></textarea>
         <label class="chkline"><input type="checkbox" id="nShow" checked> Tampilkan berita ini di website</label>
         <div style="display:flex;gap:9px;margin-top:15px;flex-wrap:wrap">
-          <button class="btn gold" id="nSave">💾 Simpan Berita</button>
+          <button class="btn gold" id="nSave"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan Berita</button>
           <button class="btn ghost" id="nCancel">Batal</button>
         </div>
       </div>
@@ -251,8 +278,8 @@ input,select,textarea{background:#FBFDFB}
     </div>
 
     <div class="view" id="v-agenda">
-      <h2>Agenda</h2><p class="vsub">Tampil di section Agenda Terdekat website</p>
-      <button class="btn" id="btnAddAg" style="margin-bottom:14px">＋ Tambah Agenda</button>
+      <h2>Agenda</h2>
+      <button class="btn" id="btnAddAg" style="margin-bottom:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tambah Agenda</button>
       <div class="formwrap card" id="agForm">
         <div class="row">
           <div><label>Tanggal *</label><input type="date" id="aT"></div>
@@ -263,14 +290,14 @@ input,select,textarea{background:#FBFDFB}
           <div><label>Tempat</label><input id="aP" placeholder="Aula Sekretariat LPTQ NTB"></div>
           <div><label>Status</label><select id="aS"><option>Terjadwal</option><option>Selesai</option></select></div>
         </div>
-        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="aSave">💾 Simpan</button><button class="btn ghost" id="aCancel">Batal</button></div>
+        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="aSave"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan</button><button class="btn ghost" id="aCancel">Batal</button></div>
       </div>
       <div id="agList"></div>
     </div>
 
     <div class="view" id="v-ann">
-      <h2>Pengumuman Resmi</h2><p class="vsub">Dokumen & surat resmi sekretariat</p>
-      <button class="btn" id="btnAddAn" style="margin-bottom:14px">＋ Tambah Pengumuman</button>
+      <h2>Pengumuman Resmi</h2>
+      <button class="btn" id="btnAddAn" style="margin-bottom:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tambah Pengumuman</button>
       <div class="formwrap card" id="anForm">
         <label>Judul *</label><input id="anJ">
         <div class="row">
@@ -278,15 +305,15 @@ input,select,textarea{background:#FBFDFB}
           <div><label>Tanggal</label><input type="date" id="anT"></div>
         </div>
         <label>URL PDF <small>(opsional — jika sudah dihosting)</small></label><input id="anP" placeholder="https://…/file.pdf">
-        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="anSave">💾 Simpan</button><button class="btn ghost" id="anCancel">Batal</button></div>
+        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="anSave"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan</button><button class="btn ghost" id="anCancel">Batal</button></div>
       </div>
       <div id="anList"></div>
     </div>
 
     <div class="view" id="v-ach">
-      <h2>Prestasi Kafilah NTB</h2><p class="vsub">Hanya data terverifikasi dari dokumen hasil resmi</p>
+      <h2>Prestasi Kafilah NTB</h2>
       <div class="note"><b>WAJIB:</b> nama peraih hanya diisi dari dokumen hasil resmi. Jangan mengarang nama/peringkat.</div>
-      <button class="btn" id="btnAddAc" style="margin-bottom:14px">＋ Tambah Prestasi</button>
+      <button class="btn" id="btnAddAc" style="margin-bottom:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tambah Prestasi</button>
       <div class="formwrap card" id="acForm">
         <div class="row">
           <div><label>Tingkat</label><select id="cL"><option>Provinsi</option><option selected>Nasional</option><option>Internasional</option></select></div>
@@ -297,53 +324,53 @@ input,select,textarea{background:#FBFDFB}
           <div><label>Event</label><input id="cE" placeholder="MTQ Nasional XXX — Semarang"></div>
         </div>
         <label>Nama Peraih / Kafilah * <small>(sesuai dokumen resmi)</small></label><input id="cW">
-        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="acSave">💾 Simpan</button><button class="btn ghost" id="acCancel">Batal</button></div>
+        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="acSave"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan</button><button class="btn ghost" id="acCancel">Batal</button></div>
       </div>
       <div id="acList"></div>
     </div>
 
     <div class="view" id="v-gallery">
-      <h2>Galeri</h2><p class="vsub">4 foto pertama tampil di beranda; foto diunggah lewat menu Media Foto</p>
-      <button class="btn" id="btnAddGa" style="margin-bottom:14px">＋ Tambah Foto Galeri</button>
+      <h2>Galeri</h2>
+      <button class="btn" id="btnAddGa" style="margin-bottom:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tambah Foto Galeri</button>
       <div class="formwrap card" id="gaForm">
         <label>Judul Foto *</label><input id="gJ" placeholder="cth: Pembinaan Tilawah Terpadu">
         <label>Foto <small>(pilih dari Media atau upload langsung)</small></label>
         <div class="frow">
           <select id="gF"></select>
-          <button type="button" class="btn sm gold" data-up="gF" title="Upload foto baru dari komputer">⬆ Upload</button>
+          <button type="button" class="btn sm gold" data-up="gF" title="Upload foto baru dari komputer"><svg class="ic" viewBox="0 0 24 24"><path d="M12 16V5m0 0 4.5 4.5M12 5 7.5 9.5"/><path d="M5 19h14"/></svg> Upload</button>
           <input type="file" accept="image/*" hidden data-file="gF">
         </div>
         <label>atau Link Video <small>(opsional — tempel link YouTube, video langsung tampil di galeri website)</small></label>
         <input id="gV" placeholder="https://youtube.com/watch?v=… atau https://youtu.be/…">
         <label>Tag Berita Terkait <small>(opsional — pengunjung yang membuka item galeri ini akan ditawari berita kategori ini)</small></label>
         <select id="gT"></select>
-        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="gaSave">💾 Simpan</button><button class="btn ghost" id="gaCancel">Batal</button></div>
+        <div style="display:flex;gap:9px;margin-top:15px"><button class="btn gold" id="gaSave"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan</button><button class="btn ghost" id="gaCancel">Batal</button></div>
       </div>
       <div id="gaList"></div>
     </div>
 
     <div class="view" id="v-media">
-      <h2>Media Foto</h2><p class="vsub">Upload foto sekali, pakai di berita & galeri. Tersimpan langsung ke repo GitHub.</p>
+      <h2>Media Foto</h2>
       <div class="card">
         <h2>Upload Foto Baru</h2>
         <input type="file" id="mFile" accept="image/*" style="padding:9px">
-        <button class="btn gold" id="mUp" style="margin-top:12px">⬆ Upload ke Website</button>
-        <p style="font-size:11.5px;color:var(--mut);margin-top:9px">JPG/PNG/WebP, disarankan maks ±300 KB. Nama file dirapikan otomatis.</p>
+        <button class="btn gold" id="mUp" style="margin-top:12px"><svg class="ic" viewBox="0 0 24 24"><path d="M12 16V5m0 0 4.5 4.5M12 5 7.5 9.5"/><path d="M5 19h14"/></svg> Upload ke Website</button>
+        <p style="font-size:11.5px;color:var(--mut);margin-top:9px">JPG/PNG/WebP · maks ±300 KB</p>
       </div>
       <div class="card"><h2>Foto Tersedia</h2><div id="mList"></div></div>
     </div>
 
     <div class="view" id="v-look">
-      <h2>Tampilan Website</h2><p class="vsub">Ganti gambar latar & elemen visual halaman depan</p>
+      <h2>Tampilan Website</h2>
       <div class="card">
         <h2>Latar Hero (foto besar halaman depan)</h2>
         <label>Foto <small>(pilih dari Media atau upload langsung)</small></label>
         <div class="frow">
           <select id="lkHero"></select>
-          <button type="button" class="btn sm gold" data-up="lkHero" title="Upload foto baru dari komputer">⬆ Upload</button>
+          <button type="button" class="btn sm gold" data-up="lkHero" title="Upload foto baru dari komputer"><svg class="ic" viewBox="0 0 24 24"><path d="M12 16V5m0 0 4.5 4.5M12 5 7.5 9.5"/><path d="M5 19h14"/></svg> Upload</button>
           <input type="file" accept="image/*" hidden data-file="lkHero">
         </div>
-        <button class="btn gold sm" id="lkSave" style="margin-top:14px">💾 Simpan Tampilan</button>
+        <button class="btn gold sm" id="lkSave" style="margin-top:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan Tampilan</button>
       </div>
       <div class="card">
         <h2>Teks Hero <small style="font-weight:400;color:var(--mut)">(judul besar halaman depan)</small></h2>
@@ -351,7 +378,7 @@ input,select,textarea{background:#FBFDFB}
         <input id="hzJ" placeholder="Membangun NTB sebagai&lt;br&gt;&lt;em&gt;Serambi Al-Qur'an.&lt;/em&gt;">
         <label>Paragraf Pengantar</label>
         <textarea id="hzS" style="min-height:76px"></textarea>
-        <button class="btn gold sm" id="hzSave" style="margin-top:14px">💾 Simpan Teks Hero</button>
+        <button class="btn gold sm" id="hzSave" style="margin-top:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan Teks Hero</button>
       </div>
       <div class="card">
         <h2>Kartu Musabaqah <small style="font-weight:400;color:var(--mut)">(section Musabaqah di website)</small></h2>
@@ -364,27 +391,26 @@ input,select,textarea{background:#FBFDFB}
           <div><label>Judul Edisi</label><input id="mzE" placeholder="cth: XXXI"></div>
         </div>
         <label>Catatan Kaki</label><input id="mzN" placeholder="cth: Nomenklatur resmi sesuai SK Gubernur">
-        <button class="btn gold sm" id="mzSave" style="margin-top:14px">💾 Simpan Kartu Musabaqah</button>
+        <button class="btn gold sm" id="mzSave" style="margin-top:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan Kartu Musabaqah</button>
       </div>
       <div class="card">
         <h2>Program Pembinaan <small style="font-weight:400;color:var(--mut)">(8 kartu di website)</small></h2>
         <div id="pzList"></div>
         <div style="display:flex;gap:9px;margin-top:12px">
-          <button class="btn sm" id="pzAdd">＋ Tambah Program</button>
-          <button class="btn gold sm" id="pzSave">💾 Simpan Program</button>
+          <button class="btn sm" id="pzAdd"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tambah Program</button>
+          <button class="btn gold sm" id="pzSave"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan Program</button>
         </div>
       </div>
       <div class="card">
         <h2>Daftar LPTQ Kabupaten/Kota</h2>
         <label>Satu nama per baris</label>
         <textarea id="kkT" style="min-height:130px"></textarea>
-        <button class="btn gold sm" id="kkSave" style="margin-top:14px">💾 Simpan Daerah</button>
+        <button class="btn gold sm" id="kkSave" style="margin-top:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan Daerah</button>
       </div>
-      <div class="note">Galeri beranda mengikuti foto-foto di menu <b>Galeri</b>. Foto kartu berita mengikuti foto tiap berita.</div>
     </div>
 
     <div class="view" id="v-set">
-      <h2>Pengaturan</h2><p class="vsub">Koneksi GitHub, kontak resmi, dan keamanan panel</p>
+      <h2>Pengaturan</h2>
       <div class="card">
         <h2>Koneksi GitHub <small style="font-weight:400;color:var(--mut)">(untuk tombol Publikasikan)</small></h2>
         <label>Personal Access Token <small>(fine-grained, hanya repo Mylptqntb, Contents: Read and write)</small></label>
@@ -393,7 +419,7 @@ input,select,textarea{background:#FBFDFB}
           <div><label>Pemilik Repo (username/organisasi)</label><input id="ghOwn" placeholder="sekretariatlptqntb-sys"></div>
           <div><label>Nama Repo</label><input id="ghRepo" placeholder="Mylptqntb"></div>
         </div>
-        <button class="btn sm" id="ghTest" style="margin-top:12px">🔌 Uji Koneksi & Tarik Data Terbaru</button>
+        <button class="btn sm" id="ghTest" style="margin-top:12px"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11m0 0 4.5-4.5M12 15 7.5 10.5M5 19h14"/></svg> Uji Koneksi &amp; Tarik Data Terbaru</button>
       </div>
       <div class="card">
         <h2>Kontak Resmi Website</h2>
@@ -413,7 +439,7 @@ input,select,textarea{background:#FBFDFB}
           <div><label>TikTok</label><input id="sTt"></div>
           <div></div>
         </div>
-        <button class="btn gold sm" id="sSave" style="margin-top:14px">💾 Simpan Kontak</button>
+        <button class="btn gold sm" id="sSave" style="margin-top:14px"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Simpan Kontak</button>
       </div>
       <div class="card">
         <h2>Keamanan Panel</h2>
@@ -440,9 +466,42 @@ function lsS(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function toast(m,err){var t=document.createElement('div');t.className='toast'+(err?' err':'');t.textContent=m;$('#toasts').appendChild(t);setTimeout(function(){t.style.opacity='0';t.style.transition='.4s';setTimeout(function(){t.remove()},400)},3200)}
 async function sha256(t){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return [].map.call(new Uint8Array(b),function(x){return ('0'+x.toString(16)).slice(-2)}).join('')}
 
+/* ═══ IKON & UI HELPERS ═══ */
+var IC={
+ eye:'<svg class="ic" viewBox="0 0 24 24"><path d="M2.04 12c1.39-4.28 5.32-7.3 9.96-7.3s8.57 3.02 9.96 7.3c-1.39 4.28-5.32 7.3-9.96 7.3S3.43 16.28 2.04 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+ eyeOff:'<svg class="ic" viewBox="0 0 24 24"><path d="M3 3l18 18"/><path d="M10.58 5.15A11 11 0 0 1 12 5.05c4.64 0 8.57 3.02 9.96 7.3a10.5 10.5 0 0 1-3.13 4.5M6.32 6.8A10.4 10.4 0 0 0 2.04 12.05c1.39 4.28 5.32 7.3 9.96 7.3 1.31 0 2.57-.24 3.73-.68"/><path d="M9.9 9.93a3 3 0 0 0 4.2 4.2"/></svg>',
+ pen:'<svg class="ic" viewBox="0 0 24 24"><path d="M17 3.5a2.1 2.1 0 0 1 3 3L8 18.5 3.5 20l1.5-4.5z"/></svg>',
+ trash:'<svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M6 7v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7"/><path d="M10 11v6M14 11v6"/></svg>',
+ cal:'<svg class="ic" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M8 3.5v4M16 3.5v4M4 10.5h16"/></svg>',
+ file:'<svg class="ic" viewBox="0 0 24 24"><path d="M6 3.5h8L19 8.5V20a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 20V5a1.5 1.5 0 0 1 1-1.5z"/><path d="M13.5 3.5v5h5M9 12.5h6M9 16h6"/></svg>',
+ trophy:'<svg class="ic" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a2 2 0 0 0 2 5h1M17 6h3a2 2 0 0 1-2 5h-1"/></svg>',
+ img:'<svg class="ic" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M20.5 15.5 15 10l-9.5 9.5"/></svg>',
+ video:'<svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>'
+};
+function btnBusy(b,txt){b.dataset.h=b.innerHTML;b.textContent=txt||'…';b.disabled=true}
+function btnUnbusy(b){if(b.dataset.h){b.innerHTML=b.dataset.h;b.disabled=false}}
+/* dialog konfirmasi menggantikan confirm() bawaan browser */
+function confirmBox(msg){
+  return new Promise(function(resolve){
+    var ov=document.getElementById('dlgOv');
+    if(!ov){ov=document.createElement('div');ov.id='dlgOv';
+      ov.innerHTML='<div class="dlg" role="dialog" aria-modal="true"><h3>Konfirmasi</h3><p id="dlgM"></p><div class="dlg-act"><button class="btn ghost sm" id="dlgNo">Batal</button><button class="btn red sm" id="dlgYes">Ya, Hapus</button></div></div>';
+      document.body.appendChild(ov)}
+    document.getElementById('dlgM').textContent=msg;
+    ov.classList.add('on');
+    function done(v){ov.classList.remove('on');document.removeEventListener('keydown',onKey);resolve(v)}
+    function onKey(e){if(e.key==='Escape')done(false)}
+    document.addEventListener('keydown',onKey);
+    document.getElementById('dlgNo').onclick=function(){done(false)};
+    document.getElementById('dlgYes').onclick=function(){done(true)};
+    ov.onclick=function(e){if(e.target===ov)done(false)};
+    document.getElementById('dlgYes').focus();
+  });
+}
+
 /* ═══ STATE ═══ */
 var DEF={
-  news:[{tanggal:today(),kategori:"LPTQ NTB",judul:"Portal Berita Resmi MY LPTQ NTB Aktif",penulis:"Humas LPTQ NTB",ringkasan:"Portal resmi LPTQ Provinsi Nusa Tenggara Barat kini berjalan — berita pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah diperbarui setiap hari.",foto:"",isi:"Portal berita resmi MY LPTQ NTB telah aktif.||Seluruh berita pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah NTB akan dipublikasikan melalui portal ini secara berkala.||Kiriman berita dapat disampaikan kepada Humas LPTQ Provinsi NTB melalui email resmi sekretariat."}],
+  news:[{tanggal:today(),kategori:"LPTQ NTB",judul:"Situs Resmi MY LPTQ NTB Aktif",penulis:"Humas LPTQ NTB",ringkasan:"Situs resmi LPTQ Provinsi Nusa Tenggara Barat kini aktif — berita pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah diperbarui setiap hari.",foto:"",isi:"Situs resmi MY LPTQ NTB telah aktif.||Seluruh berita pembinaan Al-Qur'an, musabaqah, dan prestasi kafilah NTB akan dipublikasikan melalui situs ini secara berkala.||Kiriman berita dapat disampaikan kepada Humas LPTQ Provinsi NTB melalui email resmi sekretariat."}],
   agenda:[],ann:[],ach:[],gallery:[],
   msq:{tingkat:"",waktu:"",lokasi:"",edisi:"",catatan:""},
   prog:[],kabkota:[],
@@ -450,18 +509,33 @@ var DEF={
 };
 var S={data:JSON.parse(JSON.stringify(DEF)),gh:{token:"",owner:"sekretariatlptqntb-sys",repo:"Mylptqntb",branch:"main"},editNews:null,editAg:null,editAn:null,editAc:null,editGa:null};
 
+function normalizeNews(){(S.data.news||[]).forEach(function(n){if(!n.id)n.id=uid()})}
 function load(){try{var d=lsG('lptq_admin_data');if(d)S.data=JSON.parse(d)}catch(e){}
-  try{var g=lsG('lptq_gh');if(g)S.gh=JSON.parse(g)}catch(e){}}
+  try{var g=lsG('lptq_gh');if(g)S.gh=JSON.parse(g)}catch(e){}
+  normalizeNews()}
 function save(){lsS('lptq_admin_data',JSON.stringify(S.data));refreshAll()}
 
-/* ═══ LOGIN ═══ */
-async function pwHash(){var h=lsG('lptq_pw');if(!h){h=await sha256('lptqntb2025');lsS('lptq_pw',h)}return h}
+/* ═══ LOGIN & SANDI ═══
+   Tidak ada sandi bawaan di source. Hash sandi hanya tersimpan di localStorage
+   per perangkat; saat pertama kali, admin membuat sandinya sendiri. */
+function showSetup(on){$('#lForm').style.display=on?'none':'block';$('#sForm').style.display=on?'block':'none'}
  $('#lForm').addEventListener('submit',async function(e){
   e.preventDefault();
-  var h=await pwHash(),v=await sha256($('#lPass').value);
+  var h=lsG('lptq_pw');
+  if(!h){showSetup(true);return}
+  var v=await sha256($('#lPass').value);
   if(v===h){$('#lErr').classList.remove('on');sessionStorage.setItem('lptq_adm','1');enter()}
   else $('#lErr').classList.add('on');
 });
+ $('#sForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var a=$('#sPass').value,b=$('#sPass2').value,err=$('#sErr');
+  if(a.length<6){err.textContent='Kata sandi minimal 6 karakter.';err.classList.add('on');return}
+  if(a!==b){err.textContent='Kedua kata sandi tidak sama.';err.classList.add('on');return}
+  lsS('lptq_pw',await sha256(a));sessionStorage.setItem('lptq_adm','1');
+  enter();toast('Kata sandi admin dibuat untuk perangkat ini.');
+});
+if(!lsG('lptq_pw'))showSetup(true);
 function enter(){$('#login').style.display='none';$('#app').style.display='block';boot()}
  $('#btnOut').addEventListener('click',function(){sessionStorage.removeItem('lptq_adm');location.reload()});
 if(sessionStorage.getItem('lptq_adm')==='1'){enter()}
@@ -494,8 +568,8 @@ function ghStatus(){
   if(ghOK()){el.textContent='GitHub: terhubung · '+S.gh.repo;el.className='st ok'}
   else{el.textContent='GitHub: belum terhubung — atur di Pengaturan';el.className='st no'}
 }
-function b64u(s){return btoa(unescape(encodeURIComponent(s)))}
-function d64u(b){return decodeURIComponent(escape(atob(b.replace(/\s/g,''))))}
+function b64u(s){var b=new TextEncoder().encode(s),o='';for(var i=0;i<b.length;i++)o+=String.fromCharCode(b[i]);return btoa(o)}
+function d64u(b){var s=atob(b.replace(/\s/g,'')),a=new Uint8Array(s.length);for(var i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return new TextDecoder().decode(a)}
 async function ghGet(path){
   var r=await fetch('https://api.github.com/repos/'+S.gh.owner+'/'+S.gh.repo+'/contents/'+path+'?ref='+S.gh.branch,{headers:{Authorization:'Bearer '+S.gh.token,Accept:'application/vnd.github+json'}});
   if(!r.ok)throw new Error('GitHub '+r.status);
@@ -509,38 +583,60 @@ async function ghPut(path,text,msg){
   if(!r.ok){var e=await r.json().catch(function(){return{}});throw new Error(e.message||('GitHub '+r.status))}
   return await r.json();
 }
+/* Ekstrak nilai window.NEWS / window.SITEDATA dari file di repo TANPA mengeksekusi
+   kodenya — hanya JSON.parse terhadap bagian datanya (pengganti new Function/eval). */
+function extractJSON(txt,varName){
+  var k=txt.indexOf('window.'+varName);
+  if(k<0)throw new Error('Data '+varName+' tidak ditemukan');
+  var eq=txt.indexOf('=',k);
+  if(eq<0)throw new Error('Format file tidak valid');
+  var start=-1;
+  for(var i=eq+1;i<txt.length;i++){var c=txt.charAt(i);
+    if(c==='['||c==='{'){start=i;break}
+    if(!/\s/.test(c))throw new Error('Format file tidak valid')}
+  if(start<0)throw new Error('Format file tidak valid');
+  var end=txt.lastIndexOf(txt.charAt(start)==='['?']':'}');
+  if(end<=start)throw new Error('Format file tidak valid');
+  var v=JSON.parse(txt.slice(start,end+1));
+  if(varName==='NEWS'&&!Array.isArray(v))throw new Error('NEWS bukan array');
+  return v;
+}
 async function pullRemote(){
   if(!ghOK())return;
+  var okN=false,okS=false;
   try{
-    var jn=await ghGet('news.js');var txt=d64u(jn.content);
-    var fn=new Function(txt+';return window.NEWS;');var nn=fn();
-    if(nn&&nn.length)S.data.news=nn;
-  }catch(e){}
+    var jn=await ghGet('news.js');
+    var nn=extractJSON(d64u(jn.content),'NEWS');
+    if(nn.length){S.data.news=nn;normalizeNews();okN=true}
+  }catch(e){console.warn('news.js:',e.message)}
   try{
-    var js=await ghGet('site-data.js');var t2=d64u(js.content);
-    var fs=new Function(t2+';return window.SITEDATA;');var sd=fs();
-    if(sd){['agenda','ann','ach','gallery'].forEach(function(k){if(sd[k])S.data[k]=sd[k]});
+    var js=await ghGet('site-data.js');
+    var sd=extractJSON(d64u(js.content),'SITEDATA');
+    if(sd&&typeof sd==='object'){['agenda','ann','ach','gallery'].forEach(function(k){if(sd[k])S.data[k]=sd[k]});
       if(sd.msq)S.data.msq=Object.assign({},S.data.msq||{},sd.msq);
       if(sd.prog)S.data.prog=sd.prog;
       if(sd.kabkota)S.data.kabkota=sd.kabkota;
-      if(sd.settings)S.data.settings=Object.assign(S.data.settings,sd.settings)}
-  }catch(e){}
-  save();toast('Data terbaru berhasil ditarik dari GitHub.');
+      if(sd.settings)S.data.settings=Object.assign(S.data.settings,sd.settings);
+      okS=true}
+  }catch(e){console.warn('site-data.js:',e.message)}
+  save();
+  if(okN||okS)toast('Data terbaru berhasil ditarik dari GitHub.');
+  else toast('Tidak ada data yang bisa ditarik — periksa koneksi atau format file di repo.',true);
 }
 
 /* ═══ PUBLISH ═══ */
  $('#btnPub').addEventListener('click',async function(){
   if(!ghOK()){toast('Hubungkan GitHub dulu di menu Pengaturan.',true);return}
-  var b=$('#btnPub');b.textContent='⏳ Mempublikasikan…';b.disabled=true;
+  var b=$('#btnPub');btnBusy(b,'Mempublikasikan…');
   try{
     var newsJs='/* Diterbitkan otomatis oleh Admin MY LPTQ NTB — '+new Date().toISOString()+' */\nwindow.NEWS = '+JSON.stringify(S.data.news,null,2)+';\n';
     await ghPut('news.js',newsJs,'Update berita via admin');
     var sd={agenda:S.data.agenda,ann:S.data.ann,ach:S.data.ach,gallery:S.data.gallery,msq:S.data.msq||{},prog:S.data.prog||[],kabkota:S.data.kabkota||[],settings:S.data.settings};
     var sdJs='/* Diterbitkan otomatis oleh Admin MY LPTQ NTB */\nwindow.SITEDATA = '+JSON.stringify(sd,null,2)+';\n';
     await ghPut('site-data.js',sdJs,'Update data situs via admin');
-    toast('✔ Berhasil! Website akan diperbarui dalam ±1 menit.');
+    toast('Berhasil diterbitkan! Website akan diperbarui dalam ±1 menit.');
   }catch(e){toast('Gagal: '+e.message,true)}
-  b.textContent='🚀 Publikasikan ke Website';b.disabled=false;
+  btnUnbusy(b);
 });
 
 /* ═══ MEDIA ═══ */
@@ -555,11 +651,11 @@ function fillPickers(){
  $('#mUp').addEventListener('click',function(){
   var f=$('#mFile').files[0];
   if(!f){toast('Pilih file foto dulu.',true);return}
-  var b=this;b.textContent='⏳ Mengunggah…';b.disabled=true;
+  var b=this;btnBusy(b,'Mengunggah…');
   uploadImageFile(f).then(function(name){
-    $('#mFile').value='';toast('✔ Foto terupload: '+name);
+    $('#mFile').value='';toast('Foto terupload: '+name);
   }).catch(function(e){toast('Gagal: '+e.message,true)})
-  .finally(function(){b.textContent='⬆ Upload ke Website';b.disabled=false});
+  .finally(function(){btnUnbusy(b)});
 });
 /* Upload bersama — dipakai menu Media & tombol ⬆ di form berita/galeri/hero */
 async function uploadImageFile(file){
@@ -584,13 +680,13 @@ $$('[data-up]').forEach(function(b){b.addEventListener('click',function(){
 $$('[data-file]').forEach(function(inp){inp.addEventListener('change',async function(){
   var f=inp.files[0];if(!f)return;
   var key=inp.dataset.file,btn=document.querySelector('[data-up="'+key+'"]');
-  var old=btn?btn.textContent:'';if(btn){btn.textContent='⏳…';btn.disabled=true}
+  if(btn)btnBusy(btn,'Mengunggah…');
   try{
     var p=await uploadImageFile(f);
     var sel=$('#'+key);if(sel)sel.value=p;
-    toast('✔ Foto terupload & terpilih: '+p.split('/').pop()+' — jangan lupa klik Simpan.');
+    toast('Foto terupload & terpilih: '+p.split('/').pop()+' — jangan lupa klik Simpan.');
   }catch(e){toast('Gagal: '+e.message,true)}
-  if(btn){btn.textContent=old;btn.disabled=false}
+  if(btn)btnUnbusy(btn);
   inp.value='';
 })});
 /* Hapus file foto dari GitHub */
@@ -606,7 +702,7 @@ function renderMedia(){
   $('#cM').textContent=names.length;
   if(!names.length){el.innerHTML='<div class="empty">Belum ada foto. Upload di atas — foto akan tersedia untuk berita, galeri, dan tampilan hero.</div>';return}
   el.innerHTML='<div class="media-grid">'+names.map(function(n){
-    return '<figure><img src="'+esc(MP+n)+'" alt="" loading="lazy" onerror="this.remove()"><figcaption>'+esc(n)+'</figcaption><button class="cp" data-cp="'+esc(MP+n)+'">Salin path</button><button class="cp del" data-dm="'+esc(n)+'">🗑 Hapus</button></figure>';
+    return '<figure><img src="'+esc(MP+n)+'" alt="" loading="lazy" onerror="this.remove()"><figcaption>'+esc(n)+'</figcaption><button class="cp" data-cp="'+esc(MP+n)+'">Salin path</button><button class="cp del" data-dm="'+esc(n)+'">'+IC.trash+' Hapus</button></figure>';
   }).join('')+'</div>';
   el.querySelectorAll('[data-cp]').forEach(function(b){b.addEventListener('click',function(){
     var v=b.dataset.cp;
@@ -614,8 +710,8 @@ function renderMedia(){
   })});
   el.querySelectorAll('[data-dm]').forEach(function(b){b.addEventListener('click',async function(){
     var name=b.dataset.dm;
-    if(!confirm('Hapus foto "'+name+'" dari GitHub?\n\nFoto yang sedang dipakai berita/galeri akan kehilangan gambarnya.'))return;
-    b.textContent='⏳…';b.disabled=true;
+    if(!(await confirmBox('Hapus foto "'+name+'" dari GitHub? Foto yang sedang dipakai berita/galeri akan kehilangan gambarnya.')))return;
+    b.dataset.h=b.textContent;b.textContent='…';b.disabled=true;
     try{
       await ghDel(MP+name);
       S.data.media=S.data.media.filter(function(m){return m.name!==name});
@@ -639,9 +735,9 @@ function renderNews(){
       +(n.tampil===false?' <span class="badge" style="background:#FBF0ED;color:var(--red)">disembunyikan</span>':'')
       +'</div><div class="nal-meta">'+esc(n.kategori)+' · '+fmt(n.tanggal)+' · '+esc(n.penulis||'Humas LPTQ NTB')+'</div></div>'
       +'<div class="nal-act" style="display:flex;gap:4px;flex:none">'
-      +'<button class="icb" data-tn="'+esc(n.judul)+'" title="'+(n.tampil===false?'Tampilkan di website':'Sembunyikan dari website')+'">'+(n.tampil===false?'🚫':'👁')+'</button>'
-      +'<button class="icb" data-en="'+esc(n.judul)+'" title="Sunting">✏️</button>'
-      +'<button class="icb del" data-dn="'+esc(n.judul)+'" title="Hapus">🗑</button>'
+      +'<button class="icb" data-tn="'+esc(n.id)+'" title="'+(n.tampil===false?'Tampilkan di website':'Sembunyikan dari website')+'">'+(n.tampil===false?IC.eyeOff:IC.eye)+'</button>'
+      +'<button class="icb" data-en="'+esc(n.id)+'" title="Sunting">'+IC.pen+'</button>'
+      +'<button class="icb del" data-dn="'+esc(n.id)+'" title="Hapus">'+IC.trash+'</button>'
       +'</div></div>';
   }).join('')+'</div>'
     :'<div class="empty">Belum ada berita. Klik "Tulis Berita Baru".</div>';
@@ -649,23 +745,23 @@ function renderNews(){
 }
 function bindNews(){
   $$('#newsList [data-tn]').forEach(function(b){b.addEventListener('click',function(){
-    var n=S.data.news.find(function(x){return x.judul===b.dataset.tn});if(!n)return;
+    var n=S.data.news.find(function(x){return x.id===b.dataset.tn});if(!n)return;
     n.tampil=(n.tampil===false)?true:false;
     save();renderNews();
-    toast(n.tampil===false?'Berita disembunyikan dari website.':'Berita tampil di website — klik 🚀 Publikasikan.');
+    toast(n.tampil===false?'Berita disembunyikan dari website.':'Berita tampil di website — klik tombol Publikasikan di bar atas.');
   })});
   $$('#newsList [data-en]').forEach(function(b){b.addEventListener('click',function(){
-    var n=S.data.news.find(function(x){return x.judul===b.dataset.en});if(!n)return;
-    S.editNews=n.judul;$('#nfTitle').textContent='Sunting Berita';
+    var n=S.data.news.find(function(x){return x.id===b.dataset.en});if(!n)return;
+    S.editNews=n.id;$('#nfTitle').textContent='Sunting Berita';
     $('#nT').value=n.tanggal;$('#nC').value=n.kategori;$('#nJ').value=n.judul;
     $('#nP').value=n.penulis||'';$('#nF').value=fixPath(n.foto);$('#nR').value=n.ringkasan||'';
     $('#nI').value=String(n.isi||'').split('||').join('\n\n');
     $('#nShow').checked=n.tampil!==false;
     $('#newsForm').classList.add('on');$('#newsForm').scrollIntoView({behavior:'smooth'});
   })});
-  $$('#newsList [data-dn]').forEach(function(b){b.addEventListener('click',function(){
-    if(!confirm('Hapus berita ini?'))return;
-    S.data.news=S.data.news.filter(function(x){return x.judul!==b.dataset.dn});save();renderNews();toast('Berita dihapus.');
+  $$('#newsList [data-dn]').forEach(function(b){b.addEventListener('click',async function(){
+    if(!(await confirmBox('Hapus berita ini? Tindakan ini tidak bisa dibatalkan.')))return;
+    S.data.news=S.data.news.filter(function(x){return x.id!==b.dataset.dn});save();renderNews();toast('Berita dihapus.');
   })});
 }
  $('#btnAddNews').addEventListener('click',function(){
@@ -679,25 +775,26 @@ function bindNews(){
   var g=function(id){return $(id).value.trim()};
   if(!g('#nT')||!g('#nJ')||!g('#nR')||!g('#nI')){toast('Lengkapi: Tanggal, Judul, Ringkasan, Isi.',true);return}
   var isi=g('#nI').split(/\n\s*\n/).map(function(p){return p.replace(/\s+/g,' ')}).filter(Boolean).join('||');
-  var obj={tanggal:g('#nT'),kategori:$('#nC').value,judul:g('#nJ'),penulis:g('#nP')||'Humas LPTQ NTB',ringkasan:g('#nR'),foto:g('#nF'),isi:isi,tampil:$('#nShow').checked};
-  if(S.editNews){S.data.news=S.data.news.filter(function(x){return x.judul!==S.editNews})}
-  S.data.news.unshift(obj);save();renderNews();fillPickers();
-  $('#newsForm').classList.remove('on');toast('Berita tersimpan. Klik 🚀 Publikasikan di bar atas.');
+  var obj={id:S.editNews||uid(),tanggal:g('#nT'),kategori:$('#nC').value,judul:g('#nJ'),penulis:g('#nP')||'Humas LPTQ NTB',ringkasan:g('#nR'),foto:g('#nF'),isi:isi,tampil:$('#nShow').checked};
+  if(S.editNews)S.data.news=S.data.news.map(function(x){return x.id===S.editNews?obj:x});
+  else S.data.news.unshift(obj);
+  save();renderNews();fillPickers();
+  $('#newsForm').classList.remove('on');toast('Berita tersimpan. Klik tombol Publikasikan di bar atas.');
 });
 
 /* ═══ AGENDA ═══ */
 function renderAg(){
   $('#cA').textContent=S.data.agenda.length;
   var L=S.data.agenda.slice().sort(function(a,b){return a.tanggal<b.tanggal?-1:1});
-  $('#agList').innerHTML=L.length?'<div class="nal">'+L.map(function(a){return '<div class="nal-item"><span class="nal-ic">📅</span><div class="nal-body"><div class="nal-title">'+esc(a.judul)+(a.status==='Selesai'?' <span class="badge" style="background:#EEF2EF;color:var(--mut)">selesai</span>':'')+'</div><div class="nal-meta">'+fmt(a.tanggal)+' · '+esc(a.waktu||'—')+' · '+esc(a.tempat||'—')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ea="'+esc(a.id)+'" title="Sunting">✏️</button><button class="icb del" data-da="'+esc(a.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
+  $('#agList').innerHTML=L.length?'<div class="nal">'+L.map(function(a){return '<div class="nal-item"><span class="nal-ic">'+IC.cal+'</span><div class="nal-body"><div class="nal-title">'+esc(a.judul)+(a.status==='Selesai'?' <span class="badge" style="background:#EEF2EF;color:var(--mut)">selesai</span>':'')+'</div><div class="nal-meta">'+fmt(a.tanggal)+' · '+esc(a.waktu||'—')+' · '+esc(a.tempat||'—')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ea="'+esc(a.id)+'" title="Sunting">'+IC.pen+'</button><button class="icb del" data-da="'+esc(a.id)+'" title="Hapus">'+IC.trash+'</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada agenda.</div>';
   $$('#agList [data-ea]').forEach(function(b){b.addEventListener('click',function(){
     var a=S.data.agenda.find(function(x){return x.id===b.dataset.ea});if(!a)return;
     S.editAg=a.id;$('#aT').value=a.tanggal;$('#aW').value=a.waktu||'';$('#aJ').value=a.judul;$('#aP').value=a.tempat||'';$('#aS').value=a.status||'Terjadwal';
     $('#agForm').classList.add('on');$('#agForm').scrollIntoView({behavior:'smooth'});
   })});
-  $$('#agList [data-da]').forEach(function(b){b.addEventListener('click',function(){
-    if(!confirm('Hapus agenda ini?'))return;
+  $$('#agList [data-da]').forEach(function(b){b.addEventListener('click',async function(){
+    if(!(await confirmBox('Hapus agenda ini?')))return;
     S.data.agenda=S.data.agenda.filter(function(x){return x.id!==b.dataset.da});save();renderAg();toast('Agenda dihapus.');
   })});
 }
@@ -714,15 +811,15 @@ function renderAg(){
 /* ═══ PENGUMUMAN ═══ */
 function renderAn(){
   $('#cAn').textContent=S.data.ann.length;
-  $('#anList').innerHTML=S.data.ann.length?'<div class="nal">'+S.data.ann.map(function(a){return '<div class="nal-item"><span class="nal-ic gold">📄</span><div class="nal-body"><div class="nal-title">'+esc(a.judul)+'</div><div class="nal-meta">'+esc(a.no||'—')+' · '+fmt(a.tanggal)+(a.pdf?' · <span style="color:var(--acc);font-weight:700">PDF</span>':'')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ean="'+esc(a.id)+'" title="Sunting">✏️</button><button class="icb del" data-dan="'+esc(a.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
+  $('#anList').innerHTML=S.data.ann.length?'<div class="nal">'+S.data.ann.map(function(a){return '<div class="nal-item"><span class="nal-ic gold">'+IC.file+'</span><div class="nal-body"><div class="nal-title">'+esc(a.judul)+'</div><div class="nal-meta">'+esc(a.no||'—')+' · '+fmt(a.tanggal)+(a.pdf?' · <span style="color:var(--acc);font-weight:700">PDF</span>':'')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ean="'+esc(a.id)+'" title="Sunting">'+IC.pen+'</button><button class="icb del" data-dan="'+esc(a.id)+'" title="Hapus">'+IC.trash+'</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada pengumuman.</div>';
   $$('#anList [data-ean]').forEach(function(b){b.addEventListener('click',function(){
     var a=S.data.ann.find(function(x){return x.id===b.dataset.ean});if(!a)return;
     S.editAn=a.id;$('#anJ').value=a.judul;$('#anN').value=a.no||'';$('#anT').value=a.tanggal;$('#anP').value=a.pdf||'';
     $('#anForm').classList.add('on');$('#anForm').scrollIntoView({behavior:'smooth'});
   })});
-  $$('#anList [data-dan]').forEach(function(b){b.addEventListener('click',function(){
-    if(!confirm('Hapus pengumuman ini?'))return;
+  $$('#anList [data-dan]').forEach(function(b){b.addEventListener('click',async function(){
+    if(!(await confirmBox('Hapus pengumuman ini?')))return;
     S.data.ann=S.data.ann.filter(function(x){return x.id!==b.dataset.dan});save();renderAn();toast('Dihapus.');
   })});
 }
@@ -739,15 +836,15 @@ function renderAn(){
 /* ═══ PRESTASI ═══ */
 function renderAc(){
   $('#cAc').textContent=S.data.ach.length;
-  $('#acList').innerHTML=S.data.ach.length?'<div class="nal">'+S.data.ach.map(function(a){return '<div class="nal-item"><span class="nal-ic">🏅</span><div class="nal-body"><div class="nal-title">'+esc(a.cabang)+' — '+esc(a.event||'')+' <span class="badge">'+esc(a.tahun)+'</span></div><div class="nal-meta">'+esc(a.tingkat)+' · '+esc(a.peraih)+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-eac="'+esc(a.id)+'" title="Sunting">✏️</button><button class="icb del" data-dac="'+esc(a.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
+  $('#acList').innerHTML=S.data.ach.length?'<div class="nal">'+S.data.ach.map(function(a){return '<div class="nal-item"><span class="nal-ic">'+IC.trophy+'</span><div class="nal-body"><div class="nal-title">'+esc(a.cabang)+' — '+esc(a.event||'')+' <span class="badge">'+esc(a.tahun)+'</span></div><div class="nal-meta">'+esc(a.tingkat)+' · '+esc(a.peraih)+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-eac="'+esc(a.id)+'" title="Sunting">'+IC.pen+'</button><button class="icb del" data-dac="'+esc(a.id)+'" title="Hapus">'+IC.trash+'</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada data prestasi.</div>';
   $$('#acList [data-eac]').forEach(function(b){b.addEventListener('click',function(){
     var a=S.data.ach.find(function(x){return x.id===b.dataset.eac});if(!a)return;
     S.editAc=a.id;$('#cL').value=a.tingkat;$('#cY').value=a.tahun;$('#cB').value=a.cabang;$('#cE').value=a.event||'';$('#cW').value=a.peraih;
     $('#acForm').classList.add('on');$('#acForm').scrollIntoView({behavior:'smooth'});
   })});
-  $$('#acList [data-dac]').forEach(function(b){b.addEventListener('click',function(){
-    if(!confirm('Hapus prestasi ini?'))return;
+  $$('#acList [data-dac]').forEach(function(b){b.addEventListener('click',async function(){
+    if(!(await confirmBox('Hapus prestasi ini?')))return;
     S.data.ach=S.data.ach.filter(function(x){return x.id!==b.dataset.dac});save();renderAc();toast('Dihapus.');
   })});
 }
@@ -764,15 +861,15 @@ function renderAc(){
 /* ═══ GALERI ═══ */
 function renderGa(){
   $('#cG').textContent=S.data.gallery.length;
-  $('#gaList').innerHTML=S.data.gallery.length?'<div class="nal">'+S.data.gallery.map(function(f){return '<div class="nal-item"><span class="nal-th">'+(f.video?'🎬':(f.foto?'<img src="'+esc(fixPath(f.foto))+'" loading="lazy">':'🖼'))+'</span><div class="nal-body"><div class="nal-title">'+esc(f.judul)+(f.video?' <span class="badge" style="background:#F7EFE0;color:#8A6D1F">video</span>':'')+'</div><div class="nal-meta">'+esc(f.video||f.foto||'—')+(f.tag?' · 📰 '+esc(f.tag):'')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ega="'+esc(f.id)+'" title="Sunting">✏️</button><button class="icb del" data-dga="'+esc(f.id)+'" title="Hapus">🗑</button></div></div>'}).join('')+'</div>'
+  $('#gaList').innerHTML=S.data.gallery.length?'<div class="nal">'+S.data.gallery.map(function(f){return '<div class="nal-item"><span class="nal-th">'+(f.video?IC.video:(f.foto?'<img src="'+esc(fixPath(f.foto))+'" loading="lazy">':IC.img))+'</span><div class="nal-body"><div class="nal-title">'+esc(f.judul)+(f.video?' <span class="badge" style="background:#F7EFE0;color:#8A6D1F">video</span>':'')+'</div><div class="nal-meta">'+esc(f.video||f.foto||'—')+(f.tag?' · Berita: '+esc(f.tag):'')+'</div></div><div style="display:flex;gap:4px;flex:none"><button class="icb" data-ega="'+esc(f.id)+'" title="Sunting">'+IC.pen+'</button><button class="icb del" data-dga="'+esc(f.id)+'" title="Hapus">'+IC.trash+'</button></div></div>'}).join('')+'</div>'
     :'<div class="empty">Belum ada foto galeri.</div>';
   $$('#gaList [data-ega]').forEach(function(b){b.addEventListener('click',function(){
     var f=S.data.gallery.find(function(x){return x.id===b.dataset.ega});if(!f)return;
     S.editGa=f.id;$('#gJ').value=f.judul;$('#gF').value=fixPath(f.foto||'');if($('#gV'))$('#gV').value=f.video||'';if($('#gT'))$('#gT').value=f.tag||'';
     $('#gaForm').classList.add('on');$('#gaForm').scrollIntoView({behavior:'smooth'});
   })});
-  $$('#gaList [data-dga]').forEach(function(b){b.addEventListener('click',function(){
-    if(!confirm('Hapus foto/video galeri ini?'))return;
+  $$('#gaList [data-dga]').forEach(function(b){b.addEventListener('click',async function(){
+    if(!(await confirmBox('Hapus foto/video galeri ini?')))return;
     S.data.gallery=S.data.gallery.filter(function(x){return x.id!==b.dataset.dga});save();renderGa();toast('Dihapus.');
   })});
 }
@@ -790,18 +887,18 @@ function renderGa(){
  $('#lkSave').addEventListener('click',function(){
   S.data.settings.images=S.data.settings.images||{};
   S.data.settings.images.hero=$('#lkHero').value;
-  save();toast('Tampilan hero tersimpan. Klik 🚀 Publikasikan.');
+  save();toast('Tampilan hero tersimpan. Klik tombol Publikasikan di bar atas.');
 });
 /* Kartu Musabaqah */
  $('#mzSave').addEventListener('click',function(){
   S.data.msq={tingkat:$('#mzT').value.trim(),waktu:$('#mzW').value.trim(),lokasi:$('#mzL').value.trim(),
     edisi:$('#mzE').value.trim(),catatan:$('#mzN').value.trim()};
-  save();toast('Kartu Musabaqah tersimpan. Klik 🚀 Publikasikan.');
+  save();toast('Kartu Musabaqah tersimpan. Klik tombol Publikasikan di bar atas.');
 });
 /* Teks Hero */
  $('#hzSave').addEventListener('click',function(){
   S.data.settings.hero={judul:$('#hzJ').value,sub:$('#hzS').value};
-  save();toast('Teks hero tersimpan. Klik 🚀 Publikasikan.');
+  save();toast('Teks hero tersimpan. Klik tombol Publikasikan di bar atas.');
 });
 /* Program Pembinaan */
 function renderPz(){
@@ -810,7 +907,7 @@ function renderPz(){
     +'<input placeholder="Nama program (cth: Tilawah)" value="'+esc(p.nama||'')+'" data-pn>'
     +'<textarea placeholder="Deskripsi singkat…" data-pd>'+esc(p.desk||'')+'</textarea>'
     +'<select data-pf></select>'
-    +'<button class="icb del" data-pdel="'+i+'" title="Hapus program">🗑</button></div>'}).join('')
+    +'<button class="icb del" data-pdel="'+i+'" title="Hapus program">'+IC.trash+'</button></div>'}).join('')
     :'<p style="font-size:12px;color:var(--mut);margin-bottom:8px">Kosong — website memakai daftar bawaan.</p>';
   el.querySelectorAll('.pzrow').forEach(function(r){
     r.querySelector('[data-pn]').addEventListener('input',function(){S.data.prog[+r.dataset.i].nama=this.value});
@@ -827,12 +924,12 @@ function renderPz(){
 });
  $('#pzSave').addEventListener('click',function(){
   S.data.prog=(S.data.prog||[]).filter(function(p){return (p.nama||'').trim()});
-  save();renderPz();toast('Program tersimpan. Klik 🚀 Publikasikan.');
+  save();renderPz();toast('Program tersimpan. Klik tombol Publikasikan di bar atas.');
 });
 /* Kab/Kota */
  $('#kkSave').addEventListener('click',function(){
   S.data.kabkota=$('#kkT').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);
-  save();toast('Daftar daerah tersimpan. Klik 🚀 Publikasikan.');
+  save();toast('Daftar daerah tersimpan. Klik tombol Publikasikan di bar atas.');
 });
 
 /* ═══ SETTINGS ═══ */
@@ -850,15 +947,15 @@ function renderSet(){
   S.gh.token=$('#ghTok').value.trim();S.gh.owner=$('#ghOwn').value.trim();S.gh.repo=$('#ghRepo').value.trim();
   if(!ghOK()){toast('Lengkapi token, pemilik, dan nama repo.',true);return}
   lsS('lptq_gh',JSON.stringify(S.gh));ghStatus();
-  var b=$('#ghTest');b.textContent='⏳ Mengambil…';b.disabled=true;
-  pullRemote().then(function(){b.textContent='🔌 Uji Koneksi & Tarik Data Terbaru';b.disabled=false;renderAll();ghStatus()})
-    .catch(function(e){b.textContent='🔌 Uji Koneksi & Tarik Data Terbaru';b.disabled=false;toast('Gagal: '+e.message,true)});
+  var b=$('#ghTest');btnBusy(b,'Mengambil…');
+  pullRemote().then(function(){btnUnbusy(b);renderAll();ghStatus()})
+    .catch(function(e){btnUnbusy(b);toast('Gagal: '+e.message,true)});
 });
  $('#sSave').addEventListener('click',function(){
   S.data.settings.email=$('#sEmail').value.trim();S.data.settings.address=$('#sAddr').value.trim();
   S.data.settings.appUrl=$('#sApp').value.trim();S.data.settings.ig=$('#sIg').value.trim();
   S.data.settings.fb=$('#sFb').value.trim();S.data.settings.yt=$('#sYt').value.trim();S.data.settings.tt=$('#sTt').value.trim();
-  save();toast('Kontak resmi tersimpan. Klik 🚀 Publikasikan.');
+  save();toast('Kontak resmi tersimpan. Klik tombol Publikasikan di bar atas.');
 });
  $('#pwSave').addEventListener('click',async function(){
   var v=$('#pwNew').value;
