@@ -1,5 +1,16 @@
-/* Diterbitkan otomatis oleh Admin MY LPTQ NTB — 2026-09-25T21:57:29.651Z */
+/* Diterbitkan otomatis oleh Admin MY LPTQ NTB — 2026-09-25T21:58:36.162Z */
 window.NEWS = [
+  {
+    "id": "idmuhi5i5n6i13k",
+    "tanggal": "2026-09-25",
+    "kategori": "LPTQ NTB",
+    "judul": "Download Apliaksi Resmi My LPTQ NTB Di playstore",
+    "penulis": "Humas LPTQ NTB",
+    "ringkasan": "My LPTQ NTB",
+    "foto": "assets/img/screenshot-2026-09-26-051916.png",
+    "isi": "My LPTQ NTB adalah aplikasi dakwah digital resmi dari Pemprov NTB yang dirancang untuk memudahkan masyarakat belajar dan membaca Al-Qur'an secara interaktif",
+    "tampil": true
+  },
   {
     "tanggal": "2026-09-25",
     "kategori": "Kegiatan",
