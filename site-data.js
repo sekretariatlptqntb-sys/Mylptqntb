@@ -23,7 +23,12 @@ window.SITEDATA = {
     }
   ],
   "msq": {},
-  "prog": [],
+  "prog": [
+    {
+      "nama": "",
+      "desk": ""
+    }
+  ],
   "kabkota": [],
   "settings": {
     "email": "sekretariat.lptqntb@gmail.com",
