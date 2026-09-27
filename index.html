@@ -8,6 +8,10 @@
 <meta name="theme-color" content="#0F3D2E">
 <meta property="og:title" content="MY LPTQ NTB — Situs Resmi LPTQ Provinsi NTB">
 <meta property="og:description" content="Berita, musabaqah, pembinaan Al-Qur'an, dan prestasi kafilah NTB.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mylptqntb.vercel.app/">
+<meta property="og:image" content="https://mylptqntb.vercel.app/masjid-ic-ntb.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://mylptqntb.vercel.app/">
 <link rel="icon" type="image/png" href="logo-mylptq.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1094,6 +1098,7 @@ html:not(.js) .topfab{display:none}
 <script>
 (function(){
 "use strict";
+window.lptqImgFix=function(el){if(el.dataset.f){el.remove()}else{el.dataset.f=1;el.src=el.src.replace('assets/img/','')}};
 try{
   var prog=document.getElementById('progress'),
       nav=document.getElementById('nav'),
@@ -1187,7 +1192,7 @@ try{
         return '<a class="pf vidlink" href="'+esc(g.video)+'" target="_blank" rel="noopener"><span class="vid-ic"><svg viewBox="0 0 24 24" fill="currentColor" style="width:34px"><path d="M8 5.5v13l11-6.5z"/></svg></span>'+cap+tagb+'</a>';
       }
       if(!g.foto)return "";
-      return '<div class="pf foto" data-foto="'+esc(fs(g.foto))+'" data-judul="'+esc(g.judul)+'" data-tag="'+esc(g.tag||"")+'" style="cursor:pointer"><img src="'+esc(fs(g.foto))+'" alt="'+esc(g.judul)+'" loading="lazy" onerror="this.remove()">'+cap+tagb+'</div>';
+      return '<div class="pf foto" data-foto="'+esc(fs(g.foto))+'" data-judul="'+esc(g.judul)+'" data-tag="'+esc(g.tag||"")+'" style="cursor:pointer"><img src="'+esc(fs(g.foto))+'" alt="'+esc(g.judul)+'" loading="lazy" onerror="lptqImgFix(this)">'+cap+tagb+'</div>';
     }).join(""):'<p style="grid-column:1/-1;color:var(--mut);font-size:13px;padding:28px 0;text-align:center">Belum ada konten pada tab ini.</p>';
   }
   renderGal();
@@ -1211,7 +1216,7 @@ try{
     if(v){lbxBuka('<iframe src="https://www.youtube.com/embed/'+v.getAttribute("data-yt")+'?autoplay=1&rel=0" title="Video" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>');return}
     var p=e.target.closest(".pf.foto[data-foto]");
     if(p){var tg=p.getAttribute("data-tag");
-      lbxBuka('<img src="'+p.getAttribute("data-foto")+'" alt="">','<span>'+esc(p.getAttribute("data-judul")||"")+'</span>'+(tg?'<button type="button" class="lbx-btn" data-gtag2="'+esc(tg)+'">Lihat Berita Terkait</button>':''));
+      lbxBuka('<img src="'+p.getAttribute("data-foto")+'" alt="" onerror="lptqImgFix(this)">','<span>'+esc(p.getAttribute("data-judul")||"")+'</span>'+(tg?'<button type="button" class="lbx-btn" data-gtag2="'+esc(tg)+'">Lihat Berita Terkait</button>':''));
       var bb=lbxBar.querySelector("[data-gtag2]");
       if(bb)bb.addEventListener("click",function(){var k=this.getAttribute("data-gtag2");lbxClose();if(window.lptqFilterBerita)window.lptqFilterBerita(k)});
       return}
@@ -1261,7 +1266,7 @@ try{
   var pgIk={"Tilawah":"#i-mic","Tahfiz":"#i-star","Tafsir":"#i-book","Fahmil Qur'an":"#i-bulb","Syarhil Qur'an":"#i-chat","Khattil Qur'an":"#i-pen","Qiraat":"#i-wave","Karya Tulis Ilmiah":"#i-scroll"};
   if(pgEl&&pg.length)pgEl.innerHTML=pg.map(function(p,i){
     var ik=pgIk[p.nama]||"#i-book";
-    var pf=p.foto?'<span class="svc-foto"><img src="'+esc(fs(p.foto))+'" loading="lazy" onerror="this.remove()"></span>':'';
+    var pf=p.foto?'<span class="svc-foto"><img src="'+esc(fs(p.foto))+'" loading="lazy" onerror="lptqImgFix(this)"></span>':'';
     return '<div class="svc" data-prog="'+esc(p.nama)+'" style="cursor:pointer"><div class="svc-body">'+pf+'<span class="svc-tag">'+String(i+1).padStart(2,"0")+'</span>'
       +'<span class="svc-ic"><svg class="ic"><use href="'+ik+'"/></svg></span>'
       +'<h3>'+esc(p.nama||"—")+'</h3><p>'+esc(p.desk||"")+'</p>'
@@ -1289,7 +1294,7 @@ try{
     if(g0)g0.innerHTML='<p style="grid-column:1/-1;color:var(--mut);font-size:14px;padding:48px 0;text-align:center">Belum ada berita yang tayang.</p>';
     return;
   }
-  var img=function(n){return n.foto?'<img src="'+esc(fotoSrc(n.foto))+'" alt="" loading="lazy" onerror="this.remove()">'
+  var img=function(n){return n.foto?'<img src="'+esc(fotoSrc(n.foto))+'" alt="" loading="lazy" onerror="lptqImgFix(this)">'
     :'<span class="ph-ic" style="position:absolute;inset:0;display:grid;place-items:center;color:rgba(198,161,91,.4)"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" style="width:38px"><path d="M6 38V22l6-4 6 4v6l6-4 6 4v10a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4z" stroke-linejoin="round"/></svg></span>'};
   var cur=list.slice();var progFilter=null;
   function renderB(){
@@ -1339,8 +1344,9 @@ try{
     t.textContent=m;t.classList.add("on");clearTimeout(iTst._t);iTst._t=setTimeout(function(){t.classList.remove("on")},2800)}
   function close(){ov.classList.remove("open");document.body.style.overflow="";
     if(/^#b=/.test(location.hash))history.replaceState(null,"",location.pathname+location.search)}
+  var SITE="https://mylptqntb.vercel.app";
   function shareNews(n){
-    var url=location.origin+location.pathname+"#b="+nSlug(n.judul);
+    var url=SITE+"/b/"+nSlug(n.judul);
     function fb(){
       if(navigator.clipboard&&navigator.clipboard.writeText){
         navigator.clipboard.writeText(url).then(function(){iTst("Link berita disalin — siap dibagikan.")})
@@ -1373,7 +1379,7 @@ try{
     box.querySelector("[data-ckirim]").addEventListener("click",function(){
       var teks=box.querySelector("[data-cteks]").value.trim();
       var nama=box.querySelector("[data-cnama]").value.trim()||"Tamu";
-      namaSet(nama);
+      if(box.querySelector("[data-cnama]").value.trim())namaSet(nama);
       if(!teks){iTst("Komentar masih kosong.");return}
       L.push({nama:nama,teks:teks,t:new Date().toLocaleDateString("id-ID",{day:"numeric",month:"short"})});
       try{localStorage.setItem(cmKey(slug),JSON.stringify(L))}catch(e){}
@@ -1388,7 +1394,7 @@ try{
     ov.innerHTML='<div class="nrd-box">'
       +'<div class="nrd-hero'+(n.foto?'':' nophoto')+'">'
       +'<button class="nrd-close" aria-label="Tutup">✕</button>'
-      +(n.foto?'<img src="'+esc(fotoSrc(n.foto))+'" alt="" onerror="this.remove()">':'')
+      +(n.foto?'<img src="'+esc(fotoSrc(n.foto))+'" alt="" onerror="lptqImgFix(this)">':'')
       +'<div class="nrd-cap">'
       +'<span class="nrd-chip">'+esc(n.kategori)+'</span>'
       +'<h2>'+esc(n.judul)+'</h2>'
