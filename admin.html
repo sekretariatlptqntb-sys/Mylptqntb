@@ -570,6 +570,36 @@ function ghStatus(){
 }
 function b64u(s){var b=new TextEncoder().encode(s),o='';for(var i=0;i<b.length;i++)o+=String.fromCharCode(b[i]);return btoa(o)}
 function d64u(b){var s=atob(b.replace(/\s/g,'')),a=new Uint8Array(s.length);for(var i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return new TextDecoder().decode(a)}
+
+/* ═══ HALAMAN MINI BERITA (pratinjau foto saat link dibagikan) ═══
+   Rumus slug HARUS sama dengan fungsi nSlug di index.html. */
+var SITE="https://mylptqntb.vercel.app";
+function nSlug(s){var t=String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+  if(t.length>60){t=t.slice(0,60);var cut=t.lastIndexOf("-");if(cut>10)t=t.slice(0,cut)}return t}
+function articlePage(n,slug){
+  var img=String(n.foto||"");
+  if(img&&img.indexOf("/")<0)img="assets/img/"+img;
+  if(!img)img="masjid-ic-ntb.jpg";
+  if(img.indexOf("http")!==0)img=SITE+"/"+img;
+  var u=SITE+"/b/"+slug, back=SITE+"/#b="+slug;
+  var t=esc(n.judul), d=esc(n.ringkasan||"Berita resmi LPTQ Provinsi Nusa Tenggara Barat.");
+  return '<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8">'
+    +'<title>'+t+'</title>'
+    +'<meta property="og:type" content="article">'
+    +'<meta property="og:title" content="'+t+'">'
+    +'<meta property="og:description" content="'+d+'">'
+    +'<meta property="og:image" content="'+esc(img)+'">'
+    +'<meta property="og:url" content="'+esc(u)+'">'
+    +'<meta name="twitter:card" content="summary_large_image">'
+    +'<meta name="twitter:title" content="'+t+'">'
+    +'<meta name="twitter:description" content="'+d+'">'
+    +'<meta name="twitter:image" content="'+esc(img)+'">'
+    +'<meta http-equiv="refresh" content="0;url='+back+'">'
+    +'</head><body style="font-family:sans-serif;background:#0F3D2E;color:#fff;display:grid;place-items:center;min-height:100vh;margin:0">'
+    +'<p style="text-align:center;padding:20px">Membuka berita&hellip;<br><a style="color:#C6A15B" href="'+back+'">'+t+'</a></p>'
+    +'<scr'+'ipt>location.replace('+JSON.stringify(back)+')<\/scr'+'ipt></body></html>';
+}
+window.LPTQ_ADMIN={nSlug:nSlug,articlePage:articlePage};
 async function ghGet(path){
   var r=await fetch('https://api.github.com/repos/'+S.gh.owner+'/'+S.gh.repo+'/contents/'+path+'?ref='+S.gh.branch,{headers:{Authorization:'Bearer '+S.gh.token,Accept:'application/vnd.github+json'}});
   if(!r.ok)throw new Error('GitHub '+r.status);
@@ -634,6 +664,18 @@ async function pullRemote(){
     var sd={agenda:S.data.agenda,ann:S.data.ann,ach:S.data.ach,gallery:S.data.gallery,msq:S.data.msq||{},prog:S.data.prog||[],kabkota:S.data.kabkota||[],settings:S.data.settings};
     var sdJs='/* Diterbitkan otomatis oleh Admin MY LPTQ NTB */\nwindow.SITEDATA = '+JSON.stringify(sd,null,2)+';\n';
     await ghPut('site-data.js',sdJs,'Update data situs via admin');
+    var slugs=[];
+    for(var i=0;i<S.data.news.length;i++){
+      var n=S.data.news[i];if(n.tampil===false)continue;
+      var sl=nSlug(n.judul);if(!sl||slugs.indexOf(sl)>=0)continue;
+      slugs.push(sl);
+      await ghPut('b/'+sl+'.html',articlePage(n,sl),'Halaman berita: '+sl);
+    }
+    var oldSlugs=[];try{oldSlugs=JSON.parse(localStorage.getItem('lptq_slugs')||'[]')}catch(e){}
+    for(var j=0;j<oldSlugs.length;j++){
+      if(slugs.indexOf(oldSlugs[j])<0){try{await ghDel('b/'+oldSlugs[j]+'.html')}catch(e){}}
+    }
+    lsS('lptq_slugs',JSON.stringify(slugs));
     toast('Berhasil diterbitkan! Website akan diperbarui dalam ±1 menit.');
   }catch(e){toast('Gagal: '+e.message,true)}
   btnUnbusy(b);
@@ -974,7 +1016,7 @@ function refreshAll(){renderNews();renderAg();renderAn();renderAc();renderGa();r
   $('#hzJ').value=hz.judul||'';$('#hzS').value=hz.sub||'';
   $('#kkT').value=(S.data.kabkota||[]).join('\n');
   renderPz();
-  $('#cN').textContent=S.data.news.length;$('#cA').textContent=S.data.agenda.length;
+  $('#cA').textContent=S.data.agenda.length;
   $('#cAn').textContent=S.data.ann.length;$('#cAc').textContent=S.data.ach.length;$('#cG').textContent=S.data.gallery.length;}
 function renderAll(){refreshAll();renderSet()}
 function boot(){load();renderAll();ghStatus();
