@@ -35,6 +35,10 @@ window.SITEDATA = {
     "tt": "https://www.tiktok.com/@mylptq.ntb",
     "images": {
       "hero": "assets/img/lptqfinal.png"
+    },
+    "hero": {
+      "judul": "",
+      "sub": "Pusat informasi pembinaan Al-Qur'an, di kelola Sekretariat LPTQ Provinsi Nusa Tenggara Barat"
     }
   }
 };
