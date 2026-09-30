@@ -34,7 +34,7 @@ window.SITEDATA = {
     "yt": "https://www.youtube.com/channel/UCY8JX9qLg-LFE6lOzGy4X2g",
     "tt": "https://www.tiktok.com/@mylptq.ntb",
     "images": {
-      "hero": "assets/img/lptq2026.png"
+      "hero": "assets/img/tghbeg.png"
     }
   }
 };
