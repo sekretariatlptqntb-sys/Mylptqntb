@@ -1,4 +1,4 @@
-/* Diterbitkan otomatis oleh Admin MY LPTQ NTB — 2026-09-30T10:30:29.622Z */
+/* Diterbitkan otomatis oleh Admin MY LPTQ NTB — 2026-09-30T10:32:41.482Z */
 window.NEWS = [
   {
     "id": "idmunys8wx65cpz",
