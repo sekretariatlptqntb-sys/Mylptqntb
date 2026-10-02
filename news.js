@@ -1,5 +1,16 @@
-/* Diterbitkan otomatis oleh Admin MY LPTQ NTB — 2026-09-30T12:28:18.178Z */
+/* Diterbitkan otomatis oleh Admin MY LPTQ NTB — 2026-10-02T07:45:32.272Z */
 window.NEWS = [
+  {
+    "id": "idmuqnrqnupd212",
+    "tanggal": "2026-10-02",
+    "kategori": "LPTQ NTB",
+    "judul": "Khairunnisa Wakili Indonesia di MTHQA Ke-66 Malaysia, LPTQ NTB Kembali Beri Pembinaan",
+    "penulis": "Humas LPTQ NTB",
+    "ringkasan": "Dari Bima untuk Indonesia, dari NTB menuju panggung internasional",
+    "foto": "assets/img/screenshot-2026-10-02-154258---ziee-upscale---seedvr2---realistic-photo.png",
+    "isi": "KUALA LUMPUR — Prestasi qariah asal Nusa Tenggara Barat, Khairunnisa, berlanjut ke tingkat internasional. Setelah meraih Juara I Qira’at Mujawwad Dewasa Putri pada MTQ Nasional XXXI di Semarang, Jawa Tengah, Khairunnisa akan membawa nama Indonesia pada Majlis Tilawah dan Hafazan Al-Quran Peringkat Antarabangsa (MTHQA) Ke-66 Tahun 2026 di Kuala Lumpur, Malaysia.||Ajang internasional tersebut dijadwalkan berlangsung pada 6 hingga 10 Oktober 2026 di World Trade Centre Kuala Lumpur (WTCKL), Kuala Lumpur, Malaysia. MTHQA Ke-66 tahun ini diikuti peserta dari berbagai negara dan menjadi salah satu perhelatan tilawah dan hafazan Al-Qur’an tingkat internasional yang diselenggarakan Malaysia.||Khairunnisa menjadi salah satu wakil Indonesia setelah mencatat prestasi tertinggi pada cabang Qira’at Mujawwad Dewasa Putri dalam MTQ Nasional XXXI. Capaian tersebut juga menjadi bagian dari keberhasilan Kafilah NTB menembus 10 besar nasional dengan menempati peringkat ke-9 dan meraih total nilai 34.||Menjelang keberangkatan ke Malaysia, LPTQ Provinsi NTB kembali memberikan pembinaan dan persiapan kepada Khairunnisa. Pembinaan ini menjadi bagian dari upaya menjaga kesiapan qariah NTB yang dipercaya membawa nama Indonesia pada panggung internasional.||Gubernur NTB Lalu Muhamad Iqbal sebelumnya menyampaikan bahwa Khairunnisa akan kembali mendapatkan pembinaan bersama LPTQ NTB sebelum berangkat ke Kuala Lumpur.||Bagi LPTQ Provinsi NTB, keberangkatan Khairunnisa menjadi kelanjutan dari proses pembinaan yang telah dijalani sejak persiapan MTQ Nasional. Setelah tampil di tingkat nasional, kini qariah asal Bima tersebut mendapat kesempatan untuk menguji kemampuan pada ajang internasional sekaligus membawa nama Indonesia.||MTHQA Ke-66 Tahun 2026 sendiri akan berlangsung selama lima hari, mulai 6 sampai 10 Oktober 2026, bertempat di World Trade Centre Kuala Lumpur (WTCKL), Malaysia. Penyelenggara menyebut ajang tahun ini diikuti 50 peserta dari 38 negara, terdiri atas 25 peserta kategori tilawah dan 25 peserta kategori hafazan.||Keikutsertaan Khairunnisa di Kuala Lumpur sekaligus menjadi momentum bagi NTB untuk kembali menunjukkan hasil pembinaan qari dan qariah daerah pada tingkat internasional.||Dari Bima untuk Indonesia, dari NTB menuju panggung internasional",
+    "tampil": true
+  },
   {
     "id": "idmunys8wx65cpz",
     "tanggal": "2026-09-30",
